@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e7e7f1;
+  --color-on-tertiary: #ffffff;
+  --color-surface-container-low: #f2f3fd;
+  --color-surface-variant: #e1e2ec;
+  --color-secondary: #4c56af;
+  --color-on-secondary-container: #27308a;
+  --color-inverse-primary: #ffb870;
+  --color-background: #faf8ff;
+  --color-surface-tint: #8b5000;
+  --color-outline-variant: #dbc2ad;
+  --color-tertiary-fixed: #f4d9ff;
+  --color-on-secondary: #ffffff;
+  --color-on-tertiary-fixed: #2f004b;
+  --color-surface-dim: #d9d9e3;
+  --color-surface: #faf8ff;
+  --color-on-surface-variant: #554434;
+  --color-secondary-container: #959efd;
+  --color-surface-container-highest: #e1e2ec;
+  --color-primary: #8b5000;
+  --color-on-primary: #ffffff;
+  --color-on-secondary-fixed-variant: #343d96;
+  --color-tertiary-container: #d797ff;
+  --color-inverse-surface: #2e3038;
+  --color-surface-bright: #faf8ff;
+  --color-on-error-container: #93000a;
+  --color-on-surface: #191b22;
+  --color-inverse-on-surface: #f0f0fa;
+  --color-on-tertiary-fixed-variant: #6a1b9a;
+  --color-on-primary-fixed: #2c1600;
+  --color-secondary-fixed: #e0e0ff;
+  --color-on-primary-container: #653900;
+  --color-secondary-fixed-dim: #bdc2ff;
+  --color-tertiary: #843ab4;
+  --color-on-tertiary-container: #671697;
+  --color-outline: #887361;
+  --color-error: #ba1a1a;
+  --color-primary-fixed-dim: #ffb870;
+  --color-on-primary-fixed-variant: #693c00;
+  --color-tertiary-fixed-dim: #e4b5ff;
+  --color-primary-container: #ff9800;
+  --color-surface-container: #ededf7;
+  --color-primary-fixed: #ffdcbe;
+  --color-on-secondary-fixed: #000767;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-background: #191b22;
+
+  --font-headline: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+}
