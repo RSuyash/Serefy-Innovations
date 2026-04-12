@@ -10,19 +10,22 @@ import Technology from './pages/Technology';
 import Metrics from './pages/Metrics';
 import Library from './pages/Library';
 import Contact from './pages/Contact';
+import { LeadWizardProvider } from './components/LeadWizardProvider';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="technology" element={<Technology />} />
-          <Route path="metrics" element={<Metrics />} />
-          <Route path="library" element={<Library />} />
-          <Route path="contact" element={<Contact />} />
-        </Route>
-      </Routes>
+      <LeadWizardProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="technology" element={<Technology />} />
+            <Route path="metrics" element={<Metrics />} />
+            <Route path="library" element={<Library />} />
+            <Route path="contact" element={<Contact />} />
+          </Route>
+        </Routes>
+      </LeadWizardProvider>
     </BrowserRouter>
   );
 }
