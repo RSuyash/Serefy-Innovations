@@ -1,0 +1,19 @@
+FROM node:22-bookworm-slim AS build
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --include=optional
+
+COPY . .
+RUN npm run verify:assets
+RUN npm run build
+
+FROM nginx:1.27-alpine
+WORKDIR /usr/share/nginx/html
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist ./
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -1,124 +1,300 @@
-import { Link } from 'react-router-dom';
+import { motion } from "motion/react";
+import { ArrowRight, CheckCircle2, Egg, Landmark, ShieldCheck, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+
+import InquiryForm from "../components/InquiryForm";
+import ShareSiteButton from "../components/ShareSiteButton";
+import { useLeadWizard } from "../components/LeadWizardProvider";
+import { buildWhatsAppUrl, siteConfig } from "../lib/site-config";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
 
 export default function Home() {
+  const { openLeadWizard } = useLeadWizard();
+
   return (
-    <div className="pt-20 pb-24 md:pb-0">
-      {/* Hero Section */}
-      <section className="relative px-6 pt-12 pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div className="z-10">
-            <h1 className="font-headline text-5xl md:text-7xl font-extrabold text-on-surface leading-tight tracking-tighter mb-6">
-              Empowering Farmers with <span className="text-primary italic">Precision</span> Hatching.
-            </h1>
-            <p className="text-lg text-on-surface-variant mb-10 max-w-lg leading-relaxed">
-              The world's first truly automated, affordable egg incubator designed for self-reliant poultry farming. Maximize your yield, minimize your effort.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact" className="bg-primary text-on-primary px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all text-center">
-                Request a Demonstration
+    <div className="overflow-x-hidden pb-20 md:pb-0">
+      <section className="relative overflow-hidden px-6 pb-24 pt-14">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(245,158,11,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(76,86,175,0.12),transparent_35%)]" />
+        <div className="relative mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+            <motion.div variants={fadeUp} className="mb-7 flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-amber-100 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-amber-700">
+                {siteConfig.heroNote}
+              </span>
+              <span className="rounded-full bg-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-slate-600 shadow-sm">
+                {siteConfig.partnerLabel}
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={fadeUp}
+              className="font-headline text-5xl font-extrabold leading-[1.02] tracking-tight text-slate-950 md:text-7xl"
+            >
+              Smart hatching systems built for
+              <span className="block text-amber-700">precision, consistency, and rural readiness.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl"
+            >
+              SERE Smart Hatching helps poultry farms move from manual uncertainty to guided,
+              automated incubation with models designed for real on-ground operating conditions.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
+              <button
+                type="button"
+                onClick={() => openLeadWizard()}
+                className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-amber-700"
+              >
+                Start guided enquiry
+                <ArrowRight className="h-4 w-4" />
+              </button>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-amber-300 hover:text-amber-700"
+              >
+                Speak to the team
               </Link>
-              <div className="flex items-center gap-3 px-4">
-                <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-                <span className="text-sm font-semibold text-on-surface-variant uppercase tracking-widest">DST NIDHI Recognized</span>
+              <ShareSiteButton
+                className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-amber-300 hover:text-amber-700"
+                label="Share website"
+              />
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="mt-10 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-[1.7rem] border border-slate-200 bg-white p-5 shadow-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Hatch rate</p>
+                <p className="mt-3 text-2xl font-black text-slate-950">{siteConfig.socialProof.hatchRate}</p>
+              </div>
+              <div className="rounded-[1.7rem] border border-slate-200 bg-white p-5 shadow-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Best for</p>
+                <p className="mt-3 text-lg font-bold text-slate-950">{siteConfig.socialProof.audience}</p>
+              </div>
+              <div className="rounded-[1.7rem] border border-slate-200 bg-white p-5 shadow-sm">
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-slate-500">Positioning</p>
+                <p className="mt-3 text-lg font-bold text-slate-950">{siteConfig.socialProof.position}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 22, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+          >
+            <div className="relative overflow-hidden rounded-[2.8rem] border border-white/80 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.14)]">
+              <img
+                src={siteConfig.image.hero}
+                alt="SERE Smart Hatching incubator"
+                className="aspect-[4/5] w-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/15 via-transparent to-white/10" />
+            </div>
+
+            <div className="absolute -bottom-7 left-4 right-4 rounded-[1.9rem] border border-white/80 bg-white/92 p-5 shadow-xl backdrop-blur md:left-8 md:right-auto md:max-w-[320px]">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-700">
+                Built for action
+              </p>
+              <div className="mt-4 space-y-3">
+                {[
+                  "Affordable automation for small and growth-stage poultry farms",
+                  "Practical capacity guidance across SERE 120, 240, and 500",
+                  "Cleaner lead capture for demos, pricing, and partnerships",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm leading-6 text-slate-700">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-primary/10 rounded-[2rem] blur-3xl -rotate-6"></div>
-            <img alt="SERE Incubator" className="relative z-10 w-full rounded-[2rem] shadow-2xl object-cover aspect-[4/5] transform group-hover:scale-[1.02] transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYIlAsKjTyO1ZIRMQT0nc0KD891ts0ZmEZQODcyNsYBRhVn0Qb9URajfnThQXcRMiUXMhZvboJ-6dWcztFUAsr6GpLhl7AZLNFOVjxJfxbHEE1yhB6d5HlVlrBS2lV_Jcr90lsCkLb1_8IDthAj0RcBBofDBu4yGnPfr-v5vFW5vf-RVvYmA0WAa0pQpmmwXZeAO0MTN4vCx1fp3MgjJ1516OW0lav73HrkiMjie2eToUilcKRwXAKPGEbN1UbnMqV3yqHnZwClQ" />
-            {/* High Yield Badge */}
-            <div className="absolute -bottom-6 -left-6 z-20 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center">
-                <span className="material-symbols-outlined text-green-600 text-3xl">trending_up</span>
-              </div>
-              <div>
-                <p className="text-xs font-bold text-on-surface-variant uppercase">Success Rate</p>
-                <p className="text-2xl font-black text-green-700">85–90% Yield</p>
-              </div>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* The Problem Section */}
       <section className="bg-surface-container-low py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 max-w-2xl">
-            <h2 className="font-headline text-3xl font-extrabold text-secondary mb-4 uppercase tracking-tight">The Problem</h2>
-            <p className="text-4xl font-headline font-bold text-on-surface">Stopping the Financial Drain on Small-Scale Farmers.</p>
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 max-w-3xl">
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">The real gap</p>
+            <h2 className="mt-4 font-headline text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
+              The cost is not just manual work. It is lost hatch value, uneven planning, and avoidable drift.
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-surface-container-highest/50 p-8 rounded-xl grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-error/20">
-              <span className="material-symbols-outlined text-error text-4xl mb-6">money</span>
-              <h3 className="text-xl font-bold mb-3">Egg Utilization Gap</h3>
-              <p className="text-on-surface-variant">Millions of fertile eggs go to waste or are sold at low food prices because farmers lack hatching capacity.</p>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              {
+                icon: <Egg className="h-6 w-6" />,
+                title: "Low-value egg utilization",
+                body: "Fertile eggs often get sold or underused because small farms do not have dependable incubation capacity in place.",
+              },
+              {
+                icon: <ShieldCheck className="h-6 w-6" />,
+                title: "Recurring dependency costs",
+                body: "Buying chicks repeatedly drains margins and makes farm planning more reactive than controlled.",
+              },
+              {
+                icon: <Landmark className="h-6 w-6" />,
+                title: "Technology access gap",
+                body: "Industrial incubators are expensive, bulky, and not designed around the realities of smaller Indian farm operations.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm transition-shadow hover:shadow-lg"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                  {item.icon}
+                </div>
+                <h3 className="mt-6 text-2xl font-bold text-slate-950">{item.title}</h3>
+                <p className="mt-4 text-sm leading-7 text-slate-600">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-6">
+        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(76,86,175,0.12)]">
+            <img
+              src={siteConfig.image.technology}
+              alt="SERE technology and incubation system"
+              className="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">The solution</p>
+            <h2 className="mt-4 font-headline text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
+              Smart hatching, simplified for real farm operations.
+            </h2>
+            <div className="mt-8 space-y-5">
+              {[
+                "Automated cycle support for temperature, turning, and consistency planning.",
+                "Model range that gives farms a practical path from smaller capacity to larger output.",
+                "Rural-ready positioning with a sharper, easier demo-to-enquiry journey for serious buyers.",
+              ].map((item) => (
+                <div key={item} className="flex gap-4">
+                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                    <Sparkles className="h-4 w-4" />
+                  </div>
+                  <p className="text-base leading-8 text-slate-600">{item}</p>
+                </div>
+              ))}
             </div>
-            <div className="bg-surface-container-highest/50 p-8 rounded-xl grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-error/20">
-              <span className="material-symbols-outlined text-error text-4xl mb-6">payments</span>
-              <h3 className="text-xl font-bold mb-3">Financial Drain</h3>
-              <p className="text-on-surface-variant">Buying day-old chicks every month costs small farmers over ₹5,000 in recurring expenses.</p>
-            </div>
-            <div className="bg-surface-container-highest/50 p-8 rounded-xl grayscale hover:grayscale-0 transition-all duration-500 border-b-4 border-error/20">
-              <span className="material-symbols-outlined text-error text-4xl mb-6">settings_input_component</span>
-              <h3 className="text-xl font-bold mb-3">Costly Complexity</h3>
-              <p className="text-on-surface-variant">Existing industrial incubators cost ₹25,000+ and require specialized knowledge to operate.</p>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                to="/technology"
+                className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-amber-700"
+              >
+                See the technology
+              </Link>
+              <a
+                href={buildWhatsAppUrl("Hi, I want to understand which SERE model would suit my farm.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-amber-300 hover:text-amber-700"
+              >
+                WhatsApp the team
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Solution Section */}
-      <section className="py-24 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1">
-              <div className="grid grid-cols-5 gap-2 max-w-sm mx-auto md:mx-0">
-                {Array.from({ length: 25 }).map((_, i) => {
-                  const isActive = [2, 7, 8, 12, 13, 14, 17, 18, 22].includes(i);
-                  return (
-                    <div key={i} className={`aspect-square rounded-lg ${isActive ? 'bg-tertiary shadow-lg shadow-tertiary/30' : 'bg-tertiary-container/30'} flex items-center justify-center transition-all duration-500`}>
-                      {isActive && <span className="material-symbols-outlined text-white text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>egg</span>}
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="mt-8 flex items-center gap-4 bg-tertiary-container/20 p-4 rounded-xl border border-tertiary/10">
-                <span className="material-symbols-outlined text-tertiary">info</span>
-                <p className="text-sm font-medium text-on-tertiary-container">Smart Tray Monitoring: Automated rotation and temperature mapping for every cell.</p>
-              </div>
+      <section className="bg-slate-950 px-6 py-24 text-white">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-14 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-3xl">
+              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-300">Model range</p>
+              <h2 className="mt-4 font-headline text-4xl font-extrabold tracking-tight md:text-5xl">
+                Choose the right scale without losing simplicity.
+              </h2>
             </div>
-            <div className="order-1 md:order-2">
-              <h2 className="font-headline text-3xl font-extrabold text-primary mb-4 uppercase tracking-tight">The Solution</h2>
-              <h3 className="text-5xl font-headline font-bold text-on-surface mb-8">Smart Hatching, Simplified.</h3>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="mt-1 w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-primary text-sm" style={{ fontWeight: 700 }}>check</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">One-Touch Automation</h4>
-                    <p className="text-on-surface-variant">Set and forget. Our AI handles humidity, turning, and heating cycles.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="mt-1 w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-primary text-sm" style={{ fontWeight: 700 }}>check</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">Solar Compatibility</h4>
-                    <p className="text-on-surface-variant">Engineered for rural India. Works seamlessly with existing power grids or solar kits.</p>
-                  </div>
-                </div>
-                <div className="flex gap-4">
-                  <div className="mt-1 w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
-                    <span className="material-symbols-outlined text-primary text-sm" style={{ fontWeight: 700 }}>check</span>
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-lg">Modular Tray System</h4>
-                    <p className="text-on-surface-variant">Scale from 50 to 500 eggs by simply adding stackable smart modules.</p>
-                  </div>
+            <Link
+              to="/metrics"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-amber-300 transition-colors hover:text-white"
+            >
+              Open model comparison
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {[
+              { title: "SERE 120", image: siteConfig.image.sere120, note: "For leaner hatch planning and entry setups." },
+              { title: "SERE 240", image: siteConfig.image.sere240, note: "For farms ready to scale with steadier rhythm." },
+              { title: "SERE 500", image: siteConfig.image.sere500, note: "For higher-capacity operations and larger planning windows." },
+            ].map((item) => (
+              <div key={item.title} className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-sm">
+                <img src={item.image} alt={item.title} className="aspect-[4/3] w-full object-cover" loading="lazy" decoding="async" />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-7 text-slate-300">{item.note}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 overflow-hidden rounded-[3rem] border border-slate-200 bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] md:p-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">Enquiry form</p>
+            <h2 className="mt-4 font-headline text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
+              Prefer writing first? Send a grounded enquiry here.
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
+              This uses the same live Naya lead pipeline that powers our other production landing
+              systems, so demos, pricing requests, and serious farm enquiries are captured cleanly
+              and routed for follow-up.
+            </p>
+            <div className="mt-8">
+              <InquiryForm sourceCta="home-inline-form" />
+            </div>
+          </div>
+
+          <div className="rounded-[2.5rem] bg-surface-container-low p-5">
+            <div className="overflow-hidden rounded-[2rem] bg-white">
+              <img
+                src={siteConfig.image.aicMahindra}
+                alt="AIC Mahindra partner identity"
+                className="aspect-[4/3] w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="mt-5 rounded-[1.8rem] bg-white p-6 shadow-sm">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-700">Good for</p>
+              <ul className="mt-4 space-y-3 text-sm leading-7 text-slate-600">
+                <li>Farmers comparing model fit and pricing</li>
+                <li>Institutional and partnership enquiries</li>
+                <li>People who want a clean written follow-up before a call</li>
+              </ul>
             </div>
           </div>
         </div>

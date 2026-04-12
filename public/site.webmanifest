@@ -1,0 +1,21 @@
+{
+  "name": "SERE Smart Hatching",
+  "short_name": "SERE",
+  "description": "Automated egg incubators for precision poultry farming.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

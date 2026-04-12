@@ -1,5 +1,5 @@
 {
-  "name": "react-example",
+  "name": "serefy-innovations",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test": "node --test --import tsx src/lib/lead-form.test.ts src/lib/route-seo.test.ts",
+    "verify:assets": "node scripts/verify-public-assets.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

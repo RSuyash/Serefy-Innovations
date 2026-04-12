@@ -1,85 +1,93 @@
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+
+import InquiryForm from "../components/InquiryForm";
+import { buildWhatsAppUrl, siteConfig } from "../lib/site-config";
+
 export default function Contact() {
   return (
-    <div className="pt-24 pb-24 md:pb-0 px-6 max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <div className="px-6 pb-24 pt-16 md:pb-0">
+      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.88fr_1.12fr]">
         <div>
-          <h1 className="font-headline text-5xl font-extrabold text-on-surface tracking-tight mb-6">Let's Talk Precision.</h1>
-          <p className="text-on-surface-variant text-lg mb-12 max-w-md">
-            Whether you're ready to upgrade your hatchery or just have questions about our technology, our team is here to help.
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">Contact</p>
+          <h1 className="mt-4 font-headline text-5xl font-extrabold tracking-tight text-slate-950 md:text-6xl">
+            Let’s talk about the right hatching setup.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            Whether you want a demo, model guidance, pricing clarity, or a partnership discussion,
+            the team is ready to help you move from interest to a practical next step.
           </p>
 
-          <div className="space-y-8">
+          <div className="mt-12 space-y-8">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-primary">location_on</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                <MapPin className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold text-on-surface mb-1">Headquarters</h3>
-                <p className="text-on-surface-variant">AIC Mahindra, Pune, Maharashtra, India</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-secondary">mail</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-on-surface mb-1">Email Us</h3>
-                <p className="text-on-surface-variant">contact@sereinnovations.com</p>
+                <h2 className="text-lg font-bold text-slate-950">Base</h2>
+                <p className="mt-2 text-sm leading-7 text-slate-600">{siteConfig.location}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-tertiary-container/20 flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-tertiary">phone</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-100 text-indigo-700">
+                <Mail className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="font-bold text-on-surface mb-1">Call Us</h3>
-                <p className="text-on-surface-variant">+91 98765 43210</p>
-                <p className="text-xs text-outline mt-1">Mon-Fri, 9am - 6pm IST</p>
+                <h2 className="text-lg font-bold text-slate-950">Email</h2>
+                <a href={`mailto:${siteConfig.email}`} className="mt-2 block text-sm leading-7 text-slate-600 hover:text-slate-950">
+                  {siteConfig.email}
+                </a>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                <Phone className="h-5 w-5" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-slate-950">Phone / WhatsApp</h2>
+                <a
+                  href={buildWhatsAppUrl("Hi, I want to know more about SERE Smart Hatching.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-sm leading-7 text-slate-600 hover:text-slate-950"
+                >
+                  {siteConfig.whatsappDisplay}
+                </a>
+                <p className="mt-1 text-xs text-slate-400">Mon-Sat, working-hour follow-up</p>
               </div>
             </div>
           </div>
+
+          <div className="mt-10 rounded-[2rem] border border-slate-200 bg-surface-container-low p-6">
+            <div className="flex items-center gap-3 text-amber-700">
+              <MessageCircle className="h-5 w-5" />
+              <p className="text-sm font-bold uppercase tracking-[0.18em]">Fastest path</p>
+            </div>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              If you already know your need, message on WhatsApp and mention whether you want a
+              demo, model recommendation, pricing, or partnership details.
+            </p>
+            <a
+              href={buildWhatsAppUrl("Hi, I want to know more about SERE Smart Hatching.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-6 py-3 text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-amber-700"
+            >
+              Message the team
+            </a>
+          </div>
         </div>
 
-        <div className="bg-surface-container-lowest p-8 md:p-10 rounded-2xl shadow-xl border border-outline-variant/20">
-          <h2 className="font-headline text-2xl font-bold mb-6">Send a Message</h2>
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="firstName" className="block text-sm font-bold text-on-surface mb-2">First Name</label>
-                <input type="text" id="firstName" className="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="John" />
-              </div>
-              <div>
-                <label htmlFor="lastName" className="block text-sm font-bold text-on-surface mb-2">Last Name</label>
-                <input type="text" id="lastName" className="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Doe" />
-              </div>
-            </div>
-            
-            <div>
-              <label htmlFor="email" className="block text-sm font-bold text-on-surface mb-2">Email Address</label>
-              <input type="email" id="email" className="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="john@example.com" />
-            </div>
-
-            <div>
-              <label htmlFor="interest" className="block text-sm font-bold text-on-surface mb-2">I'm interested in...</label>
-              <select id="interest" className="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all appearance-none">
-                <option>Purchasing an Incubator</option>
-                <option>Partnership Opportunities</option>
-                <option>Technical Support</option>
-                <option>General Inquiry</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-bold text-on-surface mb-2">Message</label>
-              <textarea id="message" rows={4} className="w-full bg-surface-container border border-outline-variant/50 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none" placeholder="How can we help you?"></textarea>
-            </div>
-
-            <button type="button" className="w-full bg-primary text-on-primary font-bold py-4 rounded-lg hover:brightness-110 transition-all shadow-lg active:scale-[0.98]">
-              Send Message
-            </button>
-          </form>
+        <div className="rounded-[2.4rem] border border-slate-200 bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.08)] md:p-10">
+          <h2 className="font-headline text-3xl font-extrabold text-slate-950">Send an enquiry</h2>
+          <p className="mt-3 text-sm leading-7 text-slate-600">
+            This form is connected to the live Naya lead workflow, so your message gets captured and
+            routed properly for follow-up.
+          </p>
+          <div className="mt-8">
+            <InquiryForm sourceCta="contact-page-form" />
+          </div>
         </div>
       </div>
     </div>

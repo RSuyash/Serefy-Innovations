@@ -1,103 +1,160 @@
+import { motion } from "motion/react";
+import { ArrowRight, Cpu, Leaf, Microscope, Settings2 } from "lucide-react";
+
+import { useLeadWizard } from "../components/LeadWizardProvider";
+import { buildWhatsAppUrl, siteConfig } from "../lib/site-config";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
+};
+
 export default function Technology() {
+  const { openLeadWizard } = useLeadWizard();
+
   return (
-    <div className="pt-24 pb-24 md:pb-0">
-      <section className="relative px-6 py-16 md:py-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="z-10">
-            <span className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest uppercase bg-primary-container/10 text-primary rounded-full font-label">The Illuminated Laboratory</span>
-            <h1 className="text-5xl md:text-7xl font-headline font-extrabold text-on-surface tracking-tighter leading-none mb-6">
-              Bridging <span className="text-primary italic">Tradition</span> &amp; <span className="text-secondary">Precision</span>
-            </h1>
-            <p className="text-lg md:text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
-              We are reimagining the heartbeat of small-scale farming through surgical technology and empathetic design.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="bg-gradient-to-r from-primary to-primary-container text-on-primary px-8 py-4 rounded-lg font-bold shadow-lg hover:brightness-110 transition-all flex items-center gap-2">
-                Explore Technology <span className="material-symbols-outlined">arrow_forward</span>
-              </button>
-            </div>
+    <div className="px-6 pb-24 pt-16 md:pb-0">
+      <section className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">
+            The illuminated laboratory
+          </p>
+          <h1 className="mt-4 font-headline text-5xl font-extrabold leading-[1.02] tracking-tight text-slate-950 md:text-7xl">
+            Bridging rural farming realities with
+            <span className="block text-amber-700">precision hatching technology.</span>
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">
+            SERE is built around a simple idea: small and growth-stage poultry farms deserve better
+            incubation outcomes without being forced into industrial complexity.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <button
+              type="button"
+              onClick={() => openLeadWizard()}
+              className="inline-flex items-center gap-3 rounded-full bg-slate-950 px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-amber-700"
+            >
+              Request a guided demo
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <a
+              href={buildWhatsAppUrl("Hi, I want to understand the SERE technology better.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-amber-300 hover:text-amber-700"
+            >
+              Ask on WhatsApp
+            </a>
           </div>
-          <div className="relative">
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
-              <img className="w-full h-full object-cover" alt="Close-up of a modern high-tech egg incubator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTyU9AIyw6mQegf3dqwyYikSGAkJuS052qMwep421pmNQrXbQ754Z-hjw2T8B-b9JzbsUBtabkbA7og0Jp-2WSVmSIRHqg3_Ekcf5T1_SquQ3moU_XzCh1U_PvAsJCPqMwuYMcPNnXuwdnmiR8GD1AuxEfNdfZGeY_Y_nGt66DdQYPNGa-qsjTp3XuURUHKg12Vm7AhYWv7aChDWRYfNoKcDp4F6EgfwKD-2SKtTfUbOc03BWkI5nm9rPZwMc4GyBaGYNvaWWh3w" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 bg-surface-container-lowest p-6 rounded-xl shadow-xl hidden md:block">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-tertiary-container rounded-lg flex items-center justify-center">
-                  <span className="material-symbols-outlined text-tertiary" style={{ fontVariationSettings: "'FILL' 1" }}>precision_manufacturing</span>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-on-surface">R&amp;D Precision</p>
-                  <p className="text-xs text-on-surface-variant">Validated Technology</p>
-                </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="relative"
+        >
+          <div className="overflow-hidden rounded-[2.6rem] border border-slate-200 bg-white shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
+            <img
+              className="aspect-square w-full object-cover"
+              alt="Close-up of SERE hatching technology"
+              src={siteConfig.image.technology}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <div className="absolute -bottom-7 left-5 rounded-[1.8rem] border border-white/70 bg-white/92 p-5 shadow-xl backdrop-blur md:left-8">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                <Microscope className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-slate-950">R&D-led product thinking</p>
+                <p className="text-xs text-slate-500">Built for validated, repeatable incubation control.</p>
               </div>
             </div>
           </div>
+        </motion.div>
+      </section>
+
+      <section className="mx-auto mt-24 max-w-7xl rounded-[3rem] bg-surface-container-low px-8 py-16 md:px-12">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            {
+              icon: <Settings2 className="h-6 w-6" />,
+              title: "Automation support",
+              body: "Set up around easier operating control instead of recurring manual intervention.",
+            },
+            {
+              icon: <Leaf className="h-6 w-6" />,
+              title: "Rural-ready practicality",
+              body: "Designed around the realities of small and growth-stage farm environments.",
+            },
+            {
+              icon: <Cpu className="h-6 w-6" />,
+              title: "Modular model path",
+              body: "Move from SERE 120 to higher capacity without relearning the whole operating logic.",
+            },
+            {
+              icon: <Microscope className="h-6 w-6" />,
+              title: "Research-grounded positioning",
+              body: "Built with a clearer biological and operational understanding than generic off-the-shelf equipment.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="rounded-[2rem] border border-white/60 bg-white p-6 shadow-sm">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+                {item.icon}
+              </div>
+              <h2 className="mt-5 text-2xl font-bold text-slate-950">{item.title}</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{item.body}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="bg-surface-container-low py-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row gap-12 items-start">
-            <div className="w-full md:w-1/3">
-              <h2 className="text-3xl font-headline font-bold text-primary mb-4">Our Mission</h2>
-              <h3 className="text-4xl font-headline font-extrabold text-on-surface mb-6">Organic Precision</h3>
-            </div>
-            <div className="w-full md:w-2/3">
-              <p className="text-xl leading-relaxed text-on-surface-variant mb-8">
-                Agricultural technology often leaves small-scale farmers behind. We believe that innovation shouldn't be reserved for industrial giants. Our mission is to democratize institutional-grade hardware for the modern farmer managing 200–500 birds. 
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 bg-surface-container-lowest rounded-lg border-l-4 border-primary">
-                  <p className="text-sm font-label font-bold text-primary mb-2">TARGET CAPACITY</p>
-                  <p className="text-2xl font-headline font-bold text-on-surface">200–500 Birds</p>
-                  <p className="text-sm text-on-surface-variant mt-2">Optimized for small enterprise sustainability.</p>
-                </div>
-                <div className="p-6 bg-surface-container-lowest rounded-lg border-l-4 border-secondary">
-                  <p className="text-sm font-label font-bold text-secondary mb-2">ACCESS EQUITY</p>
-                  <p className="text-2xl font-headline font-bold text-on-surface">Universal Tech</p>
-                  <p className="text-sm text-on-surface-variant mt-2">Bridging the gap between rural grit and silicon tech.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="mx-auto max-w-7xl py-24">
+        <div className="mb-14 max-w-3xl">
+          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-amber-700">Founders</p>
+          <h2 className="mt-4 font-headline text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
+            The people shaping the system.
+          </h2>
         </div>
-      </section>
 
-      <section className="py-24 px-6 bg-surface-container-low">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-headline font-extrabold text-on-surface mb-4">The Minds Behind the Lab</h2>
-            <p className="text-on-surface-variant max-w-2xl mx-auto">Founded by BCS 2025 researchers with a passion for pragmatic agricultural solutions.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center md:items-start group hover:shadow-xl transition-all duration-500">
-              <div className="w-40 h-40 rounded-xl overflow-hidden shrink-0 bg-surface-container-high border-4 border-white shadow-inner">
-                <img className="w-full h-full object-cover" alt="Vidhya Gaikwad" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnozhxILLQ_MwnMeEDUmOd6Op1L0TkvqcneVXpI8GHawBFD1T_UYSSpBTT1kGGBtgd1WXF1DbkadifLr5xL5jpWwHNU5sBnGExIKP0aGr5ceHFo6m76faFcOXLA5O6thiPM_G6IwAx7IvDUCRkmN3WBTBG4ktqdeFcXM5Em5Of3-KdSKMYo_Bkfma3x7l_TsAwzthvBCbjOhQ1W-8vYbz022lBhvcqDHPPc40OvFDgesjoW5XJpE6tTGdvAvbqIp703E-DthUnWA" />
+        <div className="grid gap-8 md:grid-cols-2">
+          {[
+            {
+              name: "Vidhya Gaikwad",
+              role: "Founder & CEO",
+              image: siteConfig.image.founderVidhya,
+              body: "Leading SERE’s biological research direction and the wider mission to make structured incubation more accessible for poultry farms.",
+            },
+            {
+              name: "Aditya Magar",
+              role: "Co-Founder & CTO",
+              image: siteConfig.image.founderAditya,
+              body: "Driving systems thinking, product direction, and the technology layer behind SERE’s automation-led hatching experience.",
+            },
+          ].map((founder) => (
+            <div
+              key={founder.name}
+              className="flex flex-col gap-8 rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm md:flex-row"
+            >
+              <div className="overflow-hidden rounded-[1.8rem] bg-slate-100 md:w-[220px] md:shrink-0">
+                <img
+                  src={founder.image}
+                  alt={founder.name}
+                  className="aspect-[4/5] h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div>
-                <span className="text-xs font-label font-bold text-secondary uppercase tracking-widest">Founder &amp; CEO</span>
-                <h3 className="text-2xl font-headline font-bold text-on-surface mt-1 mb-2">Vidhya Gaikwad</h3>
-                <p className="text-sm font-medium text-primary mb-4">BCS 2025 | Head of R&amp;D</p>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Leading the strategic vision and biological research for SERE. Vidhya's focus on incubation physics has been the cornerstone of our hardware development.
-                </p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-amber-700">{founder.role}</p>
+                <h3 className="mt-3 text-3xl font-bold text-slate-950">{founder.name}</h3>
+                <p className="mt-5 text-sm leading-7 text-slate-600">{founder.body}</p>
               </div>
             </div>
-            <div className="bg-surface-container-lowest rounded-2xl p-8 flex flex-col md:flex-row gap-8 items-center md:items-start group hover:shadow-xl transition-all duration-500">
-              <div className="w-40 h-40 rounded-xl overflow-hidden shrink-0 bg-surface-container-high border-4 border-white shadow-inner">
-                <img className="w-full h-full object-cover" alt="Aditya Magar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO4veJTclq2nLkU3QHQGHvuDKZ9hJVOwHBhQIpxlV3Y6L-_dpNGpGI1ALxT3Rqni6laRTsqAsksaZal2mVcpH9abqr_1kQSUMsapl9V88Ttoj4HC9BuLywr9IVhxg35F0miiZsqM_H3hsk7fvAAZvCrGqai6aKNd4Dp8AR0pzCAlf6mOtHKGi7L2soWu1dgSPYDyADR_TF67GSXncWm1sen6iY6CpMjn2KAsrlV--qJmaGmiwb65dt0Wd_iaqwWZq_v9GpLq1shQ" />
-              </div>
-              <div>
-                <span className="text-xs font-label font-bold text-secondary uppercase tracking-widest">Co-Founder &amp; CTO</span>
-                <h3 className="text-2xl font-headline font-bold text-on-surface mt-1 mb-2">Aditya Magar</h3>
-                <p className="text-sm font-medium text-primary mb-4">BCS 2025 | Head of Systems</p>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Driving the technological stack and software architecture. Aditya specializes in IoT integration and predictive analytics for agricultural hardware.
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
     </div>
