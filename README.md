@@ -1,18 +1,20 @@
-# Serefy Innovations
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-SERE Smart Hatching preview deployment for Naya Growth.
+# Run and deploy your AI Studio app
 
-## Commands
+This contains everything you need to run your app locally.
 
-- `npm install`
-- `npm test`
-- `npm run lint`
-- `npm run build`
-- `npm run verify:assets`
+View your app in AI Studio: https://ai.studio/apps/a5639356-f626-49a8-beaf-030930361164
 
-## Deployment
+## Run Locally
 
-- branch: `production`
-- preview host: `https://serefy-innovations.preview.nayagrowth.com`
-- VPS app dir: `~/apps/serefy-innovations-preview`
-- container: `serefy-innovations-preview`
+**Prerequisites:**  Node.js
+
+
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
