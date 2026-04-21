@@ -41,6 +41,7 @@ const initialFormData: WizardFormData = {
 export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = false, submitError = '' }: WizardModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<WizardFormData>(initialFormData);
+  const totalSteps = 5;
 
   useEffect(() => {
     if (isOpen) {
@@ -69,12 +70,17 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
     setStep((s) => s - 1);
   };
 
+  const handleSelectionNext = (nextData: WizardFormData) => {
+    setFormData(nextData);
+    window.setTimeout(() => {
+      setStep((s) => Math.min(s + 1, totalSteps));
+    }, 300);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await onSubmit(formData);
   };
-
-  const totalSteps = 5;
 
   if (!isOpen) return null;
 
@@ -110,7 +116,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                   ].map((role) => (
                     <button
                       key={role.id}
-                      onClick={() => { setFormData({ ...formData, role: role.id }); setTimeout(handleNext, 300); }}
+                      onClick={() => handleSelectionNext({ ...formData, role: role.id })}
                       className={`flex items-center p-4 rounded-2xl border-2 text-left transition-all ${formData.role === role.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                     >
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 ${formData.role === role.id ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface-variant'}`}>
@@ -137,7 +143,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                        {['120', '200', '500'].map((cap) => (
                          <button
                            key={cap}
-                           onClick={() => { setFormData({ ...formData, capacity: cap }); setTimeout(handleNext, 300); }}
+                           onClick={() => handleSelectionNext({ ...formData, capacity: cap })}
                            className={`p-5 rounded-2xl border-2 text-center transition-all flex justify-between items-center ${formData.capacity === cap ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-2xl font-extrabold text-on-surface">जीone Series {cap}</div>
@@ -159,7 +165,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                        ].map((type) => (
                          <button
                            key={type.id}
-                           onClick={() => { setFormData({ ...formData, partnershipType: type.id }); setTimeout(handleNext, 300); }}
+                           onClick={() => handleSelectionNext({ ...formData, partnershipType: type.id })}
                            className={`p-5 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.partnershipType === type.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{type.title}</div>
@@ -192,7 +198,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                        ].map((goal) => (
                          <button
                            key={goal.id}
-                           onClick={() => { setFormData({ ...formData, goal: goal.id }); setTimeout(handleNext, 300); }}
+                           onClick={() => handleSelectionNext({ ...formData, goal: goal.id })}
                            className={`p-4 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.goal === goal.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{goal.title}</div>
@@ -213,7 +219,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                        ].map((tl) => (
                          <button
                            key={tl.id}
-                           onClick={() => { setFormData({ ...formData, timeline: tl.id }); setTimeout(handleNext, 300); }}
+                           onClick={() => handleSelectionNext({ ...formData, timeline: tl.id })}
                            className={`p-4 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.timeline === tl.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{tl.title}</div>
