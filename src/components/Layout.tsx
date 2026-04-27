@@ -78,10 +78,12 @@ export default function Layout() {
 
           <div className="md:col-span-3">
             <h5 className="text-amber-500 font-black uppercase text-xs tracking-[0.4em] mb-8">Partners</h5>
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col group">
-                <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-16 w-auto object-contain transition-all" />
-                <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest mt-2">Incubation Centre</span>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col items-start group">
+                <div className="bg-white/5 p-4 rounded-2xl border border-white/10 group-hover:border-amber-500/30 transition-all duration-500">
+                  <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-16 md:h-20 w-auto object-contain" />
+                </div>
+                <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest mt-4 ml-1">Incubation Centre</span>
               </div>
             </div>
           </div>
