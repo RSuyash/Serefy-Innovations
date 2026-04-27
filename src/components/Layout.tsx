@@ -61,7 +61,7 @@ export default function Layout() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-8 max-w-7xl mx-auto relative z-10">
           <div className="md:col-span-5">
             <div className="text-3xl font-black text-white mb-6 flex items-center gap-3">
-              <img src="/media/logo.png" alt="Serefy Innovations" className="h-12 w-auto object-contain brightness-0 invert" />
+              <img src="/media/logo.png" alt="Serefy Innovations" className="h-14 w-auto object-contain invert brightness-200" />
               {siteConfig.brand.name}
             </div>
             <p className="text-slate-200 text-lg leading-relaxed max-w-md mb-8 font-black opacity-100">
@@ -80,7 +80,7 @@ export default function Layout() {
             <h5 className="text-amber-500 font-black uppercase text-xs tracking-[0.4em] mb-8">Partners</h5>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col group">
-                <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-12 w-auto object-contain brightness-0 invert opacity-70 group-hover:opacity-100 transition-all" />
+                <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-16 w-auto object-contain transition-all" />
                 <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest mt-2">Incubation Centre</span>
               </div>
             </div>
