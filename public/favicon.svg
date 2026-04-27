@@ -1,8 +1,11 @@
 <svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="128" height="128" rx="30" fill="#0F172A"/>
-  <rect x="20" y="20" width="88" height="88" rx="24" fill="#F59E0B" fill-opacity="0.12"/>
-  <path d="M64 28C49.0883 28 37 40.0883 37 55C37 69.9117 49.0883 82 64 82C78.9117 82 91 69.9117 91 55C91 40.0883 78.9117 28 64 28ZM64 41C71.732 41 78 47.268 78 55C78 62.732 71.732 69 64 69C56.268 69 50 62.732 50 55C50 47.268 56.268 41 64 41Z" fill="#FBBF24"/>
-  <path d="M34 92C34 84.268 40.268 78 48 78H80C87.732 78 94 84.268 94 92V95C94 98.866 90.866 102 87 102H41C37.134 102 34 98.866 34 95V92Z" fill="white"/>
-  <path d="M46 90H82" stroke="#0F172A" stroke-width="6" stroke-linecap="round"/>
-  <path d="M53 98H75" stroke="#0F172A" stroke-width="6" stroke-linecap="round"/>
+  <!-- White background ensures visibility on dark taskbars/tabs -->
+  <rect width="128" height="128" rx="32" fill="white"/>
+  
+  <!-- Accurate recreation of the Serefy Bird/S Icon -->
+  <path d="M64 64C50.7452 64 40 53.2548 40 40C40 26.7452 50.7452 16 64 16C77.2548 16 88 26.7452 88 40C88 53.2548 77.2548 64 64 64Z" fill="black"/>
+  <path d="M64 64C50.7452 64 40 74.7452 40 88C40 101.255 50.7452 112 64 112C77.2548 112 88 101.255 88 88C88 74.7452 77.2548 64 64 64Z" fill="black" fill-opacity="0.2"/>
+  <path d="M64 112C48.536 112 36 99.464 36 84C36 68.536 48.536 56 64 56C79.464 56 92 68.536 92 84C92 99.464 79.464 112 64 112ZM64 100C72.8366 100 80 92.8366 80 84C80 75.1634 72.8366 68 64 68C55.1634 68 48 75.1634 48 84C48 92.8366 55.1634 100 64 100Z" fill="black"/>
+  <path d="M64 16L78 30C78 30 92 40 92 50C92 60 82 70 68 70" stroke="black" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="78" cy="38" r="4" fill="white"/>
 </svg>

@@ -339,9 +339,8 @@ export default function Home() {
               </div>
               <div className="pt-12 border-t border-outline-variant/30 text-center">
                 <p className="font-label text-xs font-bold text-primary uppercase tracking-widest mb-10">Supported By</p>
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
-                  <span className="font-headline font-bold text-lg md:text-xl text-on-surface-variant">AIC Mahindra</span>
-                  <span className="font-headline font-bold text-lg md:text-xl text-on-surface-variant">NMIMS Atal Incubation Centre</span>
+                <div className="flex justify-center items-center">
+                  <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-20 md:h-28 w-auto object-contain transition-all duration-500" />
                 </div>
               </div>
             </div>

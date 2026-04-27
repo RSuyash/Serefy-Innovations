@@ -1,20 +1,18 @@
 import { useState } from 'react';
 
-const driveImg = (id: string) => `https://drive.google.com/thumbnail?id=${id}&sz=w1000`;
-
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState<'photos' | 'videos'>('photos');
 
   const photos = [
-    { id: 1, title: 'Expert Meetups', description: 'Collaborating with industry experts to refine technology.', url: driveImg('16ygqYIFE_KiePlYqq-XUmu8wqPGVTvo6') },
-    { id: 2, title: 'Farmer Centric Design', description: 'Testing our incubators directly on the field with local farmers.', url: driveImg('1naUen2YTKtU9kcID-j4kko7BtA545qVt') },
-    { id: 3, title: 'Farmer Capacity Setup', description: 'A local farmer showcasing the precision transition.', url: driveImg('1R31O9efuFX_ktRgSc2x8vOmue5t4jy88') },
-    { id: 4, title: 'Real Challenges', description: 'Understanding real problems faced by small-scale farmers.', url: driveImg('1TE7svqFRaeDKLHrNdlGH9vzdjdE_zRKh') },
-    { id: 5, title: 'Healthy Hatch Results', description: '90%+ hatch rates from our incubator machines.', url: driveImg('1k9eWyblbdHcgTXjW-_WQfkPaH4fJP3JH') },
-    { id: 6, title: 'The Problem We Solve', description: 'Eliminating cruel handling of birds with automation.', url: driveImg('1jyo-lXgPRtq22vZRJKoYi0l_urIRuxI1') },
-    { id: 7, title: 'Incubator Assembly', description: 'Precision manufacturing process for SERE units.', url: driveImg('15CrLO2JoQU7McBsC_iOjfVKsY-spCeAU') },
-    { id: 8, title: 'Lab & Testing', description: 'Quality control and rigorous testing of our hardware.', url: driveImg('1buXOsDYyk6cLyDRfZPTbWbq1dTkQkdrf') },
-    { id: 9, title: 'Team at Work', description: 'Our team building the next generation of smart incubation.', url: driveImg('11V_LWD7jf3SUIlWlug9jf-mZ0NumhYHa') },
+    { id: 1, title: 'Expert Meetups', description: 'Collaborating with industry experts to refine technology.', url: '/media/gallery-expert-meetups.jpg' },
+    { id: 2, title: 'Farmer Centric Design', description: 'Testing our incubators directly on the field with local farmers.', url: '/media/gallery-farmer-design.jpg' },
+    { id: 3, title: 'Farmer Capacity Setup', description: 'A local farmer showcasing the precision transition.', url: '/media/gallery-farmer-setup.jpg' },
+    { id: 4, title: 'Real Challenges', description: 'Understanding real problems faced by small-scale farmers.', url: '/media/gallery-real-challenges.jpg' },
+    { id: 5, title: 'Healthy Hatch Results', description: '90%+ hatch rates from our incubator machines.', url: '/media/gallery-healthy-hatch.jpg' },
+    { id: 6, title: 'The Problem We Solve', description: 'Eliminating cruel handling of birds with automation.', url: '/media/gallery-problem-solve.jpg' },
+    { id: 7, title: 'Incubator Assembly', description: 'Precision manufacturing process for SERE units.', url: '/media/gallery-incubator-assembly.jpg' },
+    { id: 8, title: 'Lab & Testing', description: 'Quality control and rigorous testing of our hardware.', url: '/media/gallery-lab-testing.jpg' },
+    { id: 9, title: 'Team at Work', description: 'Our team building the next generation of smart incubation.', url: '/media/gallery-team-work.jpg' },
   ];
 
   return (
