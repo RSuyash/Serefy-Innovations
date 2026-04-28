@@ -117,15 +117,15 @@ export default function Home() {
           >
             <AnimatedTags tags={["Made for Farmers", "Innovative", "Plug and Play", "Built to Scale"]} />
             <h1 className="font-headline text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-tight">
-              Making technology <br /><span className="text-primary">easy for farmers.</span>
+              India's Most <span className="text-primary">Efficient & Smart</span> Egg Incubator.
             </h1>
             <p className="font-body text-lg md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
-              Bridging the gap between farmers and technology. Serefy Innovations provides precision-engineered egg incubation systems that maintain the perfect environmental conditions for every hatch.
+              Maximize Your Hatching Rate with Serefy's AI-Powered Technology. Built for Rural Entrepreneurs and Small Scale Poultry Farmers.
             </p>
             <div className="flex flex-col gap-4 w-full sm:w-auto items-center md:items-start">
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
                 <a className="btn-primary w-full sm:w-auto justify-center text-on-primary font-label font-medium px-10 py-5 rounded-full hover:bg-primary-container transition-colors flex items-center gap-3 shadow-xl cursor-pointer" onClick={(e) => handleOpenWizard(e, 'hero_cta')}>
-                  Pre-Order Now <ArrowRight size={20} />
+                  Pre-order Now & Save 20% <ArrowRight size={20} />
                 </a>
               </div>
               <div className="flex flex-col gap-1">
@@ -133,7 +133,7 @@ export default function Home() {
                   <CheckCircle2 size={16} />
                   <span>Pre-orders open</span>
                 </div>
-                <p className="text-on-surface-variant text-sm font-medium">Easy to use & Better than market options</p>
+                <p className="text-on-surface-variant text-sm font-medium">Incubated at AIC Mahindra | Startup India Certified</p>
               </div>
             </div>
             <div className="pt-4 border-t border-outline-variant/30 w-full">
@@ -172,7 +172,7 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
-                  Bridging the <br /><span className="text-primary">'Efficiency Gap'</span>
+                  Stop Losing Money on <br /><span className="text-primary">'Poor Hatching Rates'</span>
                 </h2>
                 <p className="text-xl text-on-surface-variant leading-relaxed">
                   Modern cultivation faces extreme volatility. Traditional incubation methods lack the precision required for institutional scale, leading to unpredictable yields and resource waste.
@@ -313,25 +313,33 @@ export default function Home() {
               <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-12 text-center">Our Leadership & Partners</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto mb-20">
                 <motion.div whileHover={{ scale: 1.02 }} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 p-6 md:p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/30 ambient-shadow">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md">
-                    <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=400&q=80" alt="Aditya Magar" className="w-full h-full object-cover" />
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md bg-surface-container-low">
+                    <img src="/media/founder-vidhya.webp" alt="Vidhya Gaikwad" className="w-full h-full object-cover" />
                   </div>
                   <div className="pt-2">
-                    <h4 className="font-headline font-bold text-2xl mb-1">Aditya Magar</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-4">Founder</p>
-                    <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
+                    <h4 className="font-headline font-bold text-2xl mb-1">Vidhya Gaikwad</h4>
+                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">Founder & CEO</p>
+                    <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of R&D</p>
+                    <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
+                      Leading the strategic vision and biological research for SERE. Vidhya's focus on incubation physics has been the cornerstone of our hardware development.
+                    </p>
+                    <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
                       <Linkedin size={16} /> Connect
                     </a>
                   </div>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.02 }} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 p-6 md:p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/30 ambient-shadow">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Vidhya Gaikwad" className="w-full h-full object-cover" />
+                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md bg-surface-container-low">
+                    <img src="/media/founder-aditya.webp" alt="Aditya Magar" className="w-full h-full object-cover" />
                   </div>
                   <div className="pt-2">
-                    <h4 className="font-headline font-bold text-2xl mb-1">Vidhya Gaikwad</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-4">Founder</p>
-                    <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
+                    <h4 className="font-headline font-bold text-2xl mb-1">Aditya Magar</h4>
+                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">Co-Founder & CTO</p>
+                    <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of Systems</p>
+                    <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
+                      Driving the technological stack and software architecture. Aditya specializes in IoT integration and predictive analytics for agricultural hardware.
+                    </p>
+                    <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
                       <Linkedin size={16} /> Connect
                     </a>
                   </div>
