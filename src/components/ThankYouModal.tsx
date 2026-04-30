@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { CheckCircle2, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ThankYouModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ThankYouModalProps {
 }
 
 export default function ThankYouModal({ isOpen, onClose, name }: ThankYouModalProps) {
+  const { t } = useLanguage();
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -64,14 +66,13 @@ export default function ThankYouModal({ isOpen, onClose, name }: ThankYouModalPr
         </motion.div>
 
         <h3 className="font-headline text-3xl font-extrabold text-on-surface mb-4">
-          Thank you, <span className="text-primary">{name || 'there'}</span>!
+          {t('thanks.title')} <span className="text-primary">{name || (t('Language') === 'English' ? 'there' : '')}</span>!
         </h3>
         <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
-          Your interest has been officially registered. Our team will be reaching out to you shortly to discuss your pre-order and next steps.
+          {t('thanks.desc')}
         </p>
-
         <button onClick={onClose} className="w-full btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-lg">
-          Return to Site
+          {t('thanks.cta')}
         </button>
       </motion.div>
     </div>

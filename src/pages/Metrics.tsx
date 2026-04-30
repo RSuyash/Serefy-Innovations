@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Metrics() {
+  const { t } = useLanguage();
+
   return (
     <div className="pt-24 pb-32 min-h-screen bg-white">
 
-      {/* Header Section Matches Screenshot Styling */}
+      {/* Header Section */}
       <header className="max-w-7xl mx-auto px-6 mb-16">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
           <div className="max-w-2xl animate-in fade-in slide-in-from-left-8 duration-1000">
@@ -12,10 +14,10 @@ export default function Metrics() {
               Performance Analysis
             </div>
             <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight mb-6">
-              Precision <span className="font-['Playfair_Display'] italic font-black text-amber-500 lowercase mx-1">Poultry</span> ROI.
+              {t('metrics.title')}
             </h1>
             <p className="text-base md:text-lg text-slate-900 font-black leading-relaxed">
-              Experience the shift from traditional guesswork to automated precision. SERE incubators don't just hatch eggs; they secure your biological assets through climate-controlled institutional technology.
+              {t('metrics.desc')}
             </p>
           </div>
 
@@ -35,49 +37,48 @@ export default function Metrics() {
         {/* Model Comparison & Efficiency Delta Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-          {/* Left: Model Comparison Table */}
           <section className="lg:col-span-8 bg-slate-50 rounded-[2.5rem] p-8 md:p-10 border border-slate-100 shadow-sm animate-in fade-in slide-in-from-bottom-8 duration-700">
-            <h2 className="text-2xl font-black text-slate-900 mb-10 tracking-tight underline decoration-amber-500/30 underline-offset-8">Model Comparison</h2>
+            <h2 className="text-2xl font-black text-slate-900 mb-10 tracking-tight underline decoration-amber-500/30 underline-offset-8">{t('metrics.compare.title')}</h2>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-separate border-spacing-y-4">
                 <thead>
                   <tr className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900">
-                    <th className="pb-4 pl-6">Specifications</th>
-                    <th className="pb-4 text-center">SERE 120</th>
-                    <th className="pb-4 text-center text-amber-600">SERE 240</th>
-                    <th className="pb-4 text-center">SERE 500</th>
+                    <th className="pb-4 pl-6">Feature</th>
+                    <th className="pb-4 text-center">Local/Traditional</th>
+                    <th className="pb-4 text-center">Market Competitors</th>
+                    <th className="pb-4 text-center text-amber-600">SERE Innovations</th>
                   </tr>
                 </thead>
                 <tbody className="space-y-4 text-center">
                   <tr className="bg-white rounded-3xl overflow-hidden shadow-sm group hover:shadow-md transition-shadow">
-                    <td className="p-8 text-left font-black text-indigo-600 text-[11px] uppercase tracking-widest">Visual Profile</td>
-                    <td className="p-4"><img className="h-28 w-28 object-contain mx-auto group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfRLyvkPl0Jp685yDHoanGUzyoNn4cdNj296165CodKjseI5s6Lm_yhDrrqxV1tKZJB9_tD6QNH19Ynj8A5bRbQ0W6jnAoG4OIRKwn1pWzYdYykTDm6tV7gwzjMh6cSZ5vZ354vb4Qa88-ksx25KjOH5RVU9zobjMgqZqxb5EjU8l-LU0q4_AyBbvtZD8gecfUCREDEhKPtpK8yY-I15I1J93kDVtcP1j89xp_BGBNby3_Q7LQqyf8s_k3hf8CxivO72P-20Ijug" /></td>
-                    <td className="p-4"><img className="h-28 w-28 object-contain mx-auto group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaNCIKRXyxmOF_ww1lkMIK5vdeB1YdihyGnbvrECcJmADVWqJ5BKsM_mXt5_VX868cb9mLPr17vbkRUKc79dy-1KCjnwVmFIW6_3lSzYv9grzvSrwZmeAjC6aJhyjSDYBE8rY_6UKOGfUsubmIUEFdGaRo93DCnCzOBWBJ_zhCPZvhVkp-NS5ARHPBaRXao8pyd9zeweWG1MERmrPHAHLRQXIfsDgnA9Ar0y4p8fBBNNsIN_XbBzay98YATfjsOOoyEAdZlLmk_g" /></td>
-                    <td className="p-4"><img className="h-28 w-28 object-contain mx-auto group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_MAU0OfH5CmD34vb00O73nHvd2W1P-9qr5f3_qZCoj3TVDNIdkYsFR9CFl8gaHgrX4DKq3U9ZA18gLDWDppQDTFl7cyrVXd0QH1tIHpMoyWa_Kgp8EuMw3vpuNut4ufYnaQ8Bb5bQo4XPK__PjoT_KuyiNp4HRzj5XXejhUc7Hx5g5ST42aVsGK2dLLKhRRhhrVI8m8ynuK4pXnNALmFMlg1K4aRMN1nf12rcqMJbh8o3jVuM-JJpDOtYYLTmB2-VK9L-bZCHaQ" /></td>
-                  </tr>
-                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
-                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Egg Capacity</td>
-                    <td className="p-6 font-black text-slate-900">120 Units</td>
-                    <td className="p-6 font-black text-amber-600">240 Units</td>
-                    <td className="p-6 font-black text-slate-900">500 Units</td>
-                  </tr>
-                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
-                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Investment</td>
-                    <td className="p-6 font-black text-slate-900">₹10,500</td>
-                    <td className="p-6 font-black text-amber-600">₹22,000</td>
-                    <td className="p-6 font-black text-slate-900">₹34,800</td>
-                  </tr>
-                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
                     <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Hatch Rate</td>
-                    <td className="p-6 font-black text-slate-900">✅ 85%</td>
-                    <td className="p-6 font-black text-amber-600">✅ 88%</td>
-                    <td className="p-6 font-black text-slate-900">✅ 92%</td>
+                    <td className="p-6 font-black text-slate-500">~60%</td>
+                    <td className="p-6 font-black text-slate-500">75% - 80%</td>
+                    <td className="p-6 font-black text-amber-600">✅ 90%+</td>
                   </tr>
                   <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
-                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Automation</td>
-                    <td className="p-6 font-black text-slate-900 text-sm">Full Control</td>
-                    <td className="p-6 font-black text-indigo-600 text-sm">Smart-Sync</td>
-                    <td className="p-6 font-black text-slate-900 text-sm">Enterprise</td>
+                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Operation</td>
+                    <td className="p-6 font-black text-slate-500">Manual Guesswork</td>
+                    <td className="p-6 font-black text-slate-500">Semi-Automatic</td>
+                    <td className="p-6 font-black text-indigo-600">Plug & Play AI</td>
+                  </tr>
+                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
+                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Monitoring</td>
+                    <td className="p-6 font-black text-slate-500">Constant Presence</td>
+                    <td className="p-6 font-black text-slate-500">Dials & Switches</td>
+                    <td className="p-6 font-black text-amber-600">Automated Sensors</td>
+                  </tr>
+                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
+                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Yield Risk</td>
+                    <td className="p-6 font-black text-rose-500">High (Volatility)</td>
+                    <td className="p-6 font-black text-slate-500">Moderate</td>
+                    <td className="p-6 font-black text-emerald-600 font-black">Zero Variance</td>
+                  </tr>
+                  <tr className="bg-white rounded-3xl overflow-hidden shadow-sm">
+                    <td className="p-6 text-left font-black text-slate-900 text-xs uppercase tracking-widest">Build Quality</td>
+                    <td className="p-6 font-black text-slate-500">Basic/Open</td>
+                    <td className="p-6 font-black text-slate-500">Industrial Metal</td>
+                    <td className="p-6 font-black text-indigo-600 text-sm">Aerospace Insulation</td>
                   </tr>
                 </tbody>
               </table>
@@ -118,8 +119,8 @@ export default function Metrics() {
         <section className="bg-white rounded-[3rem] p-8 md:p-12 border border-slate-100 shadow-sm animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tighter">ROI Intelligence</h2>
-              <p className="text-slate-900 font-black mb-12 opacity-80 leading-relaxed">Our data reflects the real-world performance of 2,000+ units deployed across rural and commercial hubs.</p>
+              <h2 className="text-4xl font-black text-slate-900 mb-4 tracking-tighter">{t('metrics.roi.title')}</h2>
+              <p className="text-slate-900 font-black mb-12 opacity-80 leading-relaxed">Our data reflects the real-world performance of deployed units.</p>
 
               <div className="space-y-6">
                 <div className="bg-slate-50 p-6 rounded-2xl flex items-center gap-6 group hover:bg-slate-100 transition-colors">

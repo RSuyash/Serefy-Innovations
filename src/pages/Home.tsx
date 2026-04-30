@@ -8,6 +8,7 @@ import GallerySection from '../components/GallerySection';
 import LegalModal from '../components/LegalModal';
 import { submitSerefyLead, type SerefyLeadInput } from '../lib/naya-lead';
 import { motion } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 import {
   ArrowRight,
   CheckCircle2,
@@ -104,6 +105,8 @@ export default function Home() {
     }
   };
 
+  const { t } = useLanguage();
+
   return (
     <div className="bg-surface text-on-surface font-body antialiased selection:bg-primary/20 flex flex-col min-h-screen">
       <main className="flex-grow">
@@ -115,43 +118,47 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-8 text-center md:text-left"
           >
-            <AnimatedTags tags={["Made for Farmers", "Innovative", "Plug and Play", "Built to Scale"]} />
+            <AnimatedTags tags={t('hero.tags').split(',')} />
             <h1 className="font-headline text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-tight">
-              India's Most <span className="text-primary">Efficient & Smart</span> Egg Incubator.
+              {t('hero.title').split(' ').map((word, i, arr) => (
+                <React.Fragment key={i}>
+                  {word === 'Efficient' || word === 'Smart' || word === 'कुशल' || word === 'स्मार्ट' || word === 'कार्यक्षम' ? <span className="text-primary">{word} </span> : word + ' '}
+                </React.Fragment>
+              ))}
             </h1>
             <p className="font-body text-lg md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
-              Maximize Your Hatching Rate with Serefy's AI-Powered Technology. Built for Rural Entrepreneurs and Small Scale Poultry Farmers.
+              {t('hero.tagline')}
             </p>
             <div className="flex flex-col gap-4 w-full sm:w-auto items-center md:items-start">
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
                 <a className="btn-primary w-full sm:w-auto justify-center text-on-primary font-label font-medium px-10 py-5 rounded-full hover:bg-primary-container transition-colors flex items-center gap-3 shadow-xl cursor-pointer" onClick={(e) => handleOpenWizard(e, 'hero_cta')}>
-                  Pre-order Now & Save 20% <ArrowRight size={20} />
+                  {t('hero.cta')} <ArrowRight size={20} />
                 </a>
               </div>
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2 text-primary font-bold text-sm">
                   <CheckCircle2 size={16} />
-                  <span>Pre-orders open</span>
+                  <span>{t('hero.preorder')}</span>
                 </div>
-                <p className="text-on-surface-variant text-sm font-medium">Incubated at AIC Mahindra | Startup India Certified</p>
+                <p className="text-on-surface-variant text-sm font-medium">{t('hero.incubated')}</p>
               </div>
             </div>
             <div className="pt-4 border-t border-outline-variant/30 w-full">
-              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">Capacity Options</p>
+              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">{t('hero.capacity')}</p>
               <div className="flex gap-6">
                 <div className="flex flex-col">
                   <span className="text-xl font-extrabold text-on-surface">120</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">Eggs</span>
+                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
                 <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
                 <div className="flex flex-col">
                   <span className="text-xl font-extrabold text-on-surface">200</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">Eggs</span>
+                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
                 <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
                 <div className="flex flex-col">
                   <span className="text-xl font-extrabold text-on-surface">500</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">Eggs</span>
+                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
               </div>
             </div>
@@ -162,7 +169,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-5/12 rounded-3xl aspect-square relative overflow-hidden ghost-border ambient-shadow bg-surface-container"
           >
-            <img alt="Farmer, happy, basic, no so complicated" referrerPolicy="no-referrer" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800&q=80" />
+            <img alt="Happy Indian poultry farmer" referrerPolicy="no-referrer" className="w-full h-full object-cover" src="/media/happy-poultry-farmer.png" />
           </motion.div>
         </section>
 
@@ -172,10 +179,10 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div>
                 <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
-                  Stop Losing Money on <br /><span className="text-primary">'Poor Hatching Rates'</span>
+                  {t('section.problem.title')}
                 </h2>
                 <p className="text-xl text-on-surface-variant leading-relaxed">
-                  Modern cultivation faces extreme volatility. Traditional incubation methods lack the precision required for institutional scale, leading to unpredictable yields and resource waste.
+                  {t('section.problem.desc')}
                 </p>
               </div>
               <div className="w-full">
@@ -187,19 +194,34 @@ export default function Home() {
 
         {/* 3. Solution / Product Overview */}
         <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface" id="solution">
-          <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-            <div className="w-full md:w-5/12">
-              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6 leading-tight">
-                Modular <br /><span className="text-primary">Incubation</span> Hardware
+          <div className="max-w-screen-xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">
+                {t('section.solution.title')}
               </h2>
+              <p className="text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
+                {t('section.solution.desc')}
+              </p>
             </div>
-            <div className="w-full md:w-7/12 font-body text-xl text-on-surface-variant leading-relaxed space-y-6 border-l-4 border-primary pl-8">
-              <p>
-                Serefy Innovations delivers institutional-grade hardware designed for the modern operator. Our modular systems provide highly controlled environments that guarantee predictable outcomes through rigorous sensor integration.
-              </p>
-              <p>
-                From thermal stability to automated humidity management, every component is engineered to eliminate human error and environmental variables.
-              </p>
+            <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="w-full md:w-6/12 relative">
+                <img src="/media/sere-120.webp" alt="Serefy 120 Egg Incubator" className="w-full rounded-3xl shadow-2xl border border-primary/20" />
+                {/* Solution pointers would go here in a more complex UI */}
+              </div>
+              <div className="w-full md:w-6/12 space-y-8">
+                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat1.title')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.feat1.desc')}</p>
+                </div>
+                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat2.title')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.feat2.desc')}</p>
+                </div>
+                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat3.title')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.feat3.desc')}</p>
+                </div>
+              </div>
             </div>
           </div>
         </SectionWrapper>
@@ -207,24 +229,24 @@ export default function Home() {
         {/* 4. How It Works */}
         <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="how-it-works">
           <div className="max-w-screen-xl mx-auto text-center mb-16">
-            <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">Plug and Play Simplicity</h2>
-            <p className="text-on-surface-variant text-lg">Deploy industrial precision in three simple steps.</p>
+            <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.how.title')}</h2>
+            <p className="text-on-surface-variant text-lg">{t('section.how.subtitle')}</p>
           </div>
           <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
               <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">1</div>
-              <h3 className="font-headline text-xl font-bold mb-3">Deploy</h3>
-              <p className="text-on-surface-variant">Rapid installation with modular components that snap together effortlessly.</p>
+              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step1')}</h3>
+              <p className="text-on-surface-variant">{t('section.how.step1.desc')}</p>
             </motion.div>
             <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
               <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">2</div>
-              <h3 className="font-headline text-xl font-bold mb-3">Calibrate</h3>
-              <p className="text-on-surface-variant">Automated systems sense your environment and optimize thermal profiles.</p>
+              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step2')}</h3>
+              <p className="text-on-surface-variant">{t('section.how.step2.desc')}</p>
             </motion.div>
             <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
               <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">3</div>
-              <h3 className="font-headline text-xl font-bold mb-3">Yield</h3>
-              <p className="text-on-surface-variant">Experience consistent, high-percentage outcomes batch after batch.</p>
+              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step3')}</h3>
+              <p className="text-on-surface-variant">{t('section.how.step3.desc')}</p>
             </motion.div>
           </div>
         </SectionWrapper>
@@ -233,47 +255,47 @@ export default function Home() {
         <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface" id="capacity">
           <div className="max-w-screen-2xl mx-auto">
             <div className="mb-20 text-center">
-              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">Scalable Infrastructure</h2>
-              <p className="font-body text-xl text-on-surface-variant max-w-2xl mx-auto">Professional-grade capacity options for every scale of operation.</p>
+              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">{t('section.infra.title')}</h2>
+              <p className="font-body text-xl text-on-surface-variant max-w-2xl mx-auto">{t('section.infra.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Option 120 */}
-              <div className="bg-surface-container-lowest p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+              <div className="bg-primary/5 p-10 rounded-3xl border-2 border-primary/20 ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
                 <div className="mb-12">
-                  <span className="inline-block px-3 py-1 bg-surface-container-low rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">जीone Series 120</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">120<span className="text-xl font-medium text-on-surface-variant ml-2">Eggs</span></h3>
+                  <span className="inline-block px-3 py-1 bg-primary/10 rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">{t('section.infra.120.title')}</span>
+                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">120<span className="text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
                 </div>
                 <p className="font-body text-on-surface-variant mb-12 flex-grow">
-                  Precision control for specialized breeders and high-value research batches.
+                  {t('section.infra.120.desc')}
                 </p>
-                <a className="w-full text-center bg-surface-container-low text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary hover:text-on-primary transition-colors border border-primary/20 cursor-pointer" onClick={(e) => handleOpenWizard(e, 'inquire_120')}>
-                  Inquire
+                <a className="w-full text-center bg-primary text-on-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary-container transition-colors shadow-lg cursor-pointer" onClick={(e) => handleOpenWizard(e, 'preorder_120')}>
+                  {t('hero.cta')}
                 </a>
               </div>
               {/* Option 200 */}
               <div className="bg-primary p-10 rounded-3xl ambient-shadow flex flex-col h-full relative overflow-hidden transform md:scale-105 z-10 text-on-primary">
                 <div className="mb-12 relative z-10">
-                  <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-label text-xs font-bold text-white tracking-widest uppercase mb-4">जीone Series 200</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-white">200<span className="text-xl font-medium text-white/80 ml-2">Eggs</span></h3>
+                  <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-label text-xs font-bold text-white tracking-widest uppercase mb-4">{t('section.infra.200.title')}</span>
+                  <h3 className="font-headline text-5xl font-extrabold text-white">200<span className="text-xl font-medium text-white/80 ml-2">{t('hero.eggs')}</span></h3>
                 </div>
                 <p className="font-body text-white/90 mb-12 flex-grow relative z-10">
-                  The standard for mid-sized institutional operations. Balanced efficiency and yield.
+                  {t('section.infra.200.desc')}
                 </p>
                 <a className="w-full text-center bg-white text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-surface-container-low transition-colors relative z-10 shadow-lg cursor-pointer" onClick={(e) => handleOpenWizard(e, 'preorder_200')}>
-                  Pre-Order जीone Series 200
+                  {t('hero.cta')}
                 </a>
               </div>
               {/* Option 500 */}
               <div className="bg-surface-container-lowest p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
                 <div className="mb-12">
-                  <span className="inline-block px-3 py-1 bg-surface-container-low rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">जीone Series 500</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">500<span className="text-xl font-medium text-on-surface-variant ml-2">Eggs</span></h3>
+                  <span className="inline-block px-3 py-1 bg-surface-container-low rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">{t('section.infra.500.title')}</span>
+                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">500<span className="text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
                 </div>
                 <p className="font-body text-on-surface-variant mb-12 flex-grow">
-                  Commercial-scale deployment with multi-unit networking capabilities.
+                  {t('section.infra.500.desc')}
                 </p>
                 <a className="w-full text-center bg-surface-container-low text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary hover:text-on-primary transition-colors border border-primary/20 cursor-pointer" onClick={(e) => handleOpenWizard(e, 'inquire_500')}>
-                  Inquire
+                  {t('section.infra.inquiry')}
                 </a>
               </div>
             </div>
@@ -284,23 +306,23 @@ export default function Home() {
         <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20">
           <div className="max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">Why Trust Serefy Innovations</h2>
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.trust.title')}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="flex flex-col items-center text-center">
                 <Cpu className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">Precision Engineering</h3>
-                <p className="text-on-surface-variant">Aerospace-grade sensors and custom-molded thermal chambers for zero variance.</p>
+                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat1.title')}</h3>
+                <p className="text-on-surface-variant">{t('section.trust.feat1.desc')}</p>
               </div>
               <div className="flex flex-col items-center text-center">
                 <Thermometer className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">Data-Driven Thermal Mgmt</h3>
-                <p className="text-on-surface-variant">Active feedback loops maintaining 0.01°C accuracy across the entire unit.</p>
+                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat2.title')}</h3>
+                <p className="text-on-surface-variant">{t('section.trust.feat2.desc')}</p>
               </div>
               <div className="flex flex-col items-center text-center">
                 <ShieldCheck className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">Institutional Standards</h3>
-                <p className="text-on-surface-variant">Built to exceed international biosecurity and structural durability standards.</p>
+                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat3.title')}</h3>
+                <p className="text-on-surface-variant">{t('section.trust.feat3.desc')}</p>
               </div>
             </div>
           </div>
@@ -310,7 +332,7 @@ export default function Home() {
         <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface" id="team">
           <div className="max-w-screen-xl mx-auto">
             <div className="mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-12 text-center">Our Leadership & Partners</h2>
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-12 text-center">{t('section.team.title')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto mb-20">
                 <motion.div whileHover={{ scale: 1.02 }} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 p-6 md:p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/30 ambient-shadow">
                   <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md bg-surface-container-low">
@@ -318,10 +340,10 @@ export default function Home() {
                   </div>
                   <div className="pt-2">
                     <h4 className="font-headline font-bold text-2xl mb-1">Vidhya Gaikwad</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">Founder & CEO</p>
+                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">{t('section.team.vidhya.title')}</p>
                     <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of R&D</p>
                     <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
-                      Leading the strategic vision and biological research for SERE. Vidhya's focus on incubation physics has been the cornerstone of our hardware development.
+                      {t('section.team.vidhya.desc')}
                     </p>
                     <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
                       <Linkedin size={16} /> Connect
@@ -334,10 +356,10 @@ export default function Home() {
                   </div>
                   <div className="pt-2">
                     <h4 className="font-headline font-bold text-2xl mb-1">Aditya Magar</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">Co-Founder & CTO</p>
+                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">{t('section.team.aditya.title')}</p>
                     <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of Systems</p>
                     <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
-                      Driving the technological stack and software architecture. Aditya specializes in IoT integration and predictive analytics for agricultural hardware.
+                      {t('section.team.aditya.desc')}
                     </p>
                     <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
                       <Linkedin size={16} /> Connect
@@ -346,7 +368,7 @@ export default function Home() {
                 </motion.div>
               </div>
               <div className="pt-12 border-t border-outline-variant/30 text-center">
-                <p className="font-label text-xs font-bold text-primary uppercase tracking-widest mb-10">Supported By</p>
+                <p className="font-label text-xs font-bold text-primary uppercase tracking-widest mb-10">{t('section.team.supported')}</p>
                 <div className="flex justify-center items-center">
                   <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-20 md:h-28 w-auto object-contain transition-all duration-500" />
                 </div>
@@ -359,8 +381,8 @@ export default function Home() {
         <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface border-t border-outline-variant/20" id="seretalks">
           <div className="max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">SereTalks</h2>
-              <p className="text-on-surface-variant text-lg">Insights and updates from our journey</p>
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.seretalks.title')}</h2>
+              <p className="text-on-surface-variant text-lg">{t('section.seretalks.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[ 
@@ -394,32 +416,32 @@ export default function Home() {
         <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface-container-low" id="pre-order">
           <div className="max-w-screen-md mx-auto bg-surface p-10 md:p-16 rounded-3xl border border-outline-variant/30 ambient-shadow">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">Register Interest</h2>
-              <p className="text-on-surface-variant">Secure your position in our next deployment cycle.</p>
+              <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">{t('section.interest.title')}</h2>
+              <p className="text-on-surface-variant">{t('section.interest.desc')}</p>
             </div>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleBottomFormSubmit}>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="first-name">First Name</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="first-name">{t('form.firstName')}</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="first-name" name="first-name" placeholder="John" required type="text" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="last-name">Last Name</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="last-name">{t('form.lastName')}</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="last-name" name="last-name" placeholder="Doe" required type="text" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="email">Email Address</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="email">{t('form.email')}</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="email" name="email" placeholder="john@doe.com" required type="email" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="phone">Phone / WhatsApp</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="phone">{t('form.phone')}</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="phone" name="phone" placeholder="+91 98765 43210" required type="tel" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="city">City / Location</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="city">{t('form.city')}</label>
                 <input className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" id="city" name="city" placeholder="Hyderabad" required type="text" />
               </div>
               <div className="flex flex-col gap-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="role">I am a...</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="role">{t('form.role')}</label>
                 <select className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none appearance-none" id="role" name="role" required defaultValue="">
                   <option value="" disabled>Select your role</option>
                   <option value="farmer">Farmer</option>
@@ -428,12 +450,12 @@ export default function Home() {
                 </select>
               </div>
               <div className="flex flex-col gap-2 md:col-span-2">
-                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="message">Message (Optional)</label>
+                <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="message">{t('form.message')}</label>
                 <textarea className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none min-h-[80px] resize-y" id="message" name="message" placeholder="Any specific requirements..."></textarea>
               </div>
               <label className="md:col-span-2 flex items-start gap-3 rounded-2xl bg-surface-container-low px-4 py-3 text-left text-sm text-on-surface-variant">
                 <input className="mt-1 h-4 w-4 rounded border-outline-variant accent-primary" required type="checkbox" name="consent" />
-                <span>I agree to be contacted by the Serefy Innovations team via call, email, or WhatsApp about this enquiry.</span>
+                <span>{t('form.consent')}</span>
               </label>
               {leadError && !isWizardOpen ? (
                 <p className="md:col-span-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
@@ -442,7 +464,7 @@ export default function Home() {
               ) : null}
               <div className="md:col-span-2 pt-4">
                 <button className="w-full btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-lg disabled:cursor-not-allowed disabled:opacity-60" disabled={isSubmittingLead} type="submit">
-                  {isSubmittingLead ? 'Submitting Interest...' : 'Submit Interest'}
+                  {isSubmittingLead ? '...' : t('form.submit')}
                 </button>
               </div>
             </form>

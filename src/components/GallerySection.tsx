@@ -1,41 +1,43 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import SectionWrapper from './SectionWrapper';
-
-const images = [
-  {
-    src: "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=800&q=80",
-    alt: "Vidhya connecting with local farmers in the field",
-    colSpan: "md:col-span-2",
-    rowSpan: "md:row-span-2"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1592982537446-6086208a0d4c?w=800&q=80",
-    alt: "Poultry farm setup",
-    colSpan: "md:col-span-1",
-    rowSpan: "md:row-span-1"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1628102491629-77858ab5721d?w=800&q=80",
-    alt: "Team discussing hardware",
-    colSpan: "md:col-span-1",
-    rowSpan: "md:row-span-1"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1534346128695-121db5976b32?w=800&q=80",
-    alt: "Technology deployment",
-    colSpan: "md:col-span-2",
-    rowSpan: "md:row-span-1"
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function GallerySection() {
+  const { t } = useLanguage();
+
+  const images = [
+    {
+      src: "https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=800&q=80",
+      alt: t('section.gallery.img1'),
+      colSpan: "md:col-span-2",
+      rowSpan: "md:row-span-2"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1592982537446-6086208a0d4c?w=800&q=80",
+      alt: t('section.gallery.img2'),
+      colSpan: "md:col-span-1",
+      rowSpan: "md:row-span-1"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1628102491629-77858ab5721d?w=800&q=80",
+      alt: t('section.gallery.img3'),
+      colSpan: "md:col-span-1",
+      rowSpan: "md:row-span-1"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1534346128695-121db5976b32?w=800&q=80",
+      alt: t('section.gallery.img4'),
+      colSpan: "md:col-span-2",
+      rowSpan: "md:row-span-1"
+    }
+  ];
   return (
     <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface" id="gallery">
       <div className="max-w-screen-xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">On the Ground</h2>
-          <p className="text-on-surface-variant text-lg">Real deployments, real impact.</p>
+          <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.gallery.title')}</h2>
+          <p className="text-on-surface-variant text-lg">{t('section.gallery.subtitle')}</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px]">

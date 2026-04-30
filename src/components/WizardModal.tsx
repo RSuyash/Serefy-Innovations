@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, ArrowRight, ArrowLeft, Leaf, LayoutGrid, Briefcase, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
 
 export interface WizardFormData {
   role: string;
@@ -39,6 +40,7 @@ const initialFormData: WizardFormData = {
 };
 
 export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = false, submitError = '' }: WizardModalProps) {
+  const { t } = useLanguage();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<WizardFormData>(initialFormData);
   const totalSteps = 5;
@@ -95,7 +97,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
       >
         <div className="flex justify-between items-center p-6 border-b border-outline-variant/20">
           <div className="flex items-center gap-2">
-            <span className="font-label text-xs font-bold text-primary uppercase tracking-widest">Step {step} of {totalSteps}</span>
+            <span className="font-label text-xs font-bold text-primary uppercase tracking-widest">{t('wizard.step')} {step} {t('wizard.of')} {totalSteps}</span>
           </div>
           <button onClick={onClose} className="p-2 rounded-full hover:bg-surface-container transition-colors text-on-surface-variant">
             <X size={20} />
@@ -106,13 +108,13 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">How do you identify?</h3>
-                <p className="text-on-surface-variant mb-6 text-sm">Help us tailor the experience for you.</p>
+                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step1.title')}</h3>
+                <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step1.desc')}</p>
                 <div className="grid grid-cols-1 gap-4">
                   {[
-                    { id: 'farmer', title: 'Farmer', icon: Leaf, desc: 'Individual or small-scale grower' },
-                    { id: 'hobbyist', title: 'Hobbyist', icon: LayoutGrid, desc: 'Enthusiast or researcher' },
-                    { id: 'investor', title: 'Investor / Institution', icon: Briefcase, desc: 'Commercial scale or funding' }
+                    { id: 'farmer', title: t('wizard.role.farmer'), icon: Leaf, desc: t('wizard.role.farmer.desc') },
+                    { id: 'hobbyist', title: t('wizard.role.hobbyist'), icon: LayoutGrid, desc: t('wizard.role.hobbyist.desc') },
+                    { id: 'investor', title: t('wizard.role.investor'), icon: Briefcase, desc: t('wizard.role.investor.desc') }
                   ].map((role) => (
                     <button
                       key={role.id}
@@ -137,8 +139,8 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
               <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 {(formData.role === 'farmer' || formData.role === 'hobbyist') ? (
                   <>
-                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">What capacity do you need?</h3>
-                     <p className="text-on-surface-variant mb-6 text-sm">Select the hardware scale that fits your goals.</p>
+                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step2.capacity.title')}</h3>
+                     <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step2.capacity.desc')}</p>
                      <div className="grid grid-cols-1 gap-4">
                        {['120', '200', '500'].map((cap) => (
                          <button
@@ -146,7 +148,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                            onClick={() => handleSelectionNext({ ...formData, capacity: cap })}
                            className={`p-5 rounded-2xl border-2 text-center transition-all flex justify-between items-center ${formData.capacity === cap ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
-                           <div className="font-headline text-2xl font-extrabold text-on-surface">जीone Series {cap}</div>
+                           <div className="font-headline text-2xl font-extrabold text-on-surface">{t('section.infra.120.title').replace('120', cap)}</div>
                            <ChevronRight className={`transition-opacity ${formData.capacity === cap ? 'opacity-100 text-primary' : 'opacity-0'}`} />
                          </button>
                        ))}
@@ -154,14 +156,14 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                   </>
                 ) : (
                   <>
-                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">What kind of partnership?</h3>
-                     <p className="text-on-surface-variant mb-6 text-sm">Select the area best aligned with your goals.</p>
+                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step2.partnership.title')}</h3>
+                     <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step2.partnership.desc')}</p>
                      <div className="grid grid-cols-1 gap-4">
                        {[
-                         { id: 'strategic', title: 'Strategic Investment' },
-                         { id: 'reseller', title: 'Distribution / Reseller' },
-                         { id: 'institutional', title: 'Institutional Buyer' },
-                         { id: 'other', title: 'Other Partnership' }
+                         { id: 'strategic', title: t('wizard.partnership.strategic') },
+                         { id: 'reseller', title: t('wizard.partnership.reseller') },
+                         { id: 'institutional', title: t('wizard.partnership.institutional') },
+                         { id: 'other', title: t('wizard.partnership.other') }
                        ].map((type) => (
                          <button
                            key={type.id}
@@ -177,7 +179,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                 )}
                 <div className="mt-8 flex justify-between">
                   <button onClick={handlePrev} className="px-6 py-3 rounded-full font-label font-bold text-on-surface-variant hover:bg-surface-container transition-colors flex items-center gap-2">
-                    <ArrowLeft size={18} /> Back
+                    <ArrowLeft size={18} /> {t('wizard.back')}
                   </button>
                 </div>
               </motion.div>
@@ -187,14 +189,14 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
               <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                 {(formData.role === 'farmer' || formData.role === 'hobbyist') ? (
                   <>
-                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">What is your primary goal?</h3>
-                     <p className="text-on-surface-variant mb-6 text-sm">Help us understand how we can help you succeed.</p>
+                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step3.goal.title')}</h3>
+                     <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step3.goal.desc')}</p>
                      <div className="grid grid-cols-1 gap-4">
                        {[
-                         { id: 'hatch-rate', title: 'Improve hatch rate' },
-                         { id: 'scale', title: 'Scale up operations' },
-                         { id: 'research', title: 'Research / Specialty birds' },
-                         { id: 'first-time', title: 'First time hatching' }
+                         { id: 'hatch-rate', title: t('wizard.goal.hatch-rate') },
+                         { id: 'scale', title: t('wizard.goal.scale') },
+                         { id: 'research', title: t('wizard.goal.research') },
+                         { id: 'first-time', title: t('wizard.goal.first-time') }
                        ].map((goal) => (
                          <button
                            key={goal.id}
@@ -209,13 +211,13 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                   </>
                 ) : (
                   <>
-                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">What is your timeline?</h3>
-                     <p className="text-on-surface-variant mb-6 text-sm">When are you looking to move forward?</p>
+                     <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step3.timeline.title')}</h3>
+                     <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step3.timeline.desc')}</p>
                      <div className="grid grid-cols-1 gap-4">
                        {[
-                         { id: 'immediate', title: 'Immediate (0-3 months)' },
-                         { id: 'short', title: 'Short-term (3-6 months)' },
-                         { id: 'exploring', title: 'Just exploring options for now' }
+                         { id: 'immediate', title: t('wizard.timeline.immediate') },
+                         { id: 'short', title: t('wizard.timeline.short') },
+                         { id: 'exploring', title: t('wizard.timeline.exploring') }
                        ].map((tl) => (
                          <button
                            key={tl.id}
@@ -231,7 +233,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                 )}
                 <div className="mt-8 flex justify-between">
                   <button onClick={handlePrev} className="px-6 py-3 rounded-full font-label font-bold text-on-surface-variant hover:bg-surface-container transition-colors flex items-center gap-2">
-                    <ArrowLeft size={18} /> Back
+                    <ArrowLeft size={18} /> {t('wizard.back')}
                   </button>
                 </div>
               </motion.div>
@@ -239,21 +241,21 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
 
             {step === 4 && (
               <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">Any specific requirements?</h3>
-                <p className="text-on-surface-variant mb-6 text-sm">Feel free to add any own details or questions (Optional).</p>
+                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step4.title')}</h3>
+                <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step4.desc')}</p>
                 <textarea 
                   className="w-full px-4 py-4 rounded-xl border-2 border-outline-variant/50 bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none min-h-[160px] resize-y" 
-                  placeholder={formData.role === 'investor' ? "We are looking for..." : "I currently use a different model..."}
+                  placeholder={formData.role === 'investor' ? t('wizard.step4.placeholder.investor') : t('wizard.step4.placeholder.farmer')}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
                 
                 <div className="mt-8 flex justify-between">
                   <button onClick={handlePrev} className="px-6 py-3 rounded-full font-label font-bold text-on-surface-variant hover:bg-surface-container transition-colors flex items-center gap-2">
-                    <ArrowLeft size={18} /> Back
+                    <ArrowLeft size={18} /> {t('wizard.back')}
                   </button>
                   <button onClick={handleNext} className="btn-primary text-on-primary px-8 py-3 rounded-full font-label font-bold hover:bg-primary-container transition-all flex items-center gap-2 shadow-lg">
-                    Next <ArrowRight size={18} />
+                    {t('wizard.next')} <ArrowRight size={18} />
                   </button>
                 </div>
               </motion.div>
@@ -261,38 +263,38 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
 
             {step === 5 && (
               <motion.div key="step5" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">Final Details</h3>
-                <p className="text-on-surface-variant mb-6 text-sm">Where should we send the confirmation?</p>
+                <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step5.title')}</h3>
+                <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step5.desc')}</p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
-                      <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">First Name</label>
+                      <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.firstName')}</label>
                       <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} />
                     </div>
                     <div className="flex flex-col gap-2">
-                      <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Last Name</label>
+                      <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.lastName')}</label>
                       <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.lastName} onChange={e => setFormData({...formData, lastName: e.target.value})} />
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Email</label>
+                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.email')}</label>
                     <input required type="email" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">Phone / WhatsApp</label>
+                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.phone')}</label>
                     <input required type="tel" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">City / Location</label>
+                    <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.city')}</label>
                     <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
                   </div>
                   
                   <div className="mt-6 flex justify-between">
                     <button type="button" onClick={handlePrev} className="px-6 py-3 rounded-full font-label font-bold text-on-surface-variant hover:bg-surface-container transition-colors flex items-center gap-2">
-                      <ArrowLeft size={18} /> Back
+                      <ArrowLeft size={18} /> {t('wizard.back')}
                     </button>
                     <button type="submit" disabled={isSubmitting} className="btn-primary text-on-primary px-8 py-3 rounded-full font-label font-bold hover:bg-primary-container transition-all flex items-center gap-2 shadow-lg disabled:cursor-not-allowed disabled:opacity-60">
-                      {isSubmitting ? 'Submitting...' : 'Submit'} <ArrowRight size={18} />
+                      {isSubmitting ? t('wizard.submitting') : t('wizard.submit')} <ArrowRight size={18} />
                     </button>
                   </div>
                   {submitError ? (
