@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, X } from 'lucide-react';
+import { Globe, X, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function LanguageSelection() {
   const [isOpen, setIsOpen] = useState(false);
-  const { language: selectedLang, setLanguage } = useLanguage();
+  const { language: selectedLang, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const hasSelected = localStorage.getItem('serefy-lang');
@@ -20,75 +20,104 @@ export default function LanguageSelection() {
   };
 
   const languages = [
-    { name: 'English', native: 'English' },
-    { name: 'Hindi', native: 'हिन्दी' },
-    { name: 'Marathi', native: 'मराठी' }
+    { name: 'English', native: 'English', desc: 'Global Standard' },
+    { name: 'Hindi', native: 'हिन्दी', desc: 'मातृभाषा' },
+    { name: 'Marathi', native: 'मराठी', desc: 'प्रादेशिक' }
   ];
 
   return (
     <>
-      <button 
+      <motion.button 
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-40 right-8 z-[60] bg-white text-on-surface px-4 py-2 rounded-full shadow-lg border border-outline-variant flex items-center gap-2 hover:bg-surface-container transition-all font-label text-sm font-bold"
+        className="fixed bottom-32 md:bottom-10 left-8 z-[60] bg-surface/80 backdrop-blur-md text-on-surface px-6 py-3 rounded-2xl shadow-2xl border border-primary/20 flex items-center gap-3 hover:border-primary/50 transition-all font-label text-sm font-bold group"
       >
-        <Globe size={16} className="text-primary" />
-        {selectedLang}
-      </button>
+        <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+          <Globe size={18} />
+        </div>
+        <div className="text-left hidden sm:block">
+          <p className="text-[10px] uppercase tracking-widest text-on-surface-variant leading-none mb-1">Language</p>
+          <p className="leading-none">{selectedLang}</p>
+        </div>
+      </motion.button>
 
       <AnimatePresence>
         {isOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[120] flex items-center justify-center p-6 bg-surface-container-lowest/80 backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)]" />
             <motion.div 
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-surface w-full max-w-sm rounded-3xl p-8 shadow-2xl border border-outline-variant relative"
+              className="bg-surface w-full max-w-md rounded-[2.5rem] p-10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] border border-outline-variant/30 relative overflow-hidden"
             >
+              {/* Decorative Background Elements */}
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
+              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary/5 rounded-full blur-3xl" />
+
               <button 
                 onClick={() => setIsOpen(false)}
-                className="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface"
+                className="absolute top-8 right-8 w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
               >
                 <X size={20} />
               </button>
 
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="text-primary w-8 h-8" />
-                </div>
-                <h2 className="font-headline text-2xl font-bold">Select Language</h2>
-                <p className="text-on-surface-variant text-sm mt-2">Choose your preferred language for a better experience.</p>
+              <div className="text-center mb-10">
+                <motion.div 
+                  initial={{ rotate: -10 }}
+                  animate={{ rotate: 0 }}
+                  className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner"
+                >
+                  <Globe className="text-primary w-10 h-10" />
+                </motion.div>
+                <h2 className="font-headline text-3xl font-extrabold tracking-tight">Choose Language</h2>
+                <p className="text-on-surface-variant text-base mt-2 px-4 leading-relaxed">Customize your experience by selecting your preferred language.</p>
               </div>
 
-              <div className="space-y-3">
-                {languages.map((lang) => (
-                  <button
+              <div className="space-y-4">
+                {languages.map((lang, idx) => (
+                  <motion.button
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.1 }}
                     key={lang.name}
                     onClick={() => handleSelect(lang.name)}
-                    className={`w-full p-4 rounded-2xl border transition-all flex items-center justify-between group ${
+                    className={`w-full p-5 rounded-3xl border-2 transition-all flex items-center justify-between group relative overflow-hidden ${
                       selectedLang === lang.name 
-                        ? 'border-primary bg-primary/5 text-primary font-bold' 
-                        : 'border-outline-variant hover:border-primary/50'
+                        ? 'border-primary bg-primary/5' 
+                        : 'border-outline-variant/50 hover:border-primary/30 hover:bg-surface-container-low'
                     }`}
                   >
-                    <div className="text-left">
-                      <div className="text-sm uppercase tracking-widest opacity-60 font-bold">{lang.name}</div>
-                      <div className="text-lg">{lang.native}</div>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg transition-colors ${
+                        selectedLang === lang.name ? 'bg-primary text-white' : 'bg-surface-container text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary'
+                      }`}>
+                        {lang.native[0]}
+                      </div>
+                      <div className="text-left">
+                        <div className="text-sm font-black uppercase tracking-[0.1em] text-primary/60">{lang.name}</div>
+                        <div className="text-xl font-bold text-on-surface">{lang.native}</div>
+                      </div>
                     </div>
-                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedLang === lang.name ? 'border-primary bg-primary' : 'border-outline-variant group-hover:border-primary/30'
+                    
+                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all ${
+                      selectedLang === lang.name ? 'border-primary bg-primary text-white scale-110' : 'border-outline-variant group-hover:border-primary/30'
                     }`}>
-                      {selectedLang === lang.name && <div className="w-2 h-2 bg-white rounded-full" />}
+                      {selectedLang === lang.name && <Check size={16} strokeWidth={3} />}
                     </div>
-                  </button>
+                  </motion.button>
                 ))}
               </div>
 
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="w-full mt-8 btn-primary text-on-primary py-4 rounded-xl font-label font-bold shadow-lg"
-              >
-                Continue
-              </button>
+              <div className="mt-10 pt-8 border-t border-outline-variant/20">
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="w-full btn-primary text-on-primary py-5 rounded-2xl font-label font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all"
+                >
+                  Continue / आगे बढ़ें
+                </button>
+              </div>
             </motion.div>
           </div>
         )}
