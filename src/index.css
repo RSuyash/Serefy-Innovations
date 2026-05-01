@@ -36,7 +36,12 @@
     @apply text-slate-900;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-headline);
   }
 
@@ -49,9 +54,11 @@
   .btn-primary {
     background-color: var(--color-primary);
   }
+
   .ghost-border {
     border: 1px solid rgba(192, 200, 195, 0.3);
   }
+
   .ambient-shadow {
     box-shadow: 0 12px 32px -4px rgba(27, 28, 28, 0.06);
   }

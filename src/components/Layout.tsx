@@ -1,25 +1,37 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { siteConfig } from '../config/siteConfig';
 import LanguageSelection from './LanguageSelection';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Layout() {
   const location = useLocation();
   const { t } = useLanguage();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  const navItems = ['Technology', 'Metrics', 'Gallery'];
 
   return (
     <div className="min-h-screen flex flex-col bg-background selection:bg-amber-500/10">
 
       {/* Modern Minimalist Header */}
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">
-        <div className="flex justify-between items-center px-6 py-4 w-full max-w-7xl mx-auto">
-          <Link to="/" className="text-xl font-black text-slate-900 flex items-center gap-2 group">
-            <img src="/media/logo.png" alt="Serefy Innovations" className="h-10 w-auto object-contain" />
+        <div className="flex justify-between items-center px-4 md:px-6 py-3 md:py-4 w-full max-w-7xl mx-auto">
+          <Link to="/" className="text-lg md:text-xl font-black text-slate-900 flex items-center gap-2 group shrink-0">
+            <img src="/media/logo.png" alt="Serefy Innovations" className="h-8 md:h-10 w-auto object-contain" />
             <span className="font-headline tracking-tighter">{siteConfig.brand.name}</span>
           </Link>
+
+          {/* Desktop Navigation */}
           <div className="hidden md:flex gap-10 items-center">
-            {['Technology', 'Metrics', 'Gallery'].map((item) => {
+            {navItems.map((item) => {
               const path = `/${item.toLowerCase()}`;
               const isActive = location.pathname === path;
               const translationKey = `nav.${item.toLowerCase()}`;
@@ -34,10 +46,57 @@ export default function Layout() {
               );
             })}
           </div>
-          <Link to="/contact" className="bg-slate-900 text-white px-7 py-2.5 rounded-full font-black text-xs hover:bg-amber-600 hover:shadow-xl hover:shadow-amber-500/20 hover:-translate-y-0.5 transition-all active:scale-95">
-            {t('nav.getStarted')}
-          </Link>
+
+          <div className="flex items-center gap-3">
+            <Link to="/contact" className="hidden sm:block bg-slate-900 text-white px-5 md:px-7 py-2 md:py-2.5 rounded-full font-black text-[10px] md:text-xs hover:bg-amber-600 hover:shadow-xl hover:shadow-amber-500/20 hover:-translate-y-0.5 transition-all active:scale-95">
+              {t('nav.getStarted')}
+            </Link>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-white border-t border-slate-100 overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-4">
+                {navItems.map((item) => {
+                  const path = `/${item.toLowerCase()}`;
+                  const isActive = location.pathname === path;
+                  const translationKey = `nav.${item.toLowerCase()}`;
+                  return (
+                    <Link
+                      key={item}
+                      to={path}
+                      className={`transition-all font-black uppercase tracking-[0.2em] text-sm py-2 ${isActive ? 'text-amber-600' : 'text-slate-500'}`}
+                    >
+                      {t(translationKey)}
+                    </Link>
+                  );
+                })}
+                <Link 
+                  to="/contact" 
+                  className="bg-slate-900 text-white px-6 py-4 rounded-2xl font-black text-center text-xs mt-4 uppercase tracking-widest"
+                >
+                  {t('nav.getStarted')}
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="flex-grow">

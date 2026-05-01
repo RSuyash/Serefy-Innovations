@@ -266,7 +266,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                 <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step5.title')}</h3>
                 <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step5.desc')}</p>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.firstName')}</label>
                       <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} />

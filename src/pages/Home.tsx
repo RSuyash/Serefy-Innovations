@@ -111,22 +111,22 @@ export default function Home() {
     <div className="bg-surface text-on-surface font-body antialiased selection:bg-primary/20 flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* 1. Hero Section */}
-        <section className="w-full pt-12 pb-24 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16 overflow-hidden">
+        <section className="w-full pt-20 md:pt-12 pb-16 md:pb-24 px-4 md:px-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 overflow-hidden">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
             animate={{ opacity: 1, x: 0 }} 
             transition={{ duration: 0.8 }}
-            className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-8 text-center md:text-left"
+            className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-6 md:space-y-8 text-center md:text-left"
           >
             <AnimatedTags tags={t('hero.tags').split(',')} />
-            <h1 className="font-headline text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-tight">
+            <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-[1.1] md:leading-tight">
               {t('hero.title').split(' ').map((word, i, arr) => (
                 <React.Fragment key={i}>
                   {word === 'Efficient' || word === 'Smart' || word === 'कुशल' || word === 'स्मार्ट' || word === 'कार्यक्षम' ? <span className="text-primary">{word} </span> : word + ' '}
                 </React.Fragment>
               ))}
             </h1>
-            <p className="font-body text-lg md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
+            <p className="font-body text-base md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
               {t('hero.tagline')}
             </p>
             <div className="flex flex-col gap-4 w-full sm:w-auto items-center md:items-start">
@@ -143,22 +143,22 @@ export default function Home() {
                 <p className="text-on-surface-variant text-sm font-medium">{t('hero.incubated')}</p>
               </div>
             </div>
-            <div className="pt-4 border-t border-outline-variant/30 w-full">
-              <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">{t('hero.capacity')}</p>
-              <div className="flex gap-6">
+            <div className="pt-4 border-t border-outline-variant/30 w-full max-w-xs md:max-w-none">
+              <p className="text-[10px] md:text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">{t('hero.capacity')}</p>
+              <div className="flex gap-4 md:gap-6 justify-center md:justify-start">
                 <div className="flex flex-col">
-                  <span className="text-xl font-extrabold text-on-surface">120</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-lg md:text-xl font-extrabold text-on-surface">120</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
                 <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
                 <div className="flex flex-col">
-                  <span className="text-xl font-extrabold text-on-surface">200</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-lg md:text-xl font-extrabold text-on-surface">200</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
                 <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
                 <div className="flex flex-col">
-                  <span className="text-xl font-extrabold text-on-surface">500</span>
-                  <span className="text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-lg md:text-xl font-extrabold text-on-surface">500</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
               </div>
             </div>
@@ -174,14 +174,14 @@ export default function Home() {
         </section>
 
         {/* 2. Problem / Opportunity */}
-        <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="problem">
+        <SectionWrapper className="w-full py-16 md:py-24 px-4 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="problem">
           <div className="max-w-screen-xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <div className="text-center md:text-left">
+                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
                   {t('section.problem.title')}
                 </h2>
-                <p className="text-xl text-on-surface-variant leading-relaxed">
+                <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed">
                   {t('section.problem.desc')}
                 </p>
               </div>
@@ -193,17 +193,17 @@ export default function Home() {
         </SectionWrapper>
 
         {/* 3. Solution / Product Overview */}
-        <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface" id="solution">
+        <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface" id="solution">
           <div className="max-w-screen-xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="font-headline text-3xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">
                 {t('section.solution.title')}
               </h2>
-              <p className="text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
                 {t('section.solution.desc')}
               </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-12 items-center">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
               <div className="w-full md:w-6/12 relative">
                 <img src="/media/sere-120.webp" alt="Serefy 120 Egg Incubator" className="w-full rounded-3xl shadow-2xl border border-primary/20" />
                 {/* Solution pointers would go here in a more complex UI */}
@@ -227,10 +227,10 @@ export default function Home() {
         </SectionWrapper>
 
         {/* 4. How It Works */}
-        <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="how-it-works">
-          <div className="max-w-screen-xl mx-auto text-center mb-16">
-            <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.how.title')}</h2>
-            <p className="text-on-surface-variant text-lg">{t('section.how.subtitle')}</p>
+        <SectionWrapper className="w-full py-16 md:py-24 px-4 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="how-it-works">
+          <div className="max-w-screen-xl mx-auto text-center mb-12 md:mb-16">
+            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">{t('section.how.title')}</h2>
+            <p className="text-on-surface-variant text-base md:text-lg">{t('section.how.subtitle')}</p>
           </div>
           <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
@@ -252,20 +252,20 @@ export default function Home() {
         </SectionWrapper>
 
         {/* 5. Product Options / Capacity Options */}
-        <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface" id="capacity">
+        <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface" id="capacity">
           <div className="max-w-screen-2xl mx-auto">
-            <div className="mb-20 text-center">
-              <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">{t('section.infra.title')}</h2>
-              <p className="font-body text-xl text-on-surface-variant max-w-2xl mx-auto">{t('section.infra.subtitle')}</p>
+            <div className="mb-12 md:mb-20 text-center">
+              <h2 className="font-headline text-3xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">{t('section.infra.title')}</h2>
+              <p className="font-body text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto">{t('section.infra.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Option 120 */}
-              <div className="bg-primary/5 p-10 rounded-3xl border-2 border-primary/20 ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
-                <div className="mb-12">
+              <div className="bg-primary/5 p-6 md:p-10 rounded-3xl border-2 border-primary/20 ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+                <div className="mb-8 md:mb-12">
                   <span className="inline-block px-3 py-1 bg-primary/10 rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">{t('section.infra.120.title')}</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">120<span className="text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
+                  <h3 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface">120<span className="text-lg md:text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
                 </div>
-                <p className="font-body text-on-surface-variant mb-12 flex-grow">
+                <p className="font-body text-sm md:text-base text-on-surface-variant mb-8 md:mb-12 flex-grow">
                   {t('section.infra.120.desc')}
                 </p>
                 <a className="w-full text-center bg-primary text-on-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary-container transition-colors shadow-lg cursor-pointer" onClick={(e) => handleOpenWizard(e, 'preorder_120')}>
@@ -273,12 +273,12 @@ export default function Home() {
                 </a>
               </div>
               {/* Option 200 */}
-              <div className="bg-primary p-10 rounded-3xl ambient-shadow flex flex-col h-full relative overflow-hidden transform md:scale-105 z-10 text-on-primary">
-                <div className="mb-12 relative z-10">
+              <div className="bg-primary p-6 md:p-10 rounded-3xl ambient-shadow flex flex-col h-full relative overflow-hidden transform md:scale-105 z-10 text-on-primary">
+                <div className="mb-8 md:mb-12 relative z-10">
                   <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-label text-xs font-bold text-white tracking-widest uppercase mb-4">{t('section.infra.200.title')}</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-white">200<span className="text-xl font-medium text-white/80 ml-2">{t('hero.eggs')}</span></h3>
+                  <h3 className="font-headline text-4xl md:text-5xl font-extrabold text-white">200<span className="text-lg md:text-xl font-medium text-white/80 ml-2">{t('hero.eggs')}</span></h3>
                 </div>
-                <p className="font-body text-white/90 mb-12 flex-grow relative z-10">
+                <p className="font-body text-sm md:text-base text-white/90 mb-8 md:mb-12 flex-grow relative z-10">
                   {t('section.infra.200.desc')}
                 </p>
                 <a className="w-full text-center bg-white text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-surface-container-low transition-colors relative z-10 shadow-lg cursor-pointer" onClick={(e) => handleOpenWizard(e, 'preorder_200')}>
@@ -286,12 +286,12 @@ export default function Home() {
                 </a>
               </div>
               {/* Option 500 */}
-              <div className="bg-surface-container-lowest p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                <div className="mb-12">
+              <div className="bg-surface-container-lowest p-6 md:p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                <div className="mb-8 md:mb-12">
                   <span className="inline-block px-3 py-1 bg-surface-container-low rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">{t('section.infra.500.title')}</span>
-                  <h3 className="font-headline text-5xl font-extrabold text-on-surface">500<span className="text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
+                  <h3 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface">500<span className="text-lg md:text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
                 </div>
-                <p className="font-body text-on-surface-variant mb-12 flex-grow">
+                <p className="font-body text-sm md:text-base text-on-surface-variant mb-8 md:mb-12 flex-grow">
                   {t('section.infra.500.desc')}
                 </p>
                 <a className="w-full text-center bg-surface-container-low text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary hover:text-on-primary transition-colors border border-primary/20 cursor-pointer" onClick={(e) => handleOpenWizard(e, 'inquire_500')}>
@@ -413,11 +413,11 @@ export default function Home() {
         <GallerySection />
 
         {/* 8. Pre-Order / Interest Form */}
-        <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface-container-low" id="pre-order">
-          <div className="max-w-screen-md mx-auto bg-surface p-10 md:p-16 rounded-3xl border border-outline-variant/30 ambient-shadow">
-            <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">{t('section.interest.title')}</h2>
-              <p className="text-on-surface-variant">{t('section.interest.desc')}</p>
+        <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface-container-low" id="pre-order">
+          <div className="max-w-screen-md mx-auto bg-surface p-6 sm:p-10 md:p-16 rounded-3xl border border-outline-variant/30 ambient-shadow">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="font-headline text-2xl md:text-4xl font-extrabold text-on-surface mb-4">{t('section.interest.title')}</h2>
+              <p className="text-sm md:text-base text-on-surface-variant">{t('section.interest.desc')}</p>
             </div>
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleBottomFormSubmit}>
               <div className="flex flex-col gap-2">

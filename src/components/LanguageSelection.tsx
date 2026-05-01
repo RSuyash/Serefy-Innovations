@@ -27,7 +27,7 @@ export default function LanguageSelection() {
 
   return (
     <>
-      <motion.button 
+      <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
@@ -46,17 +46,17 @@ export default function LanguageSelection() {
         {isOpen && (
           <div className="fixed inset-0 z-[120] flex items-center justify-center p-6 bg-surface-container-lowest/80 backdrop-blur-xl">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)]" />
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-surface w-full max-w-md rounded-[2.5rem] p-10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] border border-outline-variant/30 relative overflow-hidden"
+              className="bg-surface w-full max-w-md rounded-[2.5rem] p-6 md:p-10 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.2)] border border-outline-variant/30 relative overflow-hidden"
             >
               {/* Decorative Background Elements */}
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
               <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary/5 rounded-full blur-3xl" />
 
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="absolute top-8 right-8 w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
               >
@@ -64,7 +64,7 @@ export default function LanguageSelection() {
               </button>
 
               <div className="text-center mb-10">
-                <motion.div 
+                <motion.div
                   initial={{ rotate: -10 }}
                   animate={{ rotate: 0 }}
                   className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner"
@@ -83,16 +83,14 @@ export default function LanguageSelection() {
                     transition={{ delay: idx * 0.1 }}
                     key={lang.name}
                     onClick={() => handleSelect(lang.name)}
-                    className={`w-full p-5 rounded-3xl border-2 transition-all flex items-center justify-between group relative overflow-hidden ${
-                      selectedLang === lang.name 
-                        ? 'border-primary bg-primary/5' 
+                    className={`w-full p-5 rounded-3xl border-2 transition-all flex items-center justify-between group relative overflow-hidden ${selectedLang === lang.name
+                        ? 'border-primary bg-primary/5'
                         : 'border-outline-variant/50 hover:border-primary/30 hover:bg-surface-container-low'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg transition-colors ${
-                        selectedLang === lang.name ? 'bg-primary text-white' : 'bg-surface-container text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary'
-                      }`}>
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-bold text-lg transition-colors ${selectedLang === lang.name ? 'bg-primary text-white' : 'bg-surface-container text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary'
+                        }`}>
                         {lang.native[0]}
                       </div>
                       <div className="text-left">
@@ -100,10 +98,9 @@ export default function LanguageSelection() {
                         <div className="text-xl font-bold text-on-surface">{lang.native}</div>
                       </div>
                     </div>
-                    
-                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedLang === lang.name ? 'border-primary bg-primary text-white scale-110' : 'border-outline-variant group-hover:border-primary/30'
-                    }`}>
+
+                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all ${selectedLang === lang.name ? 'border-primary bg-primary text-white scale-110' : 'border-outline-variant group-hover:border-primary/30'
+                      }`}>
                       {selectedLang === lang.name && <Check size={16} strokeWidth={3} />}
                     </div>
                   </motion.button>
@@ -111,7 +108,7 @@ export default function LanguageSelection() {
               </div>
 
               <div className="mt-10 pt-8 border-t border-outline-variant/20">
-                <button 
+                <button
                   onClick={() => setIsOpen(false)}
                   className="w-full btn-primary text-on-primary py-5 rounded-2xl font-label font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all"
                 >

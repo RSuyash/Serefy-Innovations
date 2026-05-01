@@ -21,11 +21,11 @@ export default function Metrics() {
             </p>
           </div>
 
-          <div className="flex gap-4 animate-in fade-in slide-in-from-right-8 duration-1000">
-            <button className="bg-amber-600 text-white px-8 py-4 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-amber-600/20 hover:-translate-y-1 transition-all active:scale-95">
+          <div className="flex flex-col sm:flex-row gap-4 animate-in fade-in slide-in-from-right-8 duration-1000">
+            <button className="bg-amber-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-black text-[10px] md:text-[11px] uppercase tracking-widest shadow-xl shadow-amber-600/20 hover:-translate-y-1 transition-all active:scale-95">
               Request a Demo
             </button>
-            <button className="bg-indigo-400/80 text-white px-8 py-4 rounded-xl font-black text-[11px] uppercase tracking-widest shadow-xl shadow-indigo-400/20 hover:-translate-y-1 transition-all active:scale-95">
+            <button className="bg-indigo-400/80 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-black text-[10px] md:text-[11px] uppercase tracking-widest shadow-xl shadow-indigo-400/20 hover:-translate-y-1 transition-all active:scale-95">
               Download Report
             </button>
           </div>

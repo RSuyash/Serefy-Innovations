@@ -38,22 +38,22 @@ export default function GallerySection() {
   ];
 
   return (
-    <SectionWrapper className="w-full py-32 px-6 md:px-12 bg-surface overflow-hidden" id="gallery">
+    <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface overflow-hidden" id="gallery">
       <div className="max-w-screen-xl mx-auto">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+        <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 md:mb-16 gap-6 md:gap-8 text-center md:text-left">
           <div className="max-w-2xl">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="inline-block px-4 py-1.5 bg-primary/10 rounded-full font-label text-xs font-bold text-primary tracking-[0.2em] uppercase mb-6"
+              className="inline-block px-4 py-1.5 bg-primary/10 rounded-full font-label text-[10px] md:text-xs font-bold text-primary tracking-[0.2em] uppercase mb-4 md:mb-6"
             >
               Visual Journey
             </motion.div>
-            <h2 className="font-headline text-4xl md:text-6xl font-extrabold text-on-surface mb-4 leading-tight">
+            <h2 className="font-headline text-3xl md:text-6xl font-extrabold text-on-surface mb-4 leading-tight">
               {t('section.gallery.title')}
             </h2>
-            <p className="text-on-surface-variant text-xl leading-relaxed">
+            <p className="text-on-surface-variant text-lg md:text-xl leading-relaxed">
               {t('section.gallery.subtitle')}
             </p>
           </div>
