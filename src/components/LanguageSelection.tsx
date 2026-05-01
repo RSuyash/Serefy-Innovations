@@ -3,18 +3,21 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Globe, X, Check } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-export default function LanguageSelection() {
-  const [isOpen, setIsOpen] = useState(false);
+interface LanguageSelectionProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function LanguageSelection({ isOpen, onClose }: LanguageSelectionProps) {
   const { language: selectedLang, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    // Show popup immediately on every refresh as requested
-    setIsOpen(true);
+    // Note: Auto-open logic is now handled by the caller or by a separate effect if needed
   }, []);
 
   const handleSelect = (lang: string) => {
     setLanguage(lang as any);
-    setIsOpen(false);
+    onClose();
   };
 
   const languages = [
@@ -25,26 +28,10 @@ export default function LanguageSelection() {
 
   return (
     <>
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 md:bottom-10 left-6 md:left-8 z-[9999] bg-white/90 backdrop-blur-xl text-slate-900 w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-3 rounded-2xl shadow-2xl border border-slate-200 flex items-center justify-center md:justify-start gap-3 hover:border-amber-500/50 transition-all font-label text-sm font-bold group"
-        aria-label="Select Language"
-      >
-        <div className="w-8 h-8 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-colors shrink-0">
-          <Globe size={18} />
-        </div>
-        <div className="text-left hidden md:block">
-          <p className="text-[9px] uppercase tracking-widest text-slate-500 leading-none mb-1">Language</p>
-          <p className="leading-none text-xs">{selectedLang}</p>
-        </div>
-      </motion.button>
-
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[120] flex items-center justify-center p-6 bg-surface-container-lowest/80 backdrop-blur-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.05)_0%,transparent_70%)]" onClick={onClose} />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -56,7 +43,7 @@ export default function LanguageSelection() {
               <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary/5 rounded-full blur-3xl" />
 
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={onClose}
                 className="absolute top-8 right-8 w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors"
               >
                 <X size={20} />
@@ -108,7 +95,7 @@ export default function LanguageSelection() {
 
               <div className="mt-10 pt-8 border-t border-outline-variant/20">
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={onClose}
                   className="w-full btn-primary text-on-primary py-5 rounded-2xl font-label font-bold text-lg shadow-xl shadow-primary/20 hover:shadow-primary/30 active:scale-95 transition-all"
                 >
                   Continue / आगे बढ़ें

@@ -4,12 +4,18 @@ import LanguageSelection from './LanguageSelection';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 
 export default function Layout() {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language: selectedLang } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangModalOpen, setIsLangModalOpen] = useState(false);
+
+  // Open language modal on mount (refresh)
+  useEffect(() => {
+    setIsLangModalOpen(true);
+  }, []);
 
   // Close menu on route change
   useEffect(() => {
@@ -30,7 +36,7 @@ export default function Layout() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-10 items-center">
+          <div className="hidden md:flex gap-8 items-center">
             {navItems.map((item) => {
               const path = `/${item.toLowerCase()}`;
               const isActive = location.pathname === path;
@@ -39,7 +45,7 @@ export default function Layout() {
                 <Link
                   key={item}
                   to={path}
-                  className={`transition-all font-black uppercase tracking-[0.2em] text-xs relative py-1 ${isActive ? 'text-amber-600' : 'text-slate-500 hover:text-amber-600'}`}
+                  className={`transition-all font-black uppercase tracking-[0.2em] text-[10px] relative py-1 ${isActive ? 'text-amber-600' : 'text-slate-500 hover:text-amber-600'}`}
                 >
                   {t(translationKey)}
                 </Link>
@@ -47,19 +53,37 @@ export default function Layout() {
             })}
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Desktop Language Switcher */}
+            <button 
+              onClick={() => setIsLangModalOpen(true)}
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-slate-200 hover:border-amber-500/50 hover:bg-slate-50 transition-all text-xs font-bold text-slate-600"
+            >
+              <Globe size={14} className="text-amber-600" />
+              <span>{selectedLang}</span>
+            </button>
+
             <Link to="/contact" className="hidden sm:block bg-slate-900 text-white px-5 md:px-7 py-2 md:py-2.5 rounded-full font-black text-[10px] md:text-xs hover:bg-amber-600 hover:shadow-xl hover:shadow-amber-500/20 hover:-translate-y-0.5 transition-all active:scale-95">
               {t('nav.getStarted')}
             </Link>
 
-            {/* Mobile Menu Toggle */}
-            <button 
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
-              aria-label="Toggle Menu"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Language & Menu Toggle */}
+            <div className="flex md:hidden items-center gap-1">
+              <button 
+                onClick={() => setIsLangModalOpen(true)}
+                className="p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+                aria-label="Change Language"
+              >
+                <Globe size={20} />
+              </button>
+              <button 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-2 text-slate-900 hover:bg-slate-100 rounded-xl transition-colors"
+                aria-label="Toggle Menu"
+              >
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -196,7 +220,7 @@ export default function Layout() {
       </footer>
 
 
-      <LanguageSelection />
+      <LanguageSelection isOpen={isLangModalOpen} onClose={() => setIsLangModalOpen(false)} />
     </div>
   );
 }
