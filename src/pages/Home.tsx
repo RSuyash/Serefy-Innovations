@@ -213,7 +213,7 @@ export default function Home() {
                   One-Touch Automation
                 </div>
                 <div className="hidden md:flex absolute top-[50%] -right-8 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2">
-                  <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+                  <span className="w-3 h-3 bg-primary rounded-full"></span>
                   Solar Compatible
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 md:bottom-[10%] md:left-4 md:right-auto bg-primary text-on-primary p-3 rounded-xl shadow-lg font-bold flex items-center justify-center md:justify-start gap-2 text-base md:text-lg">
@@ -285,9 +285,9 @@ export default function Home() {
             </div>
             
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-red-50 p-8 rounded-3xl border border-red-100">
-                <h3 className="text-2xl font-bold text-red-800 mb-6 flex items-center gap-3"><X size={28} /> Traditional Machines</h3>
-                <ul className="space-y-4 text-red-900/80 font-medium">
+              <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10">
+                <h3 className="text-2xl font-bold text-on-surface/60 mb-6 flex items-center gap-3"><X size={28} /> Traditional Machines</h3>
+                <ul className="space-y-4 text-on-surface-variant font-medium">
                   <li className="flex items-start gap-2"><span>-</span> <span>Manual humidity control leading to dry or spoiled eggs.</span></li>
                   <li className="flex items-start gap-2"><span>-</span> <span>Requires constant monitoring and human intervention.</span></li>
                   <li className="flex items-start gap-2"><span>-</span> <span>Poor insulation causing high electricity bills.</span></li>
@@ -420,7 +420,7 @@ export default function Home() {
                         <h4 className="font-headline font-extrabold text-3xl text-white mb-1">Vidhya Gaikwad</h4>
                         <p className="text-green-400 font-bold text-xs tracking-[0.2em] uppercase">{t('section.team.vidhya.title')}</p>
                       </div>
-                      <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-blue-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
+                      <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-green-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
                         <Linkedin size={22} fill="currentColor" className="ml-0.5" />
                       </a>
                     </div>
@@ -443,7 +443,7 @@ export default function Home() {
                         <h4 className="font-headline font-extrabold text-3xl text-white mb-1">Aditya Magar</h4>
                         <p className="text-green-400 font-bold text-xs tracking-[0.2em] uppercase">{t('section.team.aditya.title')}</p>
                       </div>
-                      <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-blue-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
+                      <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-green-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
                         <Linkedin size={22} fill="currentColor" className="ml-0.5" />
                       </a>
                     </div>
