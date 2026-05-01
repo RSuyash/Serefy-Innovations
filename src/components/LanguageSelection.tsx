@@ -31,14 +31,15 @@ export default function LanguageSelection() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-32 md:bottom-10 left-8 z-[60] bg-surface/80 backdrop-blur-md text-on-surface px-6 py-3 rounded-2xl shadow-2xl border border-primary/20 flex items-center gap-3 hover:border-primary/50 transition-all font-label text-sm font-bold group"
+        className="fixed bottom-6 md:bottom-10 left-6 md:left-8 z-[60] bg-white/90 backdrop-blur-xl text-slate-900 w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-3 rounded-2xl shadow-2xl border border-slate-200 flex items-center justify-center md:justify-start gap-3 hover:border-amber-500/50 transition-all font-label text-sm font-bold group"
+        aria-label="Select Language"
       >
-        <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+        <div className="w-8 h-8 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-colors shrink-0">
           <Globe size={18} />
         </div>
-        <div className="text-left hidden sm:block">
-          <p className="text-[10px] uppercase tracking-widest text-on-surface-variant leading-none mb-1">Language</p>
-          <p className="leading-none">{selectedLang}</p>
+        <div className="text-left hidden md:block">
+          <p className="text-[9px] uppercase tracking-widest text-slate-500 leading-none mb-1">Language</p>
+          <p className="leading-none text-xs">{selectedLang}</p>
         </div>
       </motion.button>
 
