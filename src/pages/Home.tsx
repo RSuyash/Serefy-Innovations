@@ -119,14 +119,14 @@ export default function Home() {
             className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-6 md:space-y-8 text-center md:text-left"
           >
             <AnimatedTags tags={t('hero.tags').split(',')} />
-            <h1 className="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-[1.1] md:leading-tight">
+            <h1 className="font-headline text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-[1.1] md:leading-tight">
               {t('hero.title').split(' ').map((word, i, arr) => (
                 <React.Fragment key={i}>
                   {word === 'Efficient' || word === 'Smart' || word === 'कुशल' || word === 'स्मार्ट' || word === 'कार्यक्षम' ? <span className="text-primary">{word} </span> : word + ' '}
                 </React.Fragment>
               ))}
             </h1>
-            <p className="font-body text-base md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
+            <p className="font-body text-sm md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
               {t('hero.tagline')}
             </p>
             <div className="flex flex-col gap-4 w-full sm:w-auto items-center md:items-start">
@@ -145,20 +145,20 @@ export default function Home() {
             </div>
             <div className="pt-4 border-t border-outline-variant/30 w-full max-w-xs md:max-w-none">
               <p className="text-[10px] md:text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">{t('hero.capacity')}</p>
-              <div className="flex gap-4 md:gap-6 justify-center md:justify-start">
+              <div className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-2 justify-center md:justify-start">
                 <div className="flex flex-col">
-                  <span className="text-lg md:text-xl font-extrabold text-on-surface">120</span>
-                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-base md:text-xl font-extrabold text-on-surface">120</span>
+                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
-                <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
+                <div className="w-px h-6 md:h-8 bg-outline-variant/30 self-center hidden xs:block"></div>
                 <div className="flex flex-col">
-                  <span className="text-lg md:text-xl font-extrabold text-on-surface">200</span>
-                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-base md:text-xl font-extrabold text-on-surface">200</span>
+                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
-                <div className="w-px h-8 bg-outline-variant/30 self-center"></div>
+                <div className="w-px h-6 md:h-8 bg-outline-variant/30 self-center hidden xs:block"></div>
                 <div className="flex flex-col">
-                  <span className="text-lg md:text-xl font-extrabold text-on-surface">500</span>
-                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                  <span className="text-base md:text-xl font-extrabold text-on-surface">500</span>
+                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
                 </div>
               </div>
             </div>

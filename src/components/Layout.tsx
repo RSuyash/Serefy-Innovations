@@ -25,7 +25,7 @@ export default function Layout() {
   const navItems = ['Technology', 'Metrics', 'Gallery'];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background selection:bg-amber-500/10">
+    <div className="min-h-screen flex flex-col bg-background selection:bg-amber-500/10 overflow-x-hidden">
 
       {/* Modern Minimalist Header */}
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100">

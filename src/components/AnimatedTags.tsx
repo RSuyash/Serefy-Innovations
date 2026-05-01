@@ -16,8 +16,8 @@ export default function AnimatedTags({ tags }: AnimatedTagsProps) {
   }, [tags.length]);
 
   return (
-    <div className="flex items-center gap-2 bg-primary/10 pl-4 pr-6 py-2 rounded-full overflow-hidden min-w-[200px]">
-      <div className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0"></div>
+    <div className="flex items-center gap-2 bg-primary/10 pl-3 md:pl-4 pr-4 md:pr-6 py-1.5 md:py-2 rounded-full overflow-hidden max-w-full">
+      <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary animate-pulse shrink-0"></div>
       <motion.div
         key={index}
         initial={{ y: 20, opacity: 0 }}

@@ -42,11 +42,11 @@ export default function Metrics() {
             <div className="overflow-x-auto">
               <table className="w-full text-left border-separate border-spacing-y-4">
                 <thead>
-                  <tr className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-900">
-                    <th className="pb-4 pl-6">Feature</th>
-                    <th className="pb-4 text-center">Local/Traditional</th>
-                    <th className="pb-4 text-center">Market Competitors</th>
-                    <th className="pb-4 text-center text-amber-600">SERE Innovations</th>
+                  <tr className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] md:tracking-[0.2em] text-slate-900">
+                    <th className="pb-4 pl-2 md:pl-6">Feature</th>
+                    <th className="pb-4 text-center">Traditional</th>
+                    <th className="pb-4 text-center">Competitors</th>
+                    <th className="pb-4 text-center text-amber-600">SERE</th>
                   </tr>
                 </thead>
                 <tbody className="space-y-4 text-center">
@@ -89,11 +89,11 @@ export default function Metrics() {
           <aside className="lg:col-span-4 bg-[#4A55A2] rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-right-8 duration-700">
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full"></div>
             <h3 className="text-xl font-black mb-10 tracking-tight">Efficiency Delta</h3>
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               <div>
                 <div className="flex justify-between items-end mb-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white">SERE Technology</p>
-                  <p className="text-3xl font-black text-amber-400">90%</p>
+                  <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white">SERE Tech</p>
+                  <p className="text-2xl md:text-3xl font-black text-amber-400">90%</p>
                 </div>
                 <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                   <div className="h-full w-[90%] bg-amber-500 rounded-full shadow-lg shadow-amber-500/40"></div>
@@ -101,8 +101,8 @@ export default function Metrics() {
               </div>
               <div>
                 <div className="flex justify-between items-end mb-3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Traditional Method</p>
-                  <p className="text-3xl font-black text-white">60%</p>
+                  <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-white">Traditional</p>
+                  <p className="text-2xl md:text-3xl font-black text-white">60%</p>
                 </div>
                 <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
                   <div className="h-full w-[60%] bg-white/40 rounded-full"></div>
