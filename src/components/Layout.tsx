@@ -32,7 +32,7 @@ export default function Layout() {
         <div className="flex justify-between items-center px-4 md:px-6 py-3 md:py-4 w-full max-w-7xl mx-auto">
           <Link to="/" className="text-lg md:text-xl font-black text-black flex items-center gap-2 group shrink-0">
             <img src="/media/logo.png" alt="Serefy Innovations" className="h-8 md:h-10 w-auto object-contain" />
-            <span className="font-headline tracking-tighter">{siteConfig.brand.name}</span>
+            <span className="font-headline font-black text-lg md:text-xl tracking-tighter uppercase">{siteConfig.brand.name}</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,7 +45,7 @@ export default function Layout() {
                 <Link
                   key={item}
                   to={path}
-                  className={`transition-all font-black uppercase tracking-[0.2em] text-[10px] relative py-1 ${isActive ? 'text-green-700' : 'text-black/60 hover:text-green-700'}`}
+                  className={`transition-all font-black uppercase tracking-[0.1em] text-xs md:text-sm relative py-1 ${isActive ? 'text-green-700 border-b-2 border-green-700' : 'text-black/70 hover:text-green-700'}`}
                 >
                   {t(translationKey)}
                 </Link>
@@ -63,7 +63,7 @@ export default function Layout() {
               <span>{selectedLang}</span>
             </button>
 
-            <Link to="/contact" className="hidden sm:block bg-black text-white px-5 md:px-7 py-2 md:py-2.5 rounded-full font-black text-[10px] md:text-xs hover:bg-green-700 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-0.5 transition-all active:scale-95">
+            <Link to="/contact" className="hidden sm:block bg-black text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-black text-xs md:text-sm hover:bg-green-700 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-0.5 transition-all active:scale-95 uppercase tracking-widest">
               {t('nav.getStarted')}
             </Link>
 
@@ -90,35 +90,45 @@ export default function Layout() {
         {/* Mobile Navigation Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-white border-t border-green-100 overflow-hidden"
-            >
-              <div className="flex flex-col p-6 gap-4">
-                {navItems.map((item) => {
-                  const path = `/${item.toLowerCase()}`;
-                  const isActive = location.pathname === path;
-                  const translationKey = `nav.${item.toLowerCase()}`;
-                  return (
-                    <Link
-                      key={item}
-                      to={path}
-                      className={`transition-all font-black uppercase tracking-[0.2em] text-sm py-2 ${isActive ? 'text-green-700' : 'text-black/60'}`}
-                    >
-                      {t(translationKey)}
-                    </Link>
-                  );
-                })}
-                <Link
-                  to="/contact"
-                  className="bg-black text-white px-6 py-4 rounded-2xl font-black text-center text-xs mt-4 uppercase tracking-widest"
-                >
-                  {t('nav.getStarted')}
-                </Link>
-              </div>
-            </motion.div>
+            <>
+              {/* Backdrop */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsMenuOpen(false)}
+                className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[40] md:hidden"
+              />
+              <motion.div
+                initial={{ opacity: 0, height: 0, y: -20 }}
+                animate={{ opacity: 1, height: 'auto', y: 0 }}
+                exit={{ opacity: 0, height: 0, y: -20 }}
+                className="md:hidden bg-white border-t border-green-100 overflow-hidden relative z-[50] shadow-2xl"
+              >
+                <div className="flex flex-col p-6 gap-2">
+                  {navItems.map((item) => {
+                    const path = `/${item.toLowerCase()}`;
+                    const isActive = location.pathname === path;
+                    const translationKey = `nav.${item.toLowerCase()}`;
+                    return (
+                      <Link
+                        key={item}
+                        to={path}
+                        className={`transition-all font-black uppercase tracking-[0.2em] text-sm py-4 border-b border-green-50 last:border-0 ${isActive ? 'text-green-700' : 'text-black/60'}`}
+                      >
+                        {t(translationKey)}
+                      </Link>
+                    );
+                  })}
+                  <Link
+                    to="/contact"
+                    className="bg-black text-white px-6 py-5 rounded-2xl font-black text-center text-sm mt-4 uppercase tracking-widest hover:bg-green-700 transition-colors"
+                  >
+                    {t('nav.getStarted')}
+                  </Link>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>
@@ -219,6 +229,18 @@ export default function Layout() {
         </div>
       </footer>
 
+
+      <a
+        href={`https://wa.me/${siteConfig.brand.whatsapp}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-green-500 text-white shadow-lg shadow-green-500/30 transition-transform hover:-translate-y-1 hover:scale-110 hover:shadow-xl hover:shadow-green-500/40"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle">
+          <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/>
+        </svg>
+      </a>
 
       <LanguageSelection isOpen={isLangModalOpen} onClose={() => setIsLangModalOpen(false)} />
     </div>

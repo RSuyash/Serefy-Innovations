@@ -11,7 +11,7 @@ interface LanguageContextType {
 const translations: Record<Language, Record<string, string>> = {
   English: {
     'hero.title': "India's Most Efficient & Smart Egg Incubator.",
-    'hero.tagline': "Bridging the gap between farmers and technology. Built for Rural Entrepreneurs and Small Scale Poultry Farmers.",
+    'hero.tagline': "Bridging the gap with smart,\nprecision hatching technology.",
     'hero.cta': "Pre-order Now & Save 20%",
     'hero.capacity': "Capacity Options",
     'hero.eggs': "Eggs",

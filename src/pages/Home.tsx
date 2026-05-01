@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import WizardModal, { type WizardFormData } from '../components/WizardModal';
 import ThankYouModal from '../components/ThankYouModal';
-import ProblemSlideshow from '../components/ProblemSlideshow';
+
 import AnimatedTags from '../components/AnimatedTags';
 import SectionWrapper from '../components/SectionWrapper';
 import GallerySection from '../components/GallerySection';
@@ -23,7 +23,8 @@ import {
   Youtube,
   Play,
   Facebook,
-  Instagram
+  Instagram,
+  X
 } from 'lucide-react';
 
 export default function Home() {
@@ -111,148 +112,203 @@ export default function Home() {
     <div className="bg-surface text-on-surface font-body antialiased selection:bg-primary/20 flex flex-col min-h-screen">
       <main className="flex-grow">
         {/* 1. Hero Section */}
-        <section className="w-full pt-20 md:pt-12 pb-16 md:pb-24 px-4 md:px-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 overflow-hidden">
+        <section className="w-full pt-24 md:pt-28 pb-12 md:pb-20 px-6 md:px-12 max-w-screen-2xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 min-h-[calc(100vh-80px)]">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-6 md:space-y-8 text-center md:text-left"
+            className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <AnimatedTags tags={t('hero.tags').split(',')} />
-            <h1 className="font-headline text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] font-extrabold text-on-surface tracking-tight leading-[1.1] md:leading-tight">
-              {t('hero.title').split(' ').map((word, i, arr) => (
+            <div className="mb-4">
+              <AnimatedTags tags={t('hero.tags').split(',')} />
+            </div>
+            
+            <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-on-surface tracking-tighter leading-[1.1] mb-6">
+              {t('hero.title').split(' ').map((word, i) => (
                 <React.Fragment key={i}>
-                  {word === 'Efficient' || word === 'Smart' || word === 'कुशल' || word === 'स्मार्ट' || word === 'कार्यक्षम' ? <span className="text-primary">{word} </span> : word + ' '}
+                  {word === 'Efficient' || word === 'Smart' || word === 'कुशल' || word === 'स्मार्ट' || word === 'कार्यक्षम' ? (
+                    <span className="text-primary inline-block">
+                      {word}{' '}
+                    </span>
+                  ) : (
+                    word + ' '
+                  )}
                 </React.Fragment>
               ))}
             </h1>
-            <p className="font-body text-sm md:text-xl text-on-surface-variant max-w-lg leading-relaxed">
+            
+            <p className="font-body text-base md:text-lg text-on-surface-variant max-w-xl leading-relaxed mb-8 font-medium whitespace-pre-line">
               {t('hero.tagline')}
             </p>
-            <div className="flex flex-col gap-4 w-full sm:w-auto items-center md:items-start">
+            
+            <div className="flex flex-col gap-6 w-full sm:w-auto items-center lg:items-start mb-10">
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
-                <a className="btn-primary w-full sm:w-auto justify-center text-on-primary font-label font-medium px-10 py-5 rounded-full hover:bg-primary-container transition-colors flex items-center gap-3 shadow-xl cursor-pointer" onClick={(e) => handleOpenWizard(e, 'hero_cta')}>
+                <a className="btn-primary w-full sm:w-auto justify-center text-on-primary font-label font-black px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-xl hover:shadow-primary/30 hover:-translate-y-1 cursor-pointer flex items-center gap-3 text-base" onClick={(e) => handleOpenWizard(e, 'hero_cta')}>
                   {t('hero.cta')} <ArrowRight size={20} />
                 </a>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2 text-primary font-bold text-sm">
+                <div className="flex items-center gap-2 text-primary font-black text-xs">
                   <CheckCircle2 size={16} />
-                  <span>{t('hero.preorder')}</span>
+                  <span className="uppercase tracking-[0.1em]">{t('hero.preorder')}</span>
                 </div>
-                <p className="text-on-surface-variant text-sm font-medium">{t('hero.incubated')}</p>
+                <p className="text-on-surface-variant font-bold text-xs opacity-70">{t('hero.incubated')}</p>
               </div>
             </div>
-            <div className="pt-4 border-t border-outline-variant/30 w-full max-w-xs md:max-w-none">
-              <p className="text-[10px] md:text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-3">{t('hero.capacity')}</p>
-              <div className="flex flex-wrap gap-x-4 md:gap-x-6 gap-y-2 justify-center md:justify-start">
-                <div className="flex flex-col">
-                  <span className="text-base md:text-xl font-extrabold text-on-surface">120</span>
-                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+
+            <div className="bg-surface-container/30 backdrop-blur-sm border border-outline-variant/20 p-4 md:p-5 rounded-2xl w-fit shadow-sm">
+              <p className="text-[10px] md:text-xs font-black text-primary uppercase tracking-[0.2em] mb-3">{t('hero.capacity')}</p>
+              <div className="flex flex-wrap gap-x-6 md:gap-x-10 gap-y-3 justify-center lg:justify-start">
+                <div className="flex flex-col group cursor-default">
+                  <span className="text-xl md:text-3xl font-black text-on-surface transition-colors group-hover:text-primary">120</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-black uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">{t('hero.eggs')}</span>
                 </div>
-                <div className="w-px h-6 md:h-8 bg-outline-variant/30 self-center hidden xs:block"></div>
-                <div className="flex flex-col">
-                  <span className="text-base md:text-xl font-extrabold text-on-surface">200</span>
-                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                <div className="w-px h-8 md:h-10 bg-outline-variant/30 self-center hidden xs:block"></div>
+                <div className="flex flex-col group cursor-default">
+                  <span className="text-xl md:text-3xl font-black text-on-surface transition-colors group-hover:text-primary">200</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-black uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">{t('hero.eggs')}</span>
                 </div>
-                <div className="w-px h-6 md:h-8 bg-outline-variant/30 self-center hidden xs:block"></div>
-                <div className="flex flex-col">
-                  <span className="text-base md:text-xl font-extrabold text-on-surface">500</span>
-                  <span className="text-[7px] md:text-[10px] text-on-surface-variant font-bold uppercase">{t('hero.eggs')}</span>
+                <div className="w-px h-8 md:h-10 bg-outline-variant/30 self-center hidden xs:block"></div>
+                <div className="flex flex-col group cursor-default">
+                  <span className="text-xl md:text-3xl font-black text-on-surface transition-colors group-hover:text-primary">500</span>
+                  <span className="text-[8px] md:text-[10px] text-on-surface-variant font-black uppercase tracking-widest opacity-60 group-hover:opacity-100 transition-opacity">{t('hero.eggs')}</span>
                 </div>
               </div>
             </div>
           </motion.div>
+          
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="w-full md:w-5/12 rounded-3xl aspect-square relative overflow-hidden ghost-border ambient-shadow bg-surface-container"
+            className="w-full lg:w-[42%] relative group lg:-ml-12 mt-8 lg:mt-0"
           >
-            <img alt="Happy Indian poultry farmer" referrerPolicy="no-referrer" className="w-full h-full object-cover" src="/media/happy-poultry-farmer.png" />
+            <div className="absolute -inset-6 bg-primary/10 rounded-[3.5rem] blur-3xl opacity-50 transition-opacity group-hover:opacity-100"></div>
+            <div className="relative rounded-[2.5rem] overflow-hidden border-2 border-outline-variant/20 shadow-xl bg-surface-container transition-transform duration-700 group-hover:scale-[1.02] aspect-square">
+              <img alt="Happy Indian poultry farmer" referrerPolicy="no-referrer" className="w-full h-full object-cover object-center" src="/media/indian-farmer-hero.png" />
+            </div>
           </motion.div>
         </section>
 
-        {/* 2. Problem / Opportunity */}
-        <SectionWrapper className="w-full py-16 md:py-24 px-4 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="problem">
+        {/* 2 & 3. Problem & Solution Overview */}
+        <SectionWrapper className="w-full py-16 md:py-24 px-4 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="problem-solution">
           <div className="max-w-screen-xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-              <div className="text-center md:text-left">
-                <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-6 leading-tight">
-                  {t('section.problem.title')}
-                </h2>
-                <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed">
-                  {t('section.problem.desc')}
-                </p>
-              </div>
-              <div className="w-full">
-                <ProblemSlideshow />
-              </div>
-            </div>
-          </div>
-        </SectionWrapper>
-
-        {/* 3. Solution / Product Overview */}
-        <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface" id="solution">
-          <div className="max-w-screen-xl mx-auto">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="font-headline text-3xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">
-                {t('section.solution.title')}
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-6 uppercase tracking-tighter">
+                One Solution for All Challenges
               </h2>
-              <p className="text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto leading-relaxed">
-                {t('section.solution.desc')}
+              <p className="text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto font-medium">
+                Small-scale farmers struggle with high costs, complex setups, and unstable hatching. Serefy eliminates all these hurdles with a single, intelligent automation system.
               </p>
             </div>
-            <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-center">
-              <div className="w-full md:w-6/12 relative">
-                <img src="/media/sere-120.webp" alt="Serefy 120 Egg Incubator" className="w-full rounded-3xl shadow-2xl border border-primary/20" />
-                {/* Solution pointers would go here in a more complex UI */}
+            
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
+                <img src="/media/sere-120.webp" alt="Serefy 120 Capacity Model" className="relative w-full rounded-3xl shadow-2xl border border-primary/20" />
+                
+                {/* Solution Pointers - Hidden on mobile/tablet for cleaner layout */}
+                <div className="hidden md:flex absolute top-[20%] -left-6 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2 animate-bounce">
+                  <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                  One-Touch Automation
+                </div>
+                <div className="hidden md:flex absolute top-[50%] -right-8 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2">
+                  <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+                  Solar Compatible
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 md:bottom-[10%] md:left-4 md:right-auto bg-primary text-on-primary p-3 rounded-xl shadow-lg font-bold flex items-center justify-center md:justify-start gap-2 text-base md:text-lg">
+                  <CheckCircle2 size={20} />
+                  Achieved 90% Hatch Rate
+                </div>
               </div>
-              <div className="w-full md:w-6/12 space-y-8">
-                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat1.title')}</h3>
-                  <p className="text-on-surface-variant">{t('section.solution.feat1.desc')}</p>
+
+              <div className="space-y-6">
+                <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Plug & Play Operation</h3>
+                  <p className="text-on-surface-variant">No complex manuals needed. Just plug it in, set the mode, and let the system handle humidity, heating, and turning.</p>
                 </div>
-                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat2.title')}</h3>
-                  <p className="text-on-surface-variant">{t('section.solution.feat2.desc')}</p>
+                <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Reliable Climate Control</h3>
+                  <p className="text-on-surface-variant">Advanced sensors maintain the perfect environment, overcoming the poor temperature regulation of traditional machines.</p>
                 </div>
-                <div className="p-6 bg-surface-container-low rounded-2xl border border-primary/10">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.feat3.title')}</h3>
-                  <p className="text-on-surface-variant">{t('section.solution.feat3.desc')}</p>
+                <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Financial Independence</h3>
+                  <p className="text-on-surface-variant">Stop buying day-old chicks every month. Hatch your own eggs and turn a recurring expense into a profitable asset.</p>
                 </div>
               </div>
             </div>
           </div>
         </SectionWrapper>
 
-        {/* 4. How It Works */}
-        <SectionWrapper className="w-full py-16 md:py-24 px-4 md:px-12 bg-surface-container-low border-y border-outline-variant/20" id="how-it-works">
-          <div className="max-w-screen-xl mx-auto text-center mb-12 md:mb-16">
-            <h2 className="font-headline text-3xl md:text-4xl font-extrabold text-on-surface mb-4">{t('section.how.title')}</h2>
-            <p className="text-on-surface-variant text-base md:text-lg">{t('section.how.subtitle')}</p>
+        {/* How to Use */}
+        <SectionWrapper className="w-full py-20 px-4 md:px-12 bg-surface-container-low border-b border-outline-variant/20 relative overflow-hidden" id="how-to-use">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none opacity-40">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
           </div>
-          <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
-              <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">1</div>
-              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step1')}</h3>
-              <p className="text-on-surface-variant">{t('section.how.step1.desc')}</p>
-            </motion.div>
-            <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
-              <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">2</div>
-              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step2')}</h3>
-              <p className="text-on-surface-variant">{t('section.how.step2.desc')}</p>
-            </motion.div>
-            <motion.div whileHover={{ y: -10 }} className="text-center bg-surface p-8 rounded-3xl ambient-shadow ghost-border">
-              <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold font-headline">3</div>
-              <h3 className="font-headline text-xl font-bold mb-3">{t('section.how.step3')}</h3>
-              <p className="text-on-surface-variant">{t('section.how.step3.desc')}</p>
-            </motion.div>
+
+          <div className="max-w-screen-xl mx-auto text-center relative z-10">
+            <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter uppercase">How to Use: Plug & Play</h2>
+            <p className="text-on-surface-variant font-bold mb-16 tracking-widest uppercase text-xs">Deploy industrial precision in three simple steps.</p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+              {[
+                { step: "1", title: "Plug it in", desc: "Connect to a standard power outlet or solar battery.", icon: "electric_bolt" },
+                { step: "2", title: "Add Eggs & Water", desc: "Place your fertile eggs on the trays and fill the humidity basin.", icon: "water_drop" },
+                { step: "3", title: "Let Serefy Work", desc: "The system automatically manages temperature, humidity, and turns the eggs.", icon: "auto_awesome" }
+              ].map((item, i) => (
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -10 }}
+                  className="p-10 bg-surface rounded-[2.5rem] border border-outline-variant/30 shadow-xl shadow-black/5 hover:shadow-primary/10 transition-all group relative overflow-hidden text-left"
+                >
+                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <span className="material-symbols-outlined text-8xl text-primary">{item.icon}</span>
+                  </div>
+                  <div className="w-16 h-16 bg-primary text-on-primary rounded-2xl flex items-center justify-center mb-8 text-2xl font-black shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
+                    {item.step}
+                  </div>
+                  <h3 className="font-headline font-black text-2xl mb-4 text-on-surface group-hover:text-primary transition-colors">{item.title}</h3>
+                  <p className="text-on-surface-variant font-medium leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </SectionWrapper>
+
+        {/* Market vs Serefy Comparison */}
+        <SectionWrapper className="w-full pt-20 pb-10 px-4 md:px-12 bg-surface">
+          <div className="max-w-screen-lg mx-auto">
+             <div className="text-center mb-12">
+              <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-4">What You Lose with Market Incubators</h2>
+              <p className="text-on-surface-variant text-lg">Stop gambling with your eggs. Here is why traditional incubators fall short.</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-red-50 p-8 rounded-3xl border border-red-100">
+                <h3 className="text-2xl font-bold text-red-800 mb-6 flex items-center gap-3"><X size={28} /> Traditional Machines</h3>
+                <ul className="space-y-4 text-red-900/80 font-medium">
+                  <li className="flex items-start gap-2"><span>-</span> <span>Manual humidity control leading to dry or spoiled eggs.</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>Requires constant monitoring and human intervention.</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>Poor insulation causing high electricity bills.</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>Loss of valuable fertile eggs due to fluctuating temperatures.</span></li>
+                </ul>
+              </div>
+              <div className="bg-primary/10 p-8 rounded-3xl border border-primary/20">
+                <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3"><CheckCircle2 size={28} /> Serefy Innovations</h3>
+                <ul className="space-y-4 text-primary/80 font-medium">
+                  <li className="flex items-start gap-2"><span>+</span> <span>Fully automated climate control (Temperature & Humidity).</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>Set & forget mechanism—it turns eggs automatically.</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>Energy-efficient design works easily with solar backup.</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>Consistent 90% hatch rate ensuring every fertile egg counts.</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </SectionWrapper>
 
         {/* 5. Product Options / Capacity Options */}
-        <SectionWrapper className="w-full py-20 md:py-32 px-4 md:px-12 bg-surface" id="capacity">
+        <SectionWrapper className="w-full pt-10 md:pt-14 pb-20 md:pb-32 px-4 md:px-12 bg-surface" id="capacity">
           <div className="max-w-screen-2xl mx-auto">
             <div className="mb-12 md:mb-20 text-center">
               <h2 className="font-headline text-3xl md:text-6xl font-extrabold text-on-surface tracking-tight mb-6">{t('section.infra.title')}</h2>
@@ -273,7 +329,8 @@ export default function Home() {
                 </a>
               </div>
               {/* Option 200 */}
-              <div className="bg-primary p-6 md:p-10 rounded-3xl ambient-shadow flex flex-col h-full relative overflow-hidden transform md:scale-105 z-10 text-on-primary">
+              <div className="bg-primary p-6 md:p-10 rounded-3xl ambient-shadow flex flex-col h-full relative overflow-hidden transform md:scale-105 z-10 text-on-primary opacity-90">
+                <div className="absolute inset-0 bg-black/10 z-0 pointer-events-none"></div>
                 <div className="mb-8 md:mb-12 relative z-10">
                   <span className="inline-block px-3 py-1 bg-white/20 rounded-full font-label text-xs font-bold text-white tracking-widest uppercase mb-4">{t('section.infra.200.title')}</span>
                   <h3 className="font-headline text-4xl md:text-5xl font-extrabold text-white">200<span className="text-lg md:text-xl font-medium text-white/80 ml-2">{t('hero.eggs')}</span></h3>
@@ -286,7 +343,7 @@ export default function Home() {
                 </a>
               </div>
               {/* Option 500 */}
-              <div className="bg-surface-container-lowest p-6 md:p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+              <div className="bg-surface-container-lowest p-6 md:p-10 rounded-3xl ghost-border ambient-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 opacity-90">
                 <div className="mb-8 md:mb-12">
                   <span className="inline-block px-3 py-1 bg-surface-container-low rounded-full font-label text-xs font-bold text-primary tracking-widest uppercase mb-4">{t('section.infra.500.title')}</span>
                   <h3 className="font-headline text-4xl md:text-5xl font-extrabold text-on-surface">500<span className="text-lg md:text-xl font-medium text-on-surface-variant ml-2">{t('hero.eggs')}</span></h3>
@@ -295,7 +352,7 @@ export default function Home() {
                   {t('section.infra.500.desc')}
                 </p>
                 <a className="w-full text-center bg-surface-container-low text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary hover:text-on-primary transition-colors border border-primary/20 cursor-pointer" onClick={(e) => handleOpenWizard(e, 'inquire_500')}>
-                  {t('section.infra.inquiry')}
+                  Inquire Now
                 </a>
               </div>
             </div>
@@ -303,74 +360,143 @@ export default function Home() {
         </SectionWrapper>
 
         {/* 6. Why Trust Sere */}
-        <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20">
-          <div className="max-w-screen-xl mx-auto">
+        <SectionWrapper className="w-full py-20 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -mr-48 -mt-48"></div>
+          
+          <div className="max-w-screen-xl mx-auto relative z-10">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.trust.title')}</h2>
+              <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter">{t('section.trust.title')}</h2>
+              <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <div className="flex flex-col items-center text-center">
-                <Cpu className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat1.title')}</h3>
-                <p className="text-on-surface-variant">{t('section.trust.feat1.desc')}</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { icon: Cpu, title: t('section.trust.feat1.title'), desc: t('section.trust.feat1.desc') },
+                { icon: Thermometer, title: t('section.trust.feat2.title'), desc: t('section.trust.feat2.desc') },
+                { icon: ShieldCheck, title: t('section.trust.feat3.title'), desc: t('section.trust.feat3.desc') }
+              ].map((feat, i) => (
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -8 }}
+                  className="group p-8 bg-surface rounded-[2.5rem] border border-outline-variant/30 shadow-md hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 flex flex-col items-center text-center relative"
+                >
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-primary/10 text-primary group-hover:bg-primary group-hover:text-on-primary transition-all duration-500 shadow-sm group-hover:shadow-primary/20">
+                    <feat.icon size={32} strokeWidth={2} />
+                  </div>
+                  <h3 className="font-headline text-xl font-bold mb-3 text-on-surface tracking-tight">{feat.title}</h3>
+                  <p className="text-on-surface-variant text-sm font-medium leading-relaxed opacity-90 group-hover:opacity-100 transition-opacity">{feat.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </SectionWrapper>
+
+        {/* 6.5 Competitors Analysis */}
+        <SectionWrapper className="w-full py-16 md:py-24 px-6 md:px-12 bg-surface" id="competitors">
+          <div className="max-w-screen-xl mx-auto text-center">
+            <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-6">Competitors Analysis</h2>
+            <p className="text-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
+              See how Serefy Innovations stands out against the competition. Explore our detailed pitch deck.
+            </p>
+            <a href="/media/Competitors/sere%20innovations%20KIT%20pitch%20deck..pptx.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-lg text-lg">
+              View Pitch Deck <ArrowRight size={20} />
+            </a>
+          </div>
+        </SectionWrapper>
+
+        {/* 7. Team + Supported By */}
+        <SectionWrapper className="w-full pt-24 pb-12 px-6 md:px-12 bg-surface" id="team">
+          <div className="max-w-screen-xl mx-auto">
+            <div className="mb-16">
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-12 text-center">{t('section.team.title')}</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto mb-20">
+                {/* Vidhya Card */}
+                <motion.div whileHover={{ y: -8 }} className="group rounded-[2.5rem] overflow-hidden bg-surface-container-lowest border border-outline-variant/30 ambient-shadow flex flex-col relative transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30">
+                  <div className="w-full aspect-square relative overflow-hidden bg-surface-container">
+                    <img src="/media/Team-Section/IMG_9667.JPG" alt="Vidhya Gaikwad" className="w-full h-full object-cover object-[80%_center] group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"></div>
+                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                      <div>
+                        <h4 className="font-headline font-extrabold text-3xl text-white mb-1">Vidhya Gaikwad</h4>
+                        <p className="text-green-400 font-bold text-xs tracking-[0.2em] uppercase">{t('section.team.vidhya.title')}</p>
+                      </div>
+                      <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-blue-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
+                        <Linkedin size={22} fill="currentColor" className="ml-0.5" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="p-8 pt-6 flex-grow flex flex-col">
+                    <p className="text-on-surface text-sm font-bold uppercase tracking-wider mb-5 pb-5 border-b border-outline-variant/30">BCS 2025 | Head of R&D</p>
+                    <p className="text-on-surface-variant leading-relaxed">
+                      {t('section.team.vidhya.desc')}
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Aditya Card */}
+                <motion.div whileHover={{ y: -8 }} className="group rounded-[2.5rem] overflow-hidden bg-surface-container-lowest border border-outline-variant/30 ambient-shadow flex flex-col relative transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30">
+                  <div className="w-full aspect-square relative overflow-hidden bg-surface-container">
+                    <img src="/media/Team-Section/IMG_4234.PNG" alt="Aditya Magar" className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100"></div>
+                    <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                      <div>
+                        <h4 className="font-headline font-extrabold text-3xl text-white mb-1">Aditya Magar</h4>
+                        <p className="text-green-400 font-bold text-xs tracking-[0.2em] uppercase">{t('section.team.aditya.title')}</p>
+                      </div>
+                      <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-white hover:text-blue-600 hover:scale-110 transition-all duration-300 shadow-lg border border-white/20">
+                        <Linkedin size={22} fill="currentColor" className="ml-0.5" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="p-8 pt-6 flex-grow flex flex-col">
+                    <p className="text-on-surface text-sm font-bold uppercase tracking-wider mb-5 pb-5 border-b border-outline-variant/30">BCS 2025 | Head of Systems</p>
+                    <p className="text-on-surface-variant leading-relaxed">
+                      {t('section.team.aditya.desc')}
+                    </p>
+                  </div>
+                </motion.div>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <Thermometer className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat2.title')}</h3>
-                <p className="text-on-surface-variant">{t('section.trust.feat2.desc')}</p>
-              </div>
-              <div className="flex flex-col items-center text-center">
-                <ShieldCheck className="text-primary w-12 h-12 mb-6" />
-                <h3 className="font-headline text-xl font-bold mb-3">{t('section.trust.feat3.title')}</h3>
-                <p className="text-on-surface-variant">{t('section.trust.feat3.desc')}</p>
+
+              <div className="pt-12 border-t border-outline-variant/30 text-center">
+                <p className="font-label text-xs font-bold text-primary uppercase tracking-widest mb-6">{t('section.team.supported')}</p>
+                <div className="flex justify-center items-center">
+                  <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-20 md:h-28 w-auto object-contain transition-all duration-500" />
+                </div>
               </div>
             </div>
           </div>
         </SectionWrapper>
 
-        {/* 7. Team + Supported By */}
-        <SectionWrapper className="w-full py-24 px-6 md:px-12 bg-surface" id="team">
+        {/* Machine Process */}
+        <SectionWrapper className="w-full pt-12 pb-24 px-6 md:px-12 bg-surface-container-lowest border-t border-outline-variant/20" id="machine-process">
           <div className="max-w-screen-xl mx-auto">
-            <div className="mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-12 text-center">{t('section.team.title')}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto mb-20">
-                <motion.div whileHover={{ scale: 1.02 }} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 p-6 md:p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/30 ambient-shadow">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md bg-surface-container-low">
-                    <img src="/media/founder-vidhya.webp" alt="Vidhya Gaikwad" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="pt-2">
-                    <h4 className="font-headline font-bold text-2xl mb-1">Vidhya Gaikwad</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">{t('section.team.vidhya.title')}</p>
-                    <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of R&D</p>
-                    <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
-                      {t('section.team.vidhya.desc')}
-                    </p>
-                    <a href="https://www.linkedin.com/in/vidhya-gaikwad-402475255" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
-                      <Linkedin size={16} /> Connect
-                    </a>
-                  </div>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 p-6 md:p-8 rounded-3xl bg-surface-container-lowest border border-outline-variant/30 ambient-shadow">
-                  <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center overflow-hidden shrink-0 border-4 border-surface shadow-md bg-surface-container-low">
-                    <img src="/media/founder-aditya.webp" alt="Aditya Magar" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="pt-2">
-                    <h4 className="font-headline font-bold text-2xl mb-1">Aditya Magar</h4>
-                    <p className="text-primary font-bold text-sm tracking-widest uppercase mb-1">{t('section.team.aditya.title')}</p>
-                    <p className="text-on-surface-variant font-medium text-sm mb-3">BCS 2025 | Head of Systems</p>
-                    <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">
-                      {t('section.team.aditya.desc')}
-                    </p>
-                    <a href="https://www.linkedin.com/in/aditya-magar-513b0b2a7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-on-surface hover:text-white hover:bg-primary px-4 py-2 rounded-full border border-outline-variant transition-colors text-sm font-semibold">
-                      <Linkedin size={16} /> Connect
-                    </a>
-                  </div>
-                </motion.div>
+            <div className="text-center mb-16">
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">Machine Process</h2>
+              <p className="text-on-surface-variant text-lg">Loading, Incubation, Candling, and Hatching</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
+                <video src="/media/Machine%20process/IMG_4242.MOV" controls className="w-full h-full object-cover"></video>
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">Loading</p>
+                </div>
               </div>
-              <div className="pt-12 border-t border-outline-variant/30 text-center">
-                <p className="font-label text-xs font-bold text-primary uppercase tracking-widest mb-10">{t('section.team.supported')}</p>
-                <div className="flex justify-center items-center">
-                  <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-20 md:h-28 w-auto object-contain transition-all duration-500" />
+              <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
+                <video src="/media/Machine%20process/IMG_4243.MOV" controls className="w-full h-full object-cover"></video>
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">Incubation</p>
+                </div>
+              </div>
+              <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
+                <video src="/media/Machine%20process/IMG_4246.MOV" controls className="w-full h-full object-cover"></video>
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">Candling</p>
+                </div>
+              </div>
+              <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
+                <img src="/media/Machine%20process/IMG_4238.jpg" alt="Machine Process Hatching" className="w-full h-full object-cover object-center" />
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">Hatching</p>
                 </div>
               </div>
             </div>
@@ -386,24 +512,18 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { id: 'OfX2jiyLpI8', title: 'Introduction to Sere Talks' },
-                { id: 'XAeP_gbSZ4g', title: 'Educational Informative Talks' },
-                { id: 'kyaz1ve2UBI', title: 'Poultry Farming Insights' }
+                { id: 'talk1', title: 'Educational Informative Talks', src: '/media/Sere%20talks%20videos/copy_68756C70-6DA7-41F0-9FBA-B6FEA0D93B00.MOV' },
+                { id: 'talk2', title: 'Poultry Farming Insights', src: '/media/Sere%20talks%20videos/copy_8D4FB468-543C-46E3-8C19-3E03B7D51AED.MOV' },
+                { id: 'talk3', title: 'Incubation Process Explained', src: '/media/Sere%20talks%20videos/copy_E4FC2012-C683-41FF-899C-3AEFE8A87DBC.MOV' }
               ].map((video) => (
-                <a key={video.id} href={`https://youtu.be/${video.id}`} target="_blank" rel="noopener noreferrer" className="group rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest ambient-shadow block transform hover:-translate-y-2 transition-all duration-300">
-                  <div className="aspect-[9/16] bg-surface-container relative flex items-center justify-center overflow-hidden">
-                    <img src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} alt="SereTalks Thumbnail" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-700" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full bg-primary/90 text-on-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform backdrop-blur-sm">
-                        <Play className="w-6 h-6 ml-1" fill="currentColor" />
-                      </div>
-                    </div>
+                <div key={video.id} className="group rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest ambient-shadow block transform hover:-translate-y-2 transition-all duration-300">
+                  <div className="aspect-[9/16] bg-black relative flex items-center justify-center overflow-hidden">
+                    <video src={video.src} controls preload="metadata" className="w-full h-full object-cover"></video>
                   </div>
                   <div className="p-6">
                     <h3 className="font-headline font-bold text-lg text-on-surface group-hover:text-primary transition-colors line-clamp-2">{video.title}</h3>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
           </div>

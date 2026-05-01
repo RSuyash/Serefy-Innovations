@@ -8,19 +8,19 @@ export default function ProblemSlideshow() {
   const slides = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1589923188900-85dae523342b?w=800&q=80',
+      image: '/media/gallery-real-challenges.jpg',
       title: t('slides.1.title'),
       description: t('slides.1.desc')
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+      image: '/media/gallery-problem-solve.jpg',
       title: t('slides.2.title'),
       description: t('slides.2.desc')
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1588693895525-4c07d3a0eedd?w=800&q=80',
+      image: '/media/gallery-healthy-hatch.jpg',
       title: t('slides.3.title'),
       description: t('slides.3.desc')
     }
