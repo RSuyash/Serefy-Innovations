@@ -98,7 +98,7 @@ export default function GallerySection() {
 
         {/* Decorative background blur */}
         <div className="absolute top-1/2 -right-64 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
-        <div className="absolute bottom-0 -left-64 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
+        <div className="absolute bottom-0 -left-64 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px] -z-10 pointer-events-none" />
       </div>
     </SectionWrapper>
   );

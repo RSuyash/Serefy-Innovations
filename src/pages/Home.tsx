@@ -112,9 +112,9 @@ export default function Home() {
       <main className="flex-grow">
         {/* 1. Hero Section */}
         <section className="w-full pt-20 md:pt-12 pb-16 md:pb-24 px-4 md:px-12 max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-16 overflow-hidden">
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }} 
-            animate={{ opacity: 1, x: 0 }} 
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="w-full md:w-6/12 flex flex-col items-center md:items-start space-y-6 md:space-y-8 text-center md:text-left"
           >
@@ -163,9 +163,9 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }} 
-            animate={{ opacity: 1, scale: 1 }} 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="w-full md:w-5/12 rounded-3xl aspect-square relative overflow-hidden ghost-border ambient-shadow bg-surface-container"
           >
@@ -385,23 +385,23 @@ export default function Home() {
               <p className="text-on-surface-variant text-lg">{t('section.seretalks.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[ 
+              {[
                 { id: 'OfX2jiyLpI8', title: 'Introduction to Sere Talks' },
                 { id: 'XAeP_gbSZ4g', title: 'Educational Informative Talks' },
                 { id: 'kyaz1ve2UBI', title: 'Poultry Farming Insights' }
               ].map((video) => (
                 <a key={video.id} href={`https://youtu.be/${video.id}`} target="_blank" rel="noopener noreferrer" className="group rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest ambient-shadow block transform hover:-translate-y-2 transition-all duration-300">
                   <div className="aspect-[9/16] bg-surface-container relative flex items-center justify-center overflow-hidden">
-                     <img src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} alt="SereTalks Thumbnail" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-700" />
-                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
-                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 rounded-full bg-primary/90 text-on-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform backdrop-blur-sm">
-                          <Play className="w-6 h-6 ml-1" fill="currentColor" />
-                        </div>
-                     </div>
+                    <img src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} alt="SereTalks Thumbnail" className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity transform group-hover:scale-105 duration-700" />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-16 h-16 rounded-full bg-primary/90 text-on-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform backdrop-blur-sm">
+                        <Play className="w-6 h-6 ml-1" fill="currentColor" />
+                      </div>
+                    </div>
                   </div>
                   <div className="p-6">
-                     <h3 className="font-headline font-bold text-lg text-on-surface group-hover:text-primary transition-colors line-clamp-2">{video.title}</h3>
+                    <h3 className="font-headline font-bold text-lg text-on-surface group-hover:text-primary transition-colors line-clamp-2">{video.title}</h3>
                   </div>
                 </a>
               ))}
@@ -458,7 +458,7 @@ export default function Home() {
                 <span>{t('form.consent')}</span>
               </label>
               {leadError && !isWizardOpen ? (
-                <p className="md:col-span-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700">
+                <p className="md:col-span-2 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-semibold text-green-700">
                   {leadError}
                 </p>
               ) : null}
