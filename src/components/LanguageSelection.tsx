@@ -8,10 +8,8 @@ export default function LanguageSelection() {
   const { language: selectedLang, setLanguage, t } = useLanguage();
 
   useEffect(() => {
-    const hasSelected = localStorage.getItem('serefy-lang');
-    if (!hasSelected) {
-      setTimeout(() => setIsOpen(true), 1500);
-    }
+    // Show popup immediately on every refresh as requested
+    setIsOpen(true);
   }, []);
 
   const handleSelect = (lang: string) => {
@@ -31,7 +29,7 @@ export default function LanguageSelection() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 md:bottom-10 left-6 md:left-8 z-[60] bg-white/90 backdrop-blur-xl text-slate-900 w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-3 rounded-2xl shadow-2xl border border-slate-200 flex items-center justify-center md:justify-start gap-3 hover:border-amber-500/50 transition-all font-label text-sm font-bold group"
+        className="fixed bottom-6 md:bottom-10 left-6 md:left-8 z-[9999] bg-white/90 backdrop-blur-xl text-slate-900 w-12 h-12 md:w-auto md:h-auto md:px-6 md:py-3 rounded-2xl shadow-2xl border border-slate-200 flex items-center justify-center md:justify-start gap-3 hover:border-amber-500/50 transition-all font-label text-sm font-bold group"
         aria-label="Select Language"
       >
         <div className="w-8 h-8 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-colors shrink-0">

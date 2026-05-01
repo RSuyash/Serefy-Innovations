@@ -109,7 +109,7 @@ export default function Layout() {
         href={`https://wa.me/${siteConfig.brand.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 md:bottom-10 right-6 md:right-8 z-[70] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 active:scale-90 transition-all group overflow-hidden"
+        className="fixed bottom-6 md:bottom-10 right-6 md:right-8 z-[9999] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 active:scale-90 transition-all group overflow-hidden"
         aria-label="Contact on WhatsApp"
       >
         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
