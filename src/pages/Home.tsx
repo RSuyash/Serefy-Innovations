@@ -122,7 +122,7 @@ export default function Home() {
             <div className="mb-4">
               <AnimatedTags tags={t('hero.tags').split(',')} />
             </div>
-            
+
             <h1 className="font-headline text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-on-surface tracking-tighter leading-[1.1] mb-6">
               {t('hero.title').split(' ').map((word, i) => (
                 <React.Fragment key={i}>
@@ -136,11 +136,11 @@ export default function Home() {
                 </React.Fragment>
               ))}
             </h1>
-            
+
             <p className="font-body text-base md:text-lg text-on-surface-variant max-w-xl leading-relaxed mb-8 font-medium whitespace-pre-line">
               {t('hero.tagline')}
             </p>
-            
+
             <div className="flex flex-col gap-6 w-full sm:w-auto items-center lg:items-start mb-10">
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
                 <a className="btn-primary w-full sm:w-auto justify-center text-on-primary font-label font-black px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-xl hover:shadow-primary/30 hover:-translate-y-1 cursor-pointer flex items-center gap-3 text-base" onClick={(e) => handleOpenWizard(e, 'hero_cta')}>
@@ -176,7 +176,7 @@ export default function Home() {
               </div>
             </div>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -201,12 +201,12 @@ export default function Home() {
                 Small-scale farmers struggle with high costs, complex setups, and unstable hatching. Serefy eliminates all these hurdles with a single, intelligent automation system.
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
                 <img src="/media/sere-120.webp" alt="Serefy 120 Capacity Model" className="relative w-full rounded-3xl shadow-2xl border border-primary/20" />
-                
+
                 {/* Solution Pointers - Hidden on mobile/tablet for cleaner layout */}
                 <div className="hidden md:flex absolute top-[20%] -left-6 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2 animate-bounce">
                   <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
@@ -250,14 +250,14 @@ export default function Home() {
           <div className="max-w-screen-xl mx-auto text-center relative z-10">
             <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter uppercase">How to Use: Plug & Play</h2>
             <p className="text-on-surface-variant font-bold mb-16 tracking-widest uppercase text-xs">Deploy industrial precision in three simple steps.</p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
               {[
                 { step: "1", title: "Plug it in", desc: "Connect to a standard power outlet or solar battery.", icon: "electric_bolt" },
                 { step: "2", title: "Add Eggs & Water", desc: "Place your fertile eggs on the trays and fill the humidity basin.", icon: "water_drop" },
                 { step: "3", title: "Let Serefy Work", desc: "The system automatically manages temperature, humidity, and turns the eggs.", icon: "auto_awesome" }
               ].map((item, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   whileHover={{ y: -10 }}
                   className="p-10 bg-surface rounded-[2.5rem] border border-outline-variant/30 shadow-xl shadow-black/5 hover:shadow-primary/10 transition-all group relative overflow-hidden text-left"
@@ -279,11 +279,11 @@ export default function Home() {
         {/* Market vs Serefy Comparison */}
         <SectionWrapper className="w-full pt-20 pb-10 px-4 md:px-12 bg-surface">
           <div className="max-w-screen-lg mx-auto">
-             <div className="text-center mb-12">
+            <div className="text-center mb-12">
               <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-4">What You Lose with Market Incubators</h2>
               <p className="text-on-surface-variant text-lg">Stop gambling with your eggs. Here is why traditional incubators fall short.</p>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10">
                 <h3 className="text-2xl font-bold text-on-surface/60 mb-6 flex items-center gap-3"><X size={28} /> Traditional Machines</h3>
@@ -362,20 +362,20 @@ export default function Home() {
         {/* 6. Why Trust Sere */}
         <SectionWrapper className="w-full py-20 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -mr-48 -mt-48"></div>
-          
+
           <div className="max-w-screen-xl mx-auto relative z-10">
             <div className="text-center mb-16">
               <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter">{t('section.trust.title')}</h2>
               <div className="w-16 h-1 bg-primary mx-auto rounded-full"></div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { icon: Cpu, title: t('section.trust.feat1.title'), desc: t('section.trust.feat1.desc') },
                 { icon: Thermometer, title: t('section.trust.feat2.title'), desc: t('section.trust.feat2.desc') },
                 { icon: ShieldCheck, title: t('section.trust.feat3.title'), desc: t('section.trust.feat3.desc') }
               ].map((feat, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   whileHover={{ y: -8 }}
                   className="group p-8 bg-surface rounded-[2.5rem] border border-outline-variant/30 shadow-md hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 flex flex-col items-center text-center relative"
@@ -426,7 +426,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-8 pt-6 flex-grow flex flex-col">
-                    <p className="text-on-surface text-sm font-bold uppercase tracking-wider mb-5 pb-5 border-b border-outline-variant/30">BCS 2025 | Head of R&D</p>
                     <p className="text-on-surface-variant leading-relaxed">
                       {t('section.team.vidhya.desc')}
                     </p>
@@ -449,7 +448,6 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="p-8 pt-6 flex-grow flex flex-col">
-                    <p className="text-on-surface text-sm font-bold uppercase tracking-wider mb-5 pb-5 border-b border-outline-variant/30">BCS 2025 | Head of Systems</p>
                     <p className="text-on-surface-variant leading-relaxed">
                       {t('section.team.aditya.desc')}
                     </p>
@@ -514,7 +512,7 @@ export default function Home() {
               {[
                 { id: 'talk1', title: 'Educational Informative Talks', src: '/media/Sere%20talks%20videos/copy_68756C70-6DA7-41F0-9FBA-B6FEA0D93B00.MOV' },
                 { id: 'talk2', title: 'Poultry Farming Insights', src: '/media/Sere%20talks%20videos/copy_8D4FB468-543C-46E3-8C19-3E03B7D51AED.MOV' },
-                { id: 'talk3', title: 'Incubation Process Explained', src: '/media/Sere%20talks%20videos/copy_E4FC2012-C683-41FF-899C-3AEFE8A87DBC.MOV' }
+                { id: 'talk3', title: 'Progress of poultry farmers', src: '/media/Sere%20talks%20videos/copy_E4FC2012-C683-41FF-899C-3AEFE8A87DBC.MOV' }
               ].map((video) => (
                 <div key={video.id} className="group rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest ambient-shadow block transform hover:-translate-y-2 transition-all duration-300">
                   <div className="aspect-[9/16] bg-black relative flex items-center justify-center overflow-hidden">
