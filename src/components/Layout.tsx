@@ -33,7 +33,7 @@ export default function Layout() {
           <Link to="/" className="text-lg md:text-xl font-black text-black flex items-center gap-2 group shrink-0">
             <div className="h-10 md:h-14 flex items-center justify-center">
                <img 
-                src="/media/logo.png" 
+                src="/logo to be used.PNG" 
                 alt={siteConfig.brand.name} 
                 className="h-full w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
               />
@@ -151,7 +151,7 @@ export default function Layout() {
             <div className="text-3xl font-black text-white mb-6 flex items-center gap-3">
               <div className="bg-white p-2 rounded-2xl flex items-center justify-center overflow-hidden w-20 h-20">
                  <img 
-                  src="/media/logo.png" 
+                  src="/logo to be used.PNG" 
                   alt={siteConfig.brand.name} 
                   className="h-full w-auto object-contain mix-blend-multiply" 
                 />
