@@ -31,8 +31,14 @@ export default function Layout() {
       <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-green-100">
         <div className="flex justify-between items-center px-4 md:px-6 py-3 md:py-4 w-full max-w-7xl mx-auto">
           <Link to="/" className="text-lg md:text-xl font-black text-black flex items-center gap-2 group shrink-0">
-            <img src="/media/logo.png" alt={siteConfig.brand.name} className="h-12 md:h-16 w-auto object-contain mix-blend-multiply" />
-            <span className="font-headline font-black text-lg md:text-xl tracking-tighter uppercase">{siteConfig.brand.name}</span>
+            <div className="h-10 md:h-14 flex items-center justify-center">
+               <img 
+                src="/media/logo.png" 
+                alt={siteConfig.brand.name} 
+                className="h-full w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            <span className="font-headline font-black text-lg md:text-xl tracking-tighter uppercase ml-1">{siteConfig.brand.name}</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -143,7 +149,13 @@ export default function Layout() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-8 max-w-7xl mx-auto relative z-10">
           <div className="md:col-span-5">
             <div className="text-3xl font-black text-white mb-6 flex items-center gap-3">
-              <img src="/media/logo.png" alt={siteConfig.brand.name} className="h-14 w-auto object-contain invert brightness-200" />
+              <div className="bg-white p-2 rounded-2xl flex items-center justify-center overflow-hidden w-20 h-20">
+                 <img 
+                  src="/media/logo.png" 
+                  alt={siteConfig.brand.name} 
+                  className="h-full w-auto object-contain mix-blend-multiply" 
+                />
+              </div>
               {siteConfig.brand.name}
             </div>
             <p className="text-white text-lg leading-relaxed max-w-md mb-8 font-black opacity-100">
