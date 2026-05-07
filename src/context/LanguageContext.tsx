@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 type Language = 'English' | 'Hindi' | 'Marathi';
 
@@ -22,10 +23,10 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.metrics': "Metrics",
     'nav.gallery': "Gallery",
     'nav.getStarted': "Get Started",
-    'footer.partner': "Partnered with",
+    'footer.partner': "Supported by",
     'footer.devBy': "Developed by",
     'footer.desc': "Pioneering automated precision for the future of sustainable poultry farming in rural and semi-urban ecosystems.",
-    'footer.partners': "Partners",
+    'footer.partners': "Supported By",
     'footer.incubation': "Incubation Centre",
     'footer.contact': "Contact",
     'footer.rights': "All rights reserved.",
@@ -56,7 +57,7 @@ const translations: Record<Language, Record<string, string>> = {
     'section.infra.500.title': "जीone Series 500",
     'section.infra.500.desc': "Commercial-scale deployment for large poultry farms and institutions.",
     'section.infra.inquiry': "Inquiry Only",
-    'section.trust.title': "Why Trust Serefy Innovations",
+    'section.trust.title': "Why Trust SERE",
     'section.trust.feat1.title': "Precision Engineering",
     'section.trust.feat1.desc': "Aerospace-grade sensors and custom-molded thermal chambers for zero variance.",
     'section.trust.feat2.title': "Data-Driven Thermal Mgmt",
@@ -93,7 +94,7 @@ const translations: Record<Language, Record<string, string>> = {
     'form.role': "I am a...",
     'form.message': "Message (Optional)",
     'form.submit': "Submit Interest",
-    'form.consent': "I agree to be contacted by the Serefy Innovations team.",
+    'form.consent': "I agree to be contacted by the SERE team.",
     'tech.title': "Institutional-Grade Hardware",
     'tech.desc': "Precision-engineered for reliability and scale.",
     'tech.hero.badge': "THE ILLUMINATED LABORATORY",
@@ -157,11 +158,60 @@ const translations: Record<Language, Record<string, string>> = {
     'thanks.desc': "Your interest has been officially registered. Our team will be reaching out to you shortly to discuss your pre-order and next steps.",
     'thanks.cta': "Return to Site",
     'legal.terms.title': "Terms and Conditions",
-    'legal.terms.content': "By accessing this website, we assume you accept these terms and conditions. Do not continue to use Serefy Innovations if you do not agree to take all of the terms and conditions stated on this page.",
+    'legal.terms.content': "By accessing this website, we assume you accept these terms and conditions. Do not continue to use SERE if you do not agree to take all of the terms and conditions stated on this page.",
     'legal.privacy.title': "Privacy Policy",
-    'legal.privacy.content': "At Serefy Innovations, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by us and how we use it.",
+    'legal.privacy.content': "At SERE, accessible from our website, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by us and how we use it.",
     'legal.disclaimer.title': "Disclaimer",
-    'legal.disclaimer.content': "All the information on this website - Serefy Innovations - is published in good faith and for general information purpose only."
+    'legal.disclaimer.content': "All the information on this website - SERE - is published in good faith and for general information purpose only.",
+    'section.problem.allChallenges': "One Solution for All Challenges",
+    'section.problem.allChallenges.desc': "Small-scale farmers struggle with high costs, complex setups, and unstable hatching. SERE eliminates all these hurdles with a single, intelligent automation system.",
+    'section.solution.plugPlay': "Plug & Play Operation",
+    'section.solution.plugPlay.desc': "No complex manuals needed. Just plug it in, set the mode, and let the system handle humidity, heating, and turning.",
+    'section.solution.reliableClimate': "Reliable Climate Control",
+    'section.solution.reliableClimate.desc': "Advanced sensors maintain the perfect environment, overcoming the poor temperature regulation of traditional machines.",
+    'section.solution.financialIndep': "Financial Independence",
+    'section.solution.financialIndep.desc': "Stop buying day-old chicks every month. Hatch your own eggs and turn a recurring expense into a profitable asset.",
+    'section.how.plugPlay': "How to Use: Plug & Play",
+    'section.how.deployDesc': "Deploy industrial precision in three simple steps.",
+    'section.how.step1.title': "Plug it in",
+    'section.how.step1.desc': "Connect to a standard power outlet or solar battery.",
+    'section.how.step2.title': "Add Eggs & Water",
+    'section.how.step2.desc': "Place your fertile eggs on the trays and fill the humidity basin.",
+    'section.how.step3.title': "Let SERE Work",
+    'section.how.step3.desc': "The system automatically manages temperature, humidity, and turns the eggs.",
+    'section.market.loseTitle': "What You Lose with Market Incubators",
+    'section.market.loseSubtitle': "Stop gambling with your eggs. Here is why traditional incubators fall short.",
+    'section.market.traditional': "Traditional Machines",
+    'section.market.traditional.list1': "Manual humidity control leading to dry or spoiled eggs.",
+    'section.market.traditional.list2': "Requires constant monitoring and human intervention.",
+    'section.market.traditional.list3': "Poor insulation causing high electricity bills.",
+    'section.market.traditional.list4': "Loss of valuable fertile eggs due to fluctuating temperatures.",
+    'section.market.SERE': "SERE",
+    'section.market.SERE.list1': "Fully automated climate control (Temperature & Humidity).",
+    'section.market.SERE.list2': "Set & forget mechanism—it turns eggs automatically.",
+    'section.market.SERE.list3': "Energy-efficient design works easily with solar backup.",
+    'section.market.SERE.list4': "Consistent 90% hatch rate ensuring every fertile egg counts.",
+    'section.competitors.title': "Competitors Analysis",
+    'section.competitors.desc': "See how SERE stands out against the competition. Explore our detailed pitch deck.",
+    'section.competitors.cta': "View Pitch Deck",
+    'section.process.title': "Machine Process",
+    'section.process.subtitle': "Loading, Incubation, Candling, and Hatching",
+    'section.process.loading': "Loading",
+    'section.process.incubation': "Incubation",
+    'section.process.candling': "Candling",
+    'section.process.hatching': "Hatching",
+    'section.seretalks.talk1': "Educational Informative Talks",
+    'section.seretalks.talk2': "Poultry Farming Insights",
+    'section.seretalks.talk3': "Progress of poultry farmers",
+    'section.solution.badge': "Achieved 90% Hatch Rate",
+    'section.solution.pointer1': "One-Touch Automation",
+    'section.solution.pointer2': "Solar Compatible",
+    'section.infra.inquire.cta': "Inquire Now",
+    'section.gallery.badge': "Our Journey",
+    'section.gallery.step1': "Field Research",
+    'section.gallery.step2': "Local Setup",
+    'section.gallery.step3': "Lab Testing",
+    'section.gallery.step4': "Scale & Impact"
   },
   Hindi: {
     'hero.title': "भारत का सबसे कुशल और स्मार्ट अंडा इनक्यूबेटर।",
@@ -176,10 +226,10 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.metrics': "मेट्रिक्स",
     'nav.gallery': "गैलरी",
     'nav.getStarted': "शुरू करें",
-    'footer.partner': "पार्टनर",
+    'footer.partner': "समर्थन",
     'footer.devBy': "द्वारा विकसित",
     'footer.desc': "ग्रामीण और अर्ध-शहरी पारिस्थितिकी प्रणालियों में टिकाऊ कुक्कुट पालन के भविष्य के लिए अग्रणी स्वचालित सटीकता।",
-    'footer.partners': "भागीदार",
+    'footer.partners': "समर्थित",
     'footer.incubation': "इनक्यूबेशन सेंटर",
     'footer.contact': "संपर्क",
     'footer.rights': "सर्वाधिकार सुरक्षित।",
@@ -315,7 +365,56 @@ const translations: Record<Language, Record<string, string>> = {
     'legal.privacy.title': "गोपनीयता नीति",
     'legal.privacy.content': "सेरेफी इनोवेशन में, हमारी वेबसाइट से सुलभ, हमारी मुख्य प्राथमिकताओं में से एक हमारे आगंतुकों की गोपनीयता है। इस गोपनीयता नीति दस्तावेज़ में हमारे द्वारा एकत्र और रिकॉर्ड की गई जानकारी के प्रकार और हम इसका उपयोग कैसे करते हैं, शामिल है।",
     'legal.disclaimer.title': "अस्वीकरण",
-    'legal.disclaimer.content': "इस वेबसाइट - सेरेफी इनोवेशन - पर सभी जानकारी नेक नियति और केवल सामान्य जानकारी के उद्देश्य से प्रकाशित की गई है।"
+    'legal.disclaimer.content': "इस वेबसाइट - सेरेफी इनोवेशन - पर सभी जानकारी नेक नियति और केवल सामान्य जानकारी के उद्देश्य से प्रकाशित की गई है।",
+    'section.problem.allChallenges': "सभी चुनौतियों का एक समाधान",
+    'section.problem.allChallenges.desc': "छोटे पैमाने के किसान उच्च लागत, जटिल सेटअप और अस्थिर हैचिंग से जूझते हैं। सेरेफी एक एकल, बुद्धिमान स्वचालन प्रणाली के साथ इन सभी बाधाओं को दूर करता है।",
+    'section.solution.plugPlay': "प्लग एंड प्ले ऑपरेशन",
+    'section.solution.plugPlay.desc': "किसी जटिल मैनुअल की आवश्यकता नहीं है। बस इसे प्लग इन करें, मोड सेट करें, और सिस्टम को आर्द्रता, हीटिंग और मोड़ने को संभालने दें।",
+    'section.solution.reliableClimate': "विश्वसनीय जलवायु नियंत्रण",
+    'section.solution.reliableClimate.desc': "उन्नत सेंसर सही वातावरण बनाए रखते हैं, पारंपरिक मशीनों के खराब तापमान विनियमन पर काबू पाते हैं।",
+    'section.solution.financialIndep': "वित्तीय स्वतंत्रता",
+    'section.solution.financialIndep.desc': "हर महीने एक दिन के चूजे खरीदना बंद करें। अपने खुद के अंडे से चूजे निकालें और बार-बार होने वाले खर्च को लाभदायक संपत्ति में बदलें।",
+    'section.how.plugPlay': "कैसे उपयोग करें: प्लग एंड प्ले",
+    'section.how.deployDesc': "तीन सरल चरणों में औद्योगिक सटीकता तैनात करें।",
+    'section.how.step1.title': "इसे प्लग इन करें",
+    'section.how.step1.desc': "एक मानक पावर आउटलेट या सौर बैटरी से कनेक्ट करें।",
+    'section.how.step2.title': "अंडे और पानी जोड़ें",
+    'section.how.step2.desc': "अपने उपजाऊ अंडे ट्रे पर रखें और आर्द्रता बेसिन भरें।",
+    'section.how.step3.title': "सेरेफी को काम करने दें",
+    'section.how.step3.desc': "सिस्टम स्वचालित रूप से तापमान, आर्द्रता का प्रबंधन करता है और अंडों को घुमाता है।",
+    'section.market.loseTitle': "बाजार इनक्यूबेटरों के साथ आप क्या खोते हैं",
+    'section.market.loseSubtitle': "अपने अंडों के साथ जुआ खेलना बंद करें। यहाँ बताया गया है कि पारंपरिक इनक्यूबेटर क्यों पीछे रह जाते हैं।",
+    'section.market.traditional': "पारंपरिक मशीनें",
+    'section.market.traditional.list1': "मैनुअल आर्द्रता नियंत्रण जिससे अंडे सूख जाते हैं या खराब हो जाते हैं।",
+    'section.market.traditional.list2': "निरंतर निगरानी और मानवीय हस्तक्षेप की आवश्यकता होती है।",
+    'section.market.traditional.list3': "खराब इन्सुलेशन जिससे उच्च बिजली बिल आता है।",
+    'section.market.traditional.list4': "उतार-चढ़ाव वाले तापमान के कारण मूल्यवान उपजाऊ अंडों का नुकसान।",
+    'section.market.SERE': "सेरेफी इनोवेशन",
+    'section.market.SERE.list1': "पूरी तरह से स्वचालित जलवायु नियंत्रण (तापमान और आर्द्रता)।",
+    'section.market.SERE.list2': "सेट और भूल जाओ तंत्र—यह अंडों को स्वचालित रूप से घुमाता है।",
+    'section.market.SERE.list3': "ऊर्जा-कुशल डिजाइन सौर बैकअप के साथ आसानी से काम करता है।",
+    'section.market.SERE.list4': "लगातार 90% हैच दर सुनिश्चित करती है कि हर उपजाऊ अंडा गिना जाए।",
+    'section.competitors.title': "प्रतिस्पर्धियों का विश्लेषण",
+    'section.competitors.desc': "देखें कि सेरेफी इनोवेशन प्रतिस्पर्धा में कैसे खड़ा है। हमारे विस्तृत पिच डेक का अन्वेषण करें।",
+    'section.competitors.cta': "पिच डेक देखें",
+    'section.process.title': "मशीन प्रक्रिया",
+    'section.process.subtitle': "लोडिंग, इनक्यूबेशन, कैंडलिंग और हैचिंग",
+    'section.process.loading': "लोडिंग",
+    'section.process.incubation': "इनक्यूबेशन",
+    'section.process.candling': "कैंडलिंग",
+    'section.process.hatching': "हैचिंग",
+    'section.seretalks.talk1': "शैक्षिक सूचनात्मक वार्ता",
+    'section.seretalks.talk2': "पोल्ट्री फार्मिंग अंतर्दृष्टि",
+    'section.seretalks.talk3': "पोल्ट्री किसानों की प्रगति",
+    'section.solution.badge': "90% हैच दर प्राप्त की",
+    'section.solution.pointer1': "वन-टच स्वचालन",
+    'section.solution.pointer2': "सौर संगत",
+    'section.infra.inquire.cta': "अभी पूछताछ करें",
+    'section.gallery.badge': "हमारी यात्रा",
+    'section.gallery.step1': "क्षेत्र अनुसंधान",
+    'section.gallery.step2': "स्थानीय सेटअप",
+    'section.gallery.step3': "प्रयोगशाला परीक्षण",
+    'section.gallery.step4': "पैमाना और प्रभाव"
   },
   Marathi: {
     'hero.title': "भारतातील सर्वात कार्यक्षम आणि स्मार्ट अंडी इनक्यूबेटर.",
@@ -330,10 +429,10 @@ const translations: Record<Language, Record<string, string>> = {
     'nav.metrics': "मेट्रिक्स",
     'nav.gallery': "गॅलरी",
     'nav.getStarted': "सुरू करा",
-    'footer.partner': "सहभागी",
+    'footer.partner': "द्वारे समर्थित",
     'footer.devBy': "द्वारे विकसित",
     'footer.desc': "ग्रामीण आणि निमशहरी भागात शाश्वत कुक्कुटपालनाच्या भविष्यासाठी स्वयंचलित अचूकता विकसित करत आहोत.",
-    'footer.partners': "भागीदार",
+    'footer.partners': "द्वारे समर्थित",
     'footer.incubation': "इनक्यूबेशन सेंटर",
     'footer.contact': "संपर्क",
     'footer.rights': "सर्व हक्क राखीव.",
@@ -373,7 +472,7 @@ const translations: Record<Language, Record<string, string>> = {
     'section.trust.feat3.desc': "आंतरराष्ट्रीय बायोसेक्युरिटी आणि टिकाऊपणाच्या मानकांपेक्षा जास्त कामगिरीसाठी तयार.",
     'section.team.title': "आमचे नेतृत्व आणि भागीदार",
     'section.team.vidhya.title': "संस्थापक आणि सीईओ",
-    'section.team.vidhya.desc': "सेरेसाठी धोरणात्मक दृष्टी आणि जैविक संशोधनाचे नेतृत्व. विद्या यांचे इनक्यूबेशन फिजिक्सवरील लक्ष हार्डवेअर विकासाचा पाया आहे.",
+    'section.team.vidhya.desc': "सेरेसाठी धोरणात्मक दृष्टी आणि जैविक संशोधनाचे नेतृत्व. विद्या यांचे इनक्यूबेशन भौतिकी पर ध्यान हार्डवेअर विकासाचा पाया आहे.",
     'section.team.aditya.title': "सह-संस्थापक आणि सीटीओ",
     'section.team.aditya.desc': "तांत्रिक स्टॅक आणि सॉफ्टवेअर आर्किटेक्चरचे संचालन. आदित्य कृषी हार्डवेअरसाठी IoT एकत्रीकरणात तज्ञ आहेत.",
     'section.team.supported': "सहकार्य",
@@ -469,7 +568,56 @@ const translations: Record<Language, Record<string, string>> = {
     'legal.privacy.title': "गोपनीयता धोरण",
     'legal.privacy.content': "सेरेफी इनोव्हेशनमध्ये, आमच्या वेबसाइटवरून उपलब्ध, आमच्या मुख्य प्राधान्यांपैकी एक आमच्या अभ्यागतांची गोपनीयता आहे. या गोपनीयता धोरण दस्तऐवजात आमच्याद्वारे गोळा केलेली आणि रेकॉर्ड केलेली माहिती आणि आम्ही ती कशी वापरतो याचे प्रकार आहेत.",
     'legal.disclaimer.title': "अस्वीकरण",
-    'legal.disclaimer.content': "या वेबसाइटवरील सर्व माहिती - सेरेफी इनोव्हेशन - चांगल्या विश्वासाने आणि केवळ सामान्य माहितीच्या उद्देशाने प्रकाशित केली आहे."
+    'legal.disclaimer.content': "या वेबसाइटवरील सर्व माहिती - सेरेफी इनोव्हेशन - चांगल्या विश्वासाने आणि केवळ सामान्य माहितीच्या उद्देशाने प्रकाशित केली आहे.",
+    'section.problem.allChallenges': "सर्व आव्हानांवर एकच उपाय",
+    'section.problem.allChallenges.desc': "लहान शेतकरी जास्त खर्च, क्लिष्ट सेटअप आणि अस्थिर हॅचिंगशी झुंजत आहेत. सेरेफी एका बुद्धिमान स्वयंचलित प्रणालीद्वारे हे सर्व अडथळे दूर करते.",
+    'section.solution.plugPlay': "प्लग अँड प्ले ऑपरेशन",
+    'section.solution.plugPlay.desc': "कोणत्याही क्लिष्ट मॅन्युअलची गरज नाही. फक्त प्लग इन करा, मोड सेट करा आणि सिस्टिमला आर्द्रता, हीटिंग आणि अंडी फिरवण्याचे काम करू द्या.",
+    'section.solution.reliableClimate': "विश्वसनीय हवामान नियंत्रण",
+    'section.solution.reliableClimate.desc': "प्रगत सेन्सर्स योग्य वातावरण राखतात, पारंपारिक मशीनच्या खराब तापमान नियंत्रणावर मात करतात.",
+    'section.solution.financialIndep': "आर्थिक स्वातंत्र्य",
+    'section.solution.financialIndep.desc': "दरमहा पिल्ले खरेदी करणे थांबवा. स्वतःच्या अंड्यातून पिल्ले तयार करा आणि आवर्ती खर्चाचे नफ्यात रूपांतर करा.",
+    'section.how.plugPlay': "कसे वापरावे: प्लग अँड प्ले",
+    'section.how.deployDesc': "तीन सोप्या चरणांमध्ये औद्योगिक अचूकता तैनात करा.",
+    'section.how.step1.title': "प्लग इन करा",
+    'section.how.step1.desc': "मानक पॉवर आउटलेट किंवा सौर बॅटरीशी कनेक्ट करा.",
+    'section.how.step2.title': "अंडी आणि पाणी टाका",
+    'section.how.step2.desc': "तुमची सुपीक अंडी ट्रेमध्ये ठेवा आणि ह्युमिडिटी बेसिन भरा.",
+    'section.how.step3.title': "सेरेफीला काम करू द्या",
+    'section.how.step3.desc': "सिस्टिम स्वयंचलितपणे तापमान, आर्द्रता व्यवस्थापित करते आणि अंडी फिरवते.",
+    'section.market.loseTitle': "मार्केट इनक्यूबेटर्समुळे तुमचे काय नुकसान होते",
+    'section.market.loseSubtitle': "तुमच्या अंड्यांशी जुगार खेळणे थांबवा. पारंपारिक इनक्यूबेटर्स का कमी पडतात ते येथे आहे.",
+    'section.market.traditional': "पारंपारिक मशीन्स",
+    'section.market.traditional.list1': "मॅन्युअल आर्द्रता नियंत्रण ज्यामुळे अंडी सुकतात किंवा खराब होतात.",
+    'section.market.traditional.list2': "सतत देखरेख आणि मानवी हस्तक्षेपाची गरज असते.",
+    'section.market.traditional.list3': "खराब इन्सुलेशन ज्यामुळे जास्त वीज बिल येते.",
+    'section.market.traditional.list4': "तापमानातील बदलांमुळे सुपीक अंड्यांचे नुकसान.",
+    'section.market.SERE': "सेरेफी इनोव्हेशन्स",
+    'section.market.SERE.list1': "पूर्णपणे स्वयंचलित हवामान नियंत्रण (तापमान आणि आर्द्रता).",
+    'section.market.SERE.list2': "सेट आणि विसरून जा यंत्रणा—हे स्वयंचलितपणे अंडी फिरवते.",
+    'section.market.SERE.list3': "ऊर्जा-कार्यक्षम डिझाइन सौर बॅकअपसह सहज कार्य करते.",
+    'section.market.SERE.list4': "सातत्यपूर्ण 90% हॅच रेट प्रत्येक सुपीक अंडी वाचवतो.",
+    'section.competitors.title': "स्पर्धकांचे विश्लेषण",
+    'section.competitors.desc': "सेरेफी इनोव्हेशन स्पर्धकांच्या तुलनेत कसे उभे आहे ते पहा. आमचे तपशीलवार पिच डेक पहा.",
+    'section.competitors.cta': "पिच डेक पहा",
+    'section.process.title': "मशीन प्रक्रिया",
+    'section.process.subtitle': "लोडिंग, इनक्यूबेशन, कॅंडलिंग आणि हैचिंग",
+    'section.process.loading': "लोडिंग",
+    'section.process.incubation': "इनक्यूबेशन",
+    'section.process.candling': "कॅंडलिंग",
+    'section.process.hatching': "हॅचिंग",
+    'section.seretalks.talk1': "शैक्षणिक माहितीपूर्ण चर्चा",
+    'section.seretalks.talk2': "कुक्कुटपालन अंतर्दृष्टी",
+    'section.seretalks.talk3': "कुक्कुटपालन शेतकऱ्यांची प्रगती",
+    'section.solution.badge': "90% हॅच रेट प्राप्त केला",
+    'section.solution.pointer1': "वन-टच ऑटोमेशन",
+    'section.solution.pointer2': "सोलर सुसंगत",
+    'section.infra.inquire.cta': "आता चौकशी करा",
+    'section.gallery.badge': "आमचा प्रवास",
+    'section.gallery.step1': "क्षेत्र संशोधन",
+    'section.gallery.step2': "स्थानिक सेटअप",
+    'section.gallery.step3': "प्रयोगशाळा चाचणी",
+    'section.gallery.step4': "व्याप्ती आणि प्रभाव"
   }
 };
 
@@ -479,7 +627,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [language, setLanguageState] = useState<Language>('English');
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('serefy-lang') as Language;
+    const savedLang = localStorage.getItem('SERE-lang') as Language;
     if (savedLang && translations[savedLang]) {
       setLanguageState(savedLang);
     }
@@ -487,15 +635,19 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem('serefy-lang', lang);
+    localStorage.setItem('SERE-lang', lang);
   };
 
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '/index.html';
+  const effectiveLanguage = isHomePage ? language : 'English';
+
   const t = (key: string) => {
-    return translations[language][key] || translations['English'][key] || key;
+    return translations[effectiveLanguage][key] || translations['English'][key] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language: effectiveLanguage, setLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

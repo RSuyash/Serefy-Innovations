@@ -9,25 +9,25 @@ export default function GallerySection() {
   const impactPath = [
     {
       src: "/media/gallery-farmer-design.jpg",
-      title: "Field Research",
+      title: t('section.gallery.step1'),
       desc: t('section.gallery.img1'),
       step: "01"
     },
     {
       src: "/media/gallery-farmer-setup.jpg",
-      title: "Local Setup",
+      title: t('section.gallery.step2'),
       desc: t('section.gallery.img2'),
       step: "02"
     },
     {
       src: "/media/gallery-lab-testing.jpg",
-      title: "Lab Testing",
+      title: t('section.gallery.step3'),
       desc: t('section.gallery.img3'),
       step: "03"
     },
     {
       src: "/media/gallery-expert-meetups.jpg",
-      title: "Scale & Impact",
+      title: t('section.gallery.step4'),
       desc: t('section.gallery.img4'),
       step: "04"
     }
@@ -38,7 +38,7 @@ export default function GallerySection() {
       <div className="max-w-screen-xl mx-auto">
         <div className="mb-16 md:mb-24">
           <div className="inline-block px-4 py-1.5 bg-primary text-on-primary rounded-full font-label text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-lg shadow-primary/20">
-            Our Journey
+            {t('section.gallery.badge')}
           </div>
           <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter uppercase leading-none">
             {t('section.gallery.title')}

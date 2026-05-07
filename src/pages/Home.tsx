@@ -6,7 +6,7 @@ import AnimatedTags from '../components/AnimatedTags';
 import SectionWrapper from '../components/SectionWrapper';
 import GallerySection from '../components/GallerySection';
 import LegalModal from '../components/LegalModal';
-import { submitSerefyLead, type SerefyLeadInput } from '../lib/naya-lead';
+import { submitSERELead, type SERELeadInput } from '../lib/naya-lead';
 import { motion } from 'motion/react';
 import { useLanguage } from '../context/LanguageContext';
 import {
@@ -45,12 +45,12 @@ export default function Home() {
     }
   };
 
-  const submitLead = async (data: SerefyLeadInput) => {
+  const submitLead = async (data: SERELeadInput) => {
     setLeadError('');
     setIsSubmittingLead(true);
 
     try {
-      await submitSerefyLead(data);
+      await submitSERELead(data);
       trackEvent('lead_submitted', data);
       setSubmitName(data.firstName || 'There');
       setIsThankYouOpen(true);
@@ -59,7 +59,7 @@ export default function Home() {
       const message =
         error instanceof Error && error.message
           ? error.message
-          : 'Lead capture is temporarily unavailable. Please email serefy.connect@gmail.com.';
+          : 'Lead capture is temporarily unavailable. Please email SERE.connect@gmail.com.';
       setLeadError(message);
       return false;
     } finally {
@@ -195,45 +195,45 @@ export default function Home() {
           <div className="max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-6 uppercase tracking-tighter">
-                One Solution for All Challenges
+                {t('section.problem.allChallenges')}
               </h2>
               <p className="text-lg md:text-xl text-on-surface-variant max-w-3xl mx-auto font-medium">
-                Small-scale farmers struggle with high costs, complex setups, and unstable hatching. Serefy eliminates all these hurdles with a single, intelligent automation system.
+                {t('section.problem.allChallenges.desc')}
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="relative group">
                 <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-xl group-hover:bg-primary/30 transition-all duration-500"></div>
-                <img src="/media/sere-120.webp" alt="Serefy 120 Capacity Model" className="relative w-full rounded-3xl shadow-2xl border border-primary/20" />
+                <img src="/media/sere-120.webp" alt="SERE 120 Capacity Model" className="relative w-full rounded-3xl shadow-2xl border border-primary/20" />
 
                 {/* Solution Pointers - Hidden on mobile/tablet for cleaner layout */}
                 <div className="hidden md:flex absolute top-[20%] -left-6 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2 animate-bounce">
                   <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                  One-Touch Automation
+                  {t('section.solution.pointer1')}
                 </div>
                 <div className="hidden md:flex absolute top-[50%] -right-8 bg-surface p-3 rounded-xl shadow-lg border border-outline-variant/50 text-sm font-bold items-center gap-2">
                   <span className="w-3 h-3 bg-primary rounded-full"></span>
-                  Solar Compatible
+                  {t('section.solution.pointer2')}
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 md:bottom-[10%] md:left-4 md:right-auto bg-primary text-on-primary p-3 rounded-xl shadow-lg font-bold flex items-center justify-center md:justify-start gap-2 text-base md:text-lg">
                   <CheckCircle2 size={20} />
-                  Achieved 90% Hatch Rate
+                  {t('section.solution.badge')}
                 </div>
               </div>
 
               <div className="space-y-6">
                 <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Plug & Play Operation</h3>
-                  <p className="text-on-surface-variant">No complex manuals needed. Just plug it in, set the mode, and let the system handle humidity, heating, and turning.</p>
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.plugPlay')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.plugPlay.desc')}</p>
                 </div>
                 <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Reliable Climate Control</h3>
-                  <p className="text-on-surface-variant">Advanced sensors maintain the perfect environment, overcoming the poor temperature regulation of traditional machines.</p>
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.reliableClimate')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.reliableClimate.desc')}</p>
                 </div>
                 <div className="bg-surface p-6 rounded-2xl border border-outline-variant/30 ambient-shadow hover:-translate-y-1 transition-transform">
-                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">Financial Independence</h3>
-                  <p className="text-on-surface-variant">Stop buying day-old chicks every month. Hatch your own eggs and turn a recurring expense into a profitable asset.</p>
+                  <h3 className="font-headline font-bold text-xl mb-2 text-primary">{t('section.solution.financialIndep')}</h3>
+                  <p className="text-on-surface-variant">{t('section.solution.financialIndep.desc')}</p>
                 </div>
               </div>
             </div>
@@ -248,14 +248,14 @@ export default function Home() {
           </div>
 
           <div className="max-w-screen-xl mx-auto text-center relative z-10">
-            <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter uppercase">How to Use: Plug & Play</h2>
-            <p className="text-on-surface-variant font-bold mb-16 tracking-widest uppercase text-xs">Deploy industrial precision in three simple steps.</p>
+            <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface mb-4 tracking-tighter uppercase">{t('section.how.plugPlay')}</h2>
+            <p className="text-on-surface-variant font-bold mb-16 tracking-widest uppercase text-xs">{t('section.how.deployDesc')}</p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
               {[
-                { step: "1", title: "Plug it in", desc: "Connect to a standard power outlet or solar battery.", icon: "electric_bolt" },
-                { step: "2", title: "Add Eggs & Water", desc: "Place your fertile eggs on the trays and fill the humidity basin.", icon: "water_drop" },
-                { step: "3", title: "Let Serefy Work", desc: "The system automatically manages temperature, humidity, and turns the eggs.", icon: "auto_awesome" }
+                { step: "1", title: t('section.how.step1.title'), desc: t('section.how.step1.desc'), icon: "electric_bolt" },
+                { step: "2", title: t('section.how.step2.title'), desc: t('section.how.step2.desc'), icon: "water_drop" },
+                { step: "3", title: t('section.how.step3.title'), desc: t('section.how.step3.desc'), icon: "auto_awesome" }
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -276,31 +276,31 @@ export default function Home() {
           </div>
         </SectionWrapper>
 
-        {/* Market vs Serefy Comparison */}
+        {/* Market vs SERE Comparison */}
         <SectionWrapper className="w-full pt-20 pb-10 px-4 md:px-12 bg-surface">
           <div className="max-w-screen-lg mx-auto">
             <div className="text-center mb-12">
-              <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-4">What You Lose with Market Incubators</h2>
-              <p className="text-on-surface-variant text-lg">Stop gambling with your eggs. Here is why traditional incubators fall short.</p>
+              <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-4">{t('section.market.loseTitle')}</h2>
+              <p className="text-on-surface-variant text-lg">{t('section.market.loseSubtitle')}</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               <div className="bg-surface-container-low p-8 rounded-3xl border border-outline-variant/10">
-                <h3 className="text-2xl font-bold text-on-surface/60 mb-6 flex items-center gap-3"><X size={28} /> Traditional Machines</h3>
+                <h3 className="text-2xl font-bold text-on-surface/60 mb-6 flex items-center gap-3"><X size={28} /> {t('section.market.traditional')}</h3>
                 <ul className="space-y-4 text-on-surface-variant font-medium">
-                  <li className="flex items-start gap-2"><span>-</span> <span>Manual humidity control leading to dry or spoiled eggs.</span></li>
-                  <li className="flex items-start gap-2"><span>-</span> <span>Requires constant monitoring and human intervention.</span></li>
-                  <li className="flex items-start gap-2"><span>-</span> <span>Poor insulation causing high electricity bills.</span></li>
-                  <li className="flex items-start gap-2"><span>-</span> <span>Loss of valuable fertile eggs due to fluctuating temperatures.</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>{t('section.market.traditional.list1')}</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>{t('section.market.traditional.list2')}</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>{t('section.market.traditional.list3')}</span></li>
+                  <li className="flex items-start gap-2"><span>-</span> <span>{t('section.market.traditional.list4')}</span></li>
                 </ul>
               </div>
               <div className="bg-primary/10 p-8 rounded-3xl border border-primary/20">
-                <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3"><CheckCircle2 size={28} /> Serefy Innovations</h3>
+                <h3 className="text-2xl font-bold text-primary mb-6 flex items-center gap-3"><CheckCircle2 size={28} /> {t('section.market.SERE')}</h3>
                 <ul className="space-y-4 text-primary/80 font-medium">
-                  <li className="flex items-start gap-2"><span>+</span> <span>Fully automated climate control (Temperature & Humidity).</span></li>
-                  <li className="flex items-start gap-2"><span>+</span> <span>Set & forget mechanism—it turns eggs automatically.</span></li>
-                  <li className="flex items-start gap-2"><span>+</span> <span>Energy-efficient design works easily with solar backup.</span></li>
-                  <li className="flex items-start gap-2"><span>+</span> <span>Consistent 90% hatch rate ensuring every fertile egg counts.</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>{t('section.market.SERE.list1')}</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>{t('section.market.SERE.list2')}</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>{t('section.market.SERE.list3')}</span></li>
+                  <li className="flex items-start gap-2"><span>+</span> <span>{t('section.market.SERE.list4')}</span></li>
                 </ul>
               </div>
             </div>
@@ -352,7 +352,7 @@ export default function Home() {
                   {t('section.infra.500.desc')}
                 </p>
                 <a className="w-full text-center bg-surface-container-low text-primary font-label font-bold px-6 py-4 rounded-xl hover:bg-primary hover:text-on-primary transition-colors border border-primary/20 cursor-pointer" onClick={(e) => handleOpenWizard(e, 'inquire_500')}>
-                  Inquire Now
+                  {t('section.infra.inquire.cta')}
                 </a>
               </div>
             </div>
@@ -394,12 +394,12 @@ export default function Home() {
         {/* 6.5 Competitors Analysis */}
         <SectionWrapper className="w-full py-16 md:py-24 px-6 md:px-12 bg-surface" id="competitors">
           <div className="max-w-screen-xl mx-auto text-center">
-            <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-6">Competitors Analysis</h2>
+            <h2 className="font-headline text-3xl md:text-5xl font-extrabold text-on-surface mb-6">{t('section.competitors.title')}</h2>
             <p className="text-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
-              See how Serefy Innovations stands out against the competition. Explore our detailed pitch deck.
+              {t('section.competitors.desc')}
             </p>
             <a href="/media/Competitors/sere%20innovations%20KIT%20pitch%20deck..pptx.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-lg text-lg">
-              View Pitch Deck <ArrowRight size={20} />
+              {t('section.competitors.cta')} <ArrowRight size={20} />
             </a>
           </div>
         </SectionWrapper>
@@ -469,32 +469,32 @@ export default function Home() {
         <SectionWrapper className="w-full pt-12 pb-24 px-6 md:px-12 bg-surface-container-lowest border-t border-outline-variant/20" id="machine-process">
           <div className="max-w-screen-xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">Machine Process</h2>
-              <p className="text-on-surface-variant text-lg">Loading, Incubation, Candling, and Hatching</p>
+              <h2 className="font-headline text-4xl font-extrabold text-on-surface mb-4">{t('section.process.title')}</h2>
+              <p className="text-on-surface-variant text-lg">{t('section.process.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
                 <video src="/media/Machine%20process/IMG_4242.MOV" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white font-bold text-sm tracking-wider uppercase">Loading</p>
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.loading')}</p>
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
                 <video src="/media/Machine%20process/IMG_4243.MOV" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white font-bold text-sm tracking-wider uppercase">Incubation</p>
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.incubation')}</p>
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
                 <video src="/media/Machine%20process/IMG_4246.MOV" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white font-bold text-sm tracking-wider uppercase">Candling</p>
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.candling')}</p>
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
                 <img src="/media/Machine%20process/IMG_4238.jpg" alt="Machine Process Hatching" className="w-full h-full object-cover object-center" />
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-white font-bold text-sm tracking-wider uppercase">Hatching</p>
+                  <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.hatching')}</p>
                 </div>
               </div>
             </div>
@@ -510,9 +510,9 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { id: 'talk1', title: 'Educational Informative Talks', src: '/media/Sere%20talks%20videos/copy_68756C70-6DA7-41F0-9FBA-B6FEA0D93B00.MOV' },
-                { id: 'talk2', title: 'Poultry Farming Insights', src: '/media/Sere%20talks%20videos/copy_8D4FB468-543C-46E3-8C19-3E03B7D51AED.MOV' },
-                { id: 'talk3', title: 'Progress of poultry farmers', src: '/media/Sere%20talks%20videos/copy_E4FC2012-C683-41FF-899C-3AEFE8A87DBC.MOV' }
+                { id: 'talk1', title: t('section.seretalks.talk1'), src: '/media/Sere%20talks%20videos/copy_68756C70-6DA7-41F0-9FBA-B6FEA0D93B00.MOV' },
+                { id: 'talk2', title: t('section.seretalks.talk2'), src: '/media/Sere%20talks%20videos/copy_8D4FB468-543C-46E3-8C19-3E03B7D51AED.MOV' },
+                { id: 'talk3', title: t('section.seretalks.talk3'), src: '/media/Sere%20talks%20videos/copy_E4FC2012-C683-41FF-899C-3AEFE8A87DBC.MOV' }
               ].map((video) => (
                 <div key={video.id} className="group rounded-3xl overflow-hidden border border-outline-variant/30 bg-surface-container-lowest ambient-shadow block transform hover:-translate-y-2 transition-all duration-300">
                   <div className="aspect-[9/16] bg-black relative flex items-center justify-center overflow-hidden">
@@ -561,10 +561,10 @@ export default function Home() {
               <div className="flex flex-col gap-2">
                 <label className="font-label text-sm font-semibold text-on-surface-variant" htmlFor="role">{t('form.role')}</label>
                 <select className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none appearance-none" id="role" name="role" required defaultValue="">
-                  <option value="" disabled>Select your role</option>
-                  <option value="farmer">Farmer</option>
-                  <option value="hobbyist">Hobbyist</option>
-                  <option value="investor">Investor / Institution</option>
+                  <option value="" disabled>{t('form.role')}</option>
+                  <option value="farmer">{t('wizard.role.farmer')}</option>
+                  <option value="hobbyist">{t('wizard.role.hobbyist')}</option>
+                  <option value="investor">{t('wizard.role.investor')}</option>
                 </select>
               </div>
               <div className="flex flex-col gap-2 md:col-span-2">

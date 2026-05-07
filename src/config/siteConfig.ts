@@ -3,7 +3,7 @@ export const siteConfig = {
     name: 'SERE Innovations',
     slogan: 'Precision Hatching for Rural Entrepreneurs',
     email: 'serefy.connect@gmail.com',
-    address: 'Tech Mahindra, bahadurpally, 500043, Hyderabad',
+    address: 'Mahindra University, bahadurpally, 500043, Hyderabad',
     phone: '+91 98765 43210',
     whatsapp: '919876543210', // Replace with real number
   },

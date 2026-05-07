@@ -10,8 +10,8 @@ import { LanguageProvider } from './context/LanguageContext';
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <LanguageProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -21,7 +21,7 @@ export default function App() {
             <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </LanguageProvider>
+      </LanguageProvider>
+    </BrowserRouter>
   );
 }

@@ -1,6 +1,6 @@
-export const SEREFY_PUBLIC_LEAD_KEY = "lead_serefy_innovations";
+export const SERE_PUBLIC_LEAD_KEY = "lead_SERE_innovations";
 
-export type SerefyLeadInput = {
+export type SERELeadInput = {
   firstName: string;
   lastName?: string;
   email: string;
@@ -49,16 +49,16 @@ function label(value: string | undefined | null) {
   return labels[normalized] ?? normalized;
 }
 
-function buildFullName(input: Pick<SerefyLeadInput, "firstName" | "lastName" | "email">) {
+function buildFullName(input: Pick<SERELeadInput, "firstName" | "lastName" | "email">) {
   const name = `${clean(input.firstName)} ${clean(input.lastName)}`.replace(/\s+/g, " ").trim();
   if (name) {
     return name;
   }
 
-  return clean(input.email).split("@")[0] || "Serefy Enquiry";
+  return clean(input.email).split("@")[0] || "SERE Enquiry";
 }
 
-export function buildNayaLeadPayload(input: SerefyLeadInput): NayaLeadPayload {
+export function buildNayaLeadPayload(input: SERELeadInput): NayaLeadPayload {
   const messageParts = [
     `Source CTA: ${input.sourceCta}`,
     input.role ? `Role: ${label(input.role)}` : null,
@@ -74,14 +74,14 @@ export function buildNayaLeadPayload(input: SerefyLeadInput): NayaLeadPayload {
     fullName: buildFullName(input),
     email: clean(input.email),
     phone: clean(input.phone),
-    companyName: "Serefy Innovations Enquiry",
+    companyName: "SERE Enquiry",
     message: messageParts.join("\n"),
     consent: true,
   };
 }
 
-export async function submitSerefyLead(input: SerefyLeadInput) {
-  const response = await fetch(`/api/landing/public/${SEREFY_PUBLIC_LEAD_KEY}/leads`, {
+export async function submitSERELead(input: SERELeadInput) {
+  const response = await fetch(`/api/landing/public/${SERE_PUBLIC_LEAD_KEY}/leads`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export async function submitSerefyLead(input: SerefyLeadInput) {
     throw new Error(
       responseBody && typeof responseBody.error === "string"
         ? responseBody.error
-        : "Lead capture is temporarily unavailable. Please try again or email serefy.connect@gmail.com.",
+        : "Lead capture is temporarily unavailable. Please try again or email SERE.connect@gmail.com.",
     );
   }
 
