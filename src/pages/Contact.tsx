@@ -23,7 +23,7 @@ export default function Contact() {
           </p>
           <button
             onClick={() => setSubmitted(false)}
-            className="bg-primary text-on-primary px-8 py-3 rounded-xl font-bold hover:brightness-110 transition-all"
+            className="bg-primary text-on-primary px-8 py-3 rounded-2xl font-bold hover:brightness-110 hover:scale-[1.02] transition-all"
           >
             {t('contact.form.submit')}
           </button>
@@ -42,30 +42,30 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="bg-surface p-8 md:p-10 rounded-2xl shadow-xl border border-outline-variant/15">
+        <div className="bg-surface p-8 md:p-10 rounded-3xl shadow-xl border border-outline-variant/15">
           <h2 className="font-headline text-2xl font-bold mb-8">{t('contact.form.title')}</h2>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-bold text-on-surface mb-2">{t('form.firstName')}</label>
-                <input type="text" id="name" name="name" required className="w-full bg-surface-container border border-outline-variant/40 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Your name" />
+                <input type="text" id="name" name="name" required className="w-full bg-surface-container border border-outline-variant/40 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Your name" />
               </div>
             </div>
             
             <div>
               <label htmlFor="email" className="block text-sm font-bold text-on-surface mb-2">{t('form.email')}</label>
-              <input type="email" id="email" name="email" required className="w-full bg-surface-container border border-outline-variant/40 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="you@example.com" />
+              <input type="email" id="email" name="email" required className="w-full bg-surface-container border border-outline-variant/40 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="you@example.com" />
             </div>
 
             <div>
               <label htmlFor="message" className="block text-sm font-bold text-on-surface mb-2">{t('form.message')}</label>
-              <textarea id="message" name="message" rows={4} required className="w-full bg-surface-container border border-outline-variant/40 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" placeholder="How can we help you?"></textarea>
+              <textarea id="message" name="message" rows={4} required className="w-full bg-surface-container border border-outline-variant/40 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" placeholder="How can we help you?"></textarea>
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-on-primary font-bold py-4 rounded-xl hover:brightness-110 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full bg-primary text-on-primary font-bold py-4 rounded-2xl hover:brightness-110 hover:shadow-lg hover:shadow-primary/20 hover:scale-[1.02] transition-all duration-300 active:scale-[0.98] disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loading ? t('contact.form.sending') : t('contact.form.submit')}
             </button>

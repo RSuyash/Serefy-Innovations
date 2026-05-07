@@ -64,13 +64,13 @@ export default function Layout() {
             {/* Desktop Language Switcher */}
             <button
               onClick={() => setIsLangModalOpen(true)}
-              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-green-200 hover:border-green-500/50 hover:bg-green-50 transition-all text-xs font-bold text-black/70"
+              className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-2xl border border-green-200 hover:border-green-500/50 hover:bg-green-50 hover:scale-[1.02] transition-all text-xs font-bold text-black/70"
             >
               <Globe size={14} className="text-green-600" />
               <span>{selectedLang}</span>
             </button>
 
-            <Link to="/contact" className="hidden sm:block bg-black text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-black text-xs md:text-sm hover:bg-green-700 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-0.5 transition-all active:scale-95 uppercase tracking-widest">
+            <Link to="/contact" className="hidden sm:block bg-black text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-black text-xs md:text-sm hover:bg-green-700 hover:shadow-xl hover:shadow-green-500/20 hover:-translate-y-0.5 hover:scale-[1.02] transition-all active:scale-95 uppercase tracking-widest">
               {t('nav.getStarted')}
             </Link>
 
@@ -129,7 +129,7 @@ export default function Layout() {
                   })}
                   <Link
                     to="/contact"
-                    className="bg-black text-white px-6 py-5 rounded-2xl font-black text-center text-sm mt-4 uppercase tracking-widest hover:bg-green-700 transition-colors"
+                    className="bg-black text-white px-6 py-5 rounded-3xl font-black text-center text-sm mt-4 uppercase tracking-widest hover:bg-green-700 hover:scale-[1.02] transition-all"
                   >
                     {t('nav.getStarted')}
                   </Link>
@@ -150,7 +150,7 @@ export default function Layout() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-8 max-w-7xl mx-auto relative z-10">
           <div className="md:col-span-5">
             <div className="text-3xl font-black text-white mb-6 flex items-center gap-3">
-              <div className="bg-white p-2 rounded-2xl flex items-center justify-center overflow-hidden w-16 h-16">
+              <div className="bg-white p-2 rounded-3xl flex items-center justify-center overflow-hidden w-16 h-16">
                  <img 
                   src="/logo to be used.PNG" 
                   alt={siteConfig.brand.name} 
@@ -165,7 +165,7 @@ export default function Layout() {
             </p>
             <div className="flex gap-4">
               {['share', 'rss_feed'].map(icon => (
-                <a key={icon} href="#" className="w-10 h-10 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-green-600 hover:border-green-600 transition-all duration-300">
+                <a key={icon} href="#" className="w-10 h-10 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-green-600 hover:border-green-600 hover:scale-[1.02] transition-all duration-300">
                   <span className="material-symbols-outlined text-xl">{icon}</span>
                 </a>
               ))}
@@ -176,7 +176,7 @@ export default function Layout() {
             <h5 className="text-green-500 font-black uppercase text-xs tracking-[0.4em] mb-8">{t('footer.partners')}</h5>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col items-start group">
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/10 group-hover:border-green-500/30 transition-all duration-500">
+                <div className="bg-white/5 p-4 rounded-3xl border border-white/10 group-hover:border-green-500/30 transition-all duration-500">
                   <img src="/media/aic-mahindra.webp" alt="AIC Mahindra" className="h-16 md:h-20 w-auto object-contain" />
                 </div>
                 <span className="text-white/40 text-[10px] font-black uppercase tracking-widest mt-4 ml-1">{t('footer.incubation')}</span>
@@ -203,10 +203,10 @@ export default function Layout() {
               href="https://nayagrowth.com"
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -5 }}
-              className="bg-white/5 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 flex items-center gap-3 group transition-all hover:bg-white/10"
+              whileHover={{ y: -5, scale: 1.02 }}
+              className="bg-white/5 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/10 flex items-center gap-3 group transition-all hover:bg-white/10"
             >
-              <div className="w-8 h-8 bg-green-800 rounded-lg flex items-center justify-center font-black text-xs text-white shadow-lg">N</div>
+              <div className="w-8 h-8 bg-green-800 rounded-xl flex items-center justify-center font-black text-xs text-white shadow-lg">N</div>
               <div className="text-left">
                 <p className="text-[8px] text-white/40 font-bold uppercase tracking-widest leading-none mb-1">{t('footer.partner')}</p>
                 <p className="text-xs font-black text-white group-hover:text-green-400 transition-colors">Naya Growth</p>
@@ -232,7 +232,7 @@ export default function Layout() {
         href={`https://wa.me/${siteConfig.brand.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 md:bottom-10 right-6 md:right-8 z-[9999] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-2xl flex items-center justify-center shadow-2xl hover:scale-110 active:scale-90 transition-all group overflow-hidden"
+        className="fixed bottom-6 md:bottom-10 right-6 md:right-8 z-[9999] w-12 h-12 md:w-14 md:h-14 bg-[#25D366] text-white rounded-3xl flex items-center justify-center shadow-2xl hover:scale-[1.15] active:scale-90 transition-all group overflow-hidden"
         aria-label="Contact on WhatsApp"
       >
         <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>

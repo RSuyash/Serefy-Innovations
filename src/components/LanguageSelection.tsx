@@ -53,7 +53,7 @@ export default function LanguageSelection({ isOpen, onClose }: LanguageSelection
                 <motion.div
                   initial={{ rotate: -10 }}
                   animate={{ rotate: 0 }}
-                  className="w-16 h-16 md:w-20 md:h-20 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-inner"
+                  className="w-16 h-16 md:w-20 md:h-20 bg-green-50 rounded-3xl flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-inner"
                 >
                   <Globe className="text-green-700 w-8 h-8 md:w-10 md:h-10" />
                 </motion.div>
@@ -69,13 +69,14 @@ export default function LanguageSelection({ isOpen, onClose }: LanguageSelection
                     transition={{ delay: idx * 0.1 }}
                     key={lang.name}
                     onClick={() => handleSelect(lang.name)}
-                    className={`w-full p-4 md:p-5 rounded-2xl border-2 transition-all flex items-center justify-between group relative overflow-hidden ${selectedLang === lang.name
+                    whileHover={{ scale: 1.02 }}
+                    className={`w-full p-4 md:p-5 rounded-3xl border-2 transition-all flex items-center justify-between group relative overflow-hidden ${selectedLang === lang.name
                       ? 'border-green-600 bg-green-50/50'
                       : 'border-green-100 hover:border-green-300 hover:bg-green-50'
                       }`}
                   >
                     <div className="flex items-center gap-3 md:gap-4">
-                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center font-black text-base md:text-lg transition-colors ${selectedLang === lang.name ? 'bg-green-600 text-white' : 'bg-green-50 text-black/40 group-hover:bg-green-100 group-hover:text-green-600'
+                      <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl flex items-center justify-center font-black text-base md:text-lg transition-colors ${selectedLang === lang.name ? 'bg-green-600 text-white' : 'bg-green-50 text-black/40 group-hover:bg-green-100 group-hover:text-green-600'
                         }`}>
                         {lang.native[0]}
                       </div>
@@ -96,7 +97,7 @@ export default function LanguageSelection({ isOpen, onClose }: LanguageSelection
               <div className="mt-8 pt-6 border-t border-green-100">
                 <button
                   onClick={onClose}
-                  className="w-full bg-black text-white py-4 rounded-xl font-black text-sm md:text-base shadow-xl hover:bg-green-700 transition-all"
+                  className="w-full bg-black text-white py-4 rounded-2xl font-black text-sm md:text-base shadow-xl hover:bg-green-700 hover:scale-[1.02] transition-all"
                 >
                   Continue / आगे बढ़ें
                 </button>

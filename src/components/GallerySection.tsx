@@ -57,7 +57,7 @@ export default function GallerySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -10, scale: 1.02 }}
                 className="group"
               >
                 <div className="flex flex-col">
@@ -67,7 +67,7 @@ export default function GallerySection() {
                       alt={item.title} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
                     />
-                    <div className="absolute top-6 left-6 w-10 h-10 bg-primary text-on-primary rounded-lg flex items-center justify-center font-black text-sm shadow-lg shadow-primary/30 z-10">
+                    <div className="absolute top-6 left-6 w-10 h-10 bg-primary text-on-primary rounded-xl flex items-center justify-center font-black text-sm shadow-lg shadow-primary/30 z-10">
                       {item.step}
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"></div>

@@ -119,9 +119,9 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                     <button
                       key={role.id}
                       onClick={() => handleSelectionNext({ ...formData, role: role.id })}
-                      className={`flex items-center p-4 rounded-2xl border-2 text-left transition-all ${formData.role === role.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
+                      className={`flex items-center p-4 rounded-3xl border-2 text-left hover:scale-[1.02] transition-all ${formData.role === role.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                     >
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 ${formData.role === role.id ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface-variant'}`}>
+                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 mr-4 ${formData.role === role.id ? 'bg-primary text-on-primary' : 'bg-surface-container text-on-surface-variant'}`}>
                         <role.icon size={24} />
                       </div>
                       <div className="flex-1">
@@ -146,7 +146,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                          <button
                            key={cap}
                            onClick={() => handleSelectionNext({ ...formData, capacity: cap })}
-                           className={`p-5 rounded-2xl border-2 text-center transition-all flex justify-between items-center ${formData.capacity === cap ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
+                           className={`p-5 rounded-3xl border-2 text-center hover:scale-[1.02] transition-all flex justify-between items-center ${formData.capacity === cap ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-2xl font-extrabold text-on-surface">{t('section.infra.120.title').replace('120', cap)}</div>
                            <ChevronRight className={`transition-opacity ${formData.capacity === cap ? 'opacity-100 text-primary' : 'opacity-0'}`} />
@@ -168,7 +168,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                          <button
                            key={type.id}
                            onClick={() => handleSelectionNext({ ...formData, partnershipType: type.id })}
-                           className={`p-5 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.partnershipType === type.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
+                           className={`p-5 rounded-3xl border-2 text-left hover:scale-[1.02] transition-all flex justify-between items-center ${formData.partnershipType === type.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{type.title}</div>
                            <ChevronRight className={`transition-opacity ${formData.partnershipType === type.id ? 'opacity-100 text-primary' : 'opacity-0'}`} />
@@ -201,7 +201,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                          <button
                            key={goal.id}
                            onClick={() => handleSelectionNext({ ...formData, goal: goal.id })}
-                           className={`p-4 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.goal === goal.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
+                           className={`p-4 rounded-3xl border-2 text-left hover:scale-[1.02] transition-all flex justify-between items-center ${formData.goal === goal.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{goal.title}</div>
                            <ChevronRight className={`transition-opacity ${formData.goal === goal.id ? 'opacity-100 text-primary' : 'opacity-0'}`} />
@@ -222,7 +222,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                          <button
                            key={tl.id}
                            onClick={() => handleSelectionNext({ ...formData, timeline: tl.id })}
-                           className={`p-4 rounded-2xl border-2 text-left transition-all flex justify-between items-center ${formData.timeline === tl.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
+                           className={`p-4 rounded-3xl border-2 text-left hover:scale-[1.02] transition-all flex justify-between items-center ${formData.timeline === tl.id ? 'border-primary bg-primary/5' : 'border-outline-variant/30 hover:border-outline bg-surface'}`}
                          >
                            <div className="font-headline text-lg font-bold text-on-surface">{tl.title}</div>
                            <ChevronRight className={`transition-opacity ${formData.timeline === tl.id ? 'opacity-100 text-primary' : 'opacity-0'}`} />
@@ -244,7 +244,7 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                 <h3 className="font-headline text-2xl font-bold text-on-surface mb-2">{t('wizard.step4.title')}</h3>
                 <p className="text-on-surface-variant mb-6 text-sm">{t('wizard.step4.desc')}</p>
                 <textarea 
-                  className="w-full px-4 py-4 rounded-xl border-2 border-outline-variant/50 bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none min-h-[160px] resize-y" 
+                  className="w-full px-4 py-4 rounded-2xl border-2 border-outline-variant/50 bg-surface focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all outline-none min-h-[160px] resize-y" 
                   placeholder={formData.role === 'investor' ? t('wizard.step4.placeholder.investor') : t('wizard.step4.placeholder.farmer')}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -269,24 +269,24 @@ export default function WizardModal({ isOpen, onClose, onSubmit, isSubmitting = 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-2">
                       <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.firstName')}</label>
-                      <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} />
+                      <input required type="text" className="w-full px-4 py-3 rounded-2xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.firstName} onChange={e => setFormData({...formData, firstName: e.target.value})} />
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.lastName')}</label>
-                      <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.lastName} onChange={e => setFormData({...formData, lastName: e.target.value})} />
+                      <input required type="text" className="w-full px-4 py-3 rounded-2xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.lastName} onChange={e => setFormData({...formData, lastName: e.target.value})} />
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.email')}</label>
-                    <input required type="email" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
+                    <input required type="email" className="w-full px-4 py-3 rounded-2xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.phone')}</label>
-                    <input required type="tel" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" />
+                    <input required type="tel" className="w-full px-4 py-3 rounded-2xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+91 98765 43210" />
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="font-label text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('form.city')}</label>
-                    <input required type="text" className="w-full px-4 py-3 rounded-xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
+                    <input required type="text" className="w-full px-4 py-3 rounded-2xl border border-outline-variant bg-surface focus:ring-2 focus:ring-primary focus:border-primary outline-none" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} />
                   </div>
                   
                   <div className="mt-6 flex justify-between">

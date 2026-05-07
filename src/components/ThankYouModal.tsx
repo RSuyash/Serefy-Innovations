@@ -71,7 +71,7 @@ export default function ThankYouModal({ isOpen, onClose, name }: ThankYouModalPr
         <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
           {t('thanks.desc')}
         </p>
-        <button onClick={onClose} className="w-full btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-xl hover:bg-primary-container transition-all shadow-lg">
+        <button onClick={onClose} className="w-full btn-primary text-on-primary font-label font-bold px-8 py-4 rounded-2xl hover:bg-primary-container hover:scale-[1.02] transition-all shadow-lg">
           {t('thanks.cta')}
         </button>
       </motion.div>

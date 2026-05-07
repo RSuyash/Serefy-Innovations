@@ -60,7 +60,7 @@ export default function ProblemSlideshow() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="bg-surface/95 backdrop-blur-md p-5 rounded-2xl border border-white/10 shadow-xl"
+              className="bg-surface/95 backdrop-blur-md p-5 rounded-3xl border border-white/10 shadow-xl"
             >
               <h4 className="font-headline font-bold text-primary mb-2 text-xl">{slides[currentIndex].title}</h4>
               <p className="text-on-surface-variant font-medium">{slides[currentIndex].description}</p>

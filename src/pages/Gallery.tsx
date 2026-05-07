@@ -20,7 +20,7 @@ export default function Gallery() {
 
       {/* Calligraphy Mix Header - Compact Scale */}
       <header className="max-w-5xl mx-auto px-6 mb-16 text-center animate-in fade-in slide-in-from-top-4 duration-1000">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-[10px] font-black tracking-[0.4em] uppercase bg-black text-white rounded-md shadow-xl">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 text-[10px] font-black tracking-[0.4em] uppercase bg-black text-white rounded-xl shadow-xl">
           <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
           Visual Journey
         </div>
@@ -39,16 +39,16 @@ export default function Gallery() {
 
       {/* Modern Compact Switcher */}
       <div className="flex justify-center mb-16 px-6">
-        <div className="bg-green-50/50 p-1.5 rounded-2xl flex gap-1 border border-green-100 shadow-sm">
+        <div className="bg-green-50/50 p-1.5 rounded-3xl flex gap-1 border border-green-100 shadow-sm">
           <button
             onClick={() => setActiveTab('photos')}
-            className={`px-6 md:px-10 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'photos' ? 'bg-black text-white shadow-xl' : 'text-black/40 hover:text-black/60'}`}
+            className={`px-6 md:px-10 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] transition-all ${activeTab === 'photos' ? 'bg-black text-white shadow-xl' : 'text-black/40 hover:text-black/60'}`}
           >
             Photos
           </button>
           <button
             onClick={() => setActiveTab('videos')}
-            className={`px-6 md:px-10 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'videos' ? 'bg-black text-white shadow-xl' : 'text-black/40 hover:text-black/60'}`}
+            className={`px-6 md:px-10 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] transition-all ${activeTab === 'videos' ? 'bg-black text-white shadow-xl' : 'text-black/40 hover:text-black/60'}`}
           >
             Videos
           </button>
