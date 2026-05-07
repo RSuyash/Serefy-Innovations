@@ -35,7 +35,8 @@ export default function Layout() {
                <img 
                 src="/logo to be used.PNG" 
                 alt={siteConfig.brand.name} 
-                className="h-full w-auto object-contain mix-blend-multiply transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-auto object-contain bg-white transition-transform duration-300 group-hover:scale-110 scale-125"
+                style={{ filter: 'brightness(1.05) contrast(1.1)' }}
               />
             </div>
             <span className="font-headline font-black text-lg md:text-xl tracking-tighter uppercase ml-1">{siteConfig.brand.name}</span>
@@ -149,11 +150,12 @@ export default function Layout() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 px-8 max-w-7xl mx-auto relative z-10">
           <div className="md:col-span-5">
             <div className="text-3xl font-black text-white mb-6 flex items-center gap-3">
-              <div className="bg-white p-2 rounded-2xl flex items-center justify-center overflow-hidden w-20 h-20">
+              <div className="bg-white p-2 rounded-2xl flex items-center justify-center overflow-hidden w-16 h-16">
                  <img 
                   src="/logo to be used.PNG" 
                   alt={siteConfig.brand.name} 
-                  className="h-full w-auto object-contain mix-blend-multiply" 
+                  className="h-full w-auto object-contain bg-white scale-125" 
+                  style={{ filter: 'brightness(1.05) contrast(1.1)' }}
                 />
               </div>
               {siteConfig.brand.name}
