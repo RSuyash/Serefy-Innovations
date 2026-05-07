@@ -474,19 +474,19 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
-                <video src="/media/Machine%20process/IMG_4242.MOV" controls className="w-full h-full object-cover"></video>
+                <video src="/media/Machine%20process/IMG_4243.MOV" poster="/loading image.PNG" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.loading')}</p>
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
-                <video src="/media/Machine%20process/IMG_4243.MOV" controls className="w-full h-full object-cover"></video>
+                <video src="/media/Machine%20process/IMG_4242.MOV" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.incubation')}</p>
                 </div>
               </div>
               <div className="rounded-3xl overflow-hidden border border-outline-variant/30 aspect-[4/5] bg-surface flex flex-col relative group ambient-shadow hover:-translate-y-2 transition-all duration-300">
-                <video src="/media/Machine%20process/IMG_4246.MOV" controls className="w-full h-full object-cover"></video>
+                <video src="/media/Machine%20process/IMG_4246.MOV" poster="/media/Assets/Logo/incubation image.jpeg" controls className="w-full h-full object-cover"></video>
                 <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md rounded-xl p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <p className="text-white font-bold text-sm tracking-wider uppercase">{t('section.process.candling')}</p>
                 </div>
